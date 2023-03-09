@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- char js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+    <!-- endemicos -->
+    <link rel="stylesheet" href="avance_general.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- ----------------------------------------------------------------- -->
+    <!-- Vista -->
+    <!-- ----------------------------------------------------------------- -->
+
+    <div class="pizarra_avance_general ">
+        <div class="titulo_general">Avance General</div>
+        <div class="panel_grafica_meta">
+            <div class="grafica_avance_general">
+                <!-- <div class="titulo"> </div> -->
+                <div class="cuerpo">
+                    <canvas id="canvas_avance_general"></canvas>
+                </div>
+                <div class="div_meta">
+                    <img src="./meta.PNG" alt="" srcset="">
+                </div>
+
+            </div>
+        </div>
+        <div class="panel_graficas_pastel">
+            <ul class="lista_graficas_pastel">
+                <li class="grafica_integracion">
+                    <div class="titulo"> Programa de Integracion</div>
+                    <div class="cuerpo">
+                        <canvas id="canvas_integracion"></canvas>
+                    </div>
+
+                </li>
+                <li class="grafica_conoc_producto">
+                    <div class="titulo">Conocimiento del Producto</div>
+                    <div class="cuerpo">
+                        <canvas id="canvas_conoc_producto"></canvas>
+                    </div>
+
+                </li>
+                <li class="grafica_asume">
+                    <div class="titulo">Asume</div>
+                    <div class="cuerpo">
+                        <canvas id="canvas_asume"></canvas>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+    <!-- ----------------------------------------------------------------- -->
+    <!-- Vista -->
+    <!-- ----------------------------------------------------------------- -->
+
+    <!-- <div class="divPorcetajeCompletadoAutodiagnostico">
+        <canvas id="PorcetajeCompletadoRegistro"></canvas>
+    </div> -->
+
+    <script src="avance_general.js"></script>
+    <script>
+        const init_avances = avances_generales();
+    </script>
+</body>
+
+</html>

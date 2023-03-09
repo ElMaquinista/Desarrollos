@@ -1,0 +1,60 @@
+/* ------------------------------------------------ */
+/*  */
+/* ------------------------------------------------ */
+.titulo_contratistas {
+  margin: 10px 0;
+  height: 30px;
+}
+/* ------------------------------------------------ */
+/* pizarra contratistas */
+/* ------------------------------------------------ */
+.pizarra_contratistas {
+  width: 600px;
+}
+
+.pizarra_contratistas .lista_contratistas {
+  padding-top: 20px;
+}
+
+.pizarra_contratistas .icono_detalles {
+}
+
+.pizarra_contratistas .item_contratista {
+  display: flex;
+}
+.pizarra_contratistas .item_contratista .nombre {
+  width: calc(100% - 20px);
+}
+.pizarra_contratistas .conte_icono_detalles {
+  position: relative;
+  /* float: right; */
+  cursor: pointer;
+  /* padding-left: 50px; */
+  padding-right: 5px;
+  width: 20px;
+}
+
+/* ------------------------------------------------ */
+/* pizarra detalle contratistas */
+/* ------------------------------------------------ */
+.pizarra_detalle_contratista {
+}
+.pizarra_detalle_contratista .titulo_contratista{
+  display: flex;
+  padding: 10px;
+}
+.pizarra_detalle_contratista .titulo_contratista .label_titulo_contratista{
+  padding-left: 10px;
+}
+.pizarra_detalle_contratista.ocultar {
+  display: none;
+}
+.pizarra_detalle_contratista .regresar_contratas {
+  cursor: pointer;
+}
+/* ------------------------------------------------ */
+/* utlidades */
+/* ------------------------------------------------ */
+.ocultar_elemento {
+  display: none;
+}

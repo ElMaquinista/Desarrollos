@@ -1,0 +1,168 @@
+.cuerpo_pagina {
+  position: relative;
+}
+.contenedor_toda_gerarquia{
+  width: 840px;
+  height: 600px;
+  overflow: hidden;
+}
+.panel_gerarquia {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+.linea_gerarquia {
+  height: 50px;
+  display: flex;
+  /* margin: 0 auto;s */
+}
+.linea_gerarquia .paso_gerarquia {
+  color: white;
+  /* display: inline; */
+  display: flex;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 0px 20px 20px 0px;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  width: 250px;
+}
+.linea_gerarquia .paso_gerarquia[data-gerarquia="jefe_departamento"] {
+  background: linear-gradient(
+    -30deg,
+    #e0335e 25%,
+    #e65c7e 25% 50%,
+    #cb3f3f 50% 75%,
+    #e65c7e 75%
+  );
+  z-index: 10;
+  box-shadow: 15px 0px rgba(110, 110, 110, 0.404);
+}
+.linea_gerarquia .paso_gerarquia[data-gerarquia="subgerente_tienda"] {
+  background: linear-gradient(
+    -30deg,
+    #0082b7 25%,
+    #339bc5 25% 50%,
+    #0082b7 50% 75%,
+    #339bc5 75%
+  );
+  z-index: 9;
+  margin-left: -15px;
+  box-shadow: 15px 0px rgba(110, 110, 110, 0.404);
+}
+.linea_gerarquia .paso_gerarquia[data-gerarquia="gerente_tienda"] {
+  background: linear-gradient(
+    -30deg,
+    #00adb5 25%,
+    #33bdc4 25% 50%,
+    #00adb5 50% 75%,
+    #33bdc4 75%
+  );
+  z-index: 8;
+  margin-left: -15px;
+}
+.panel_lista_mejores_estuduantes {
+  /* position: absolute; */
+  /* top: 65%; */
+  /* left: 25%; */
+  width: 300px;
+  height: 200px;
+  /* float: inline-end; */
+}
+.panel_lista_mejores_estuduantes .titulo {
+  position: relative;
+  color: #609dd4;
+  text-align: center;
+}
+.panel_lista_mejores_estuduantes .lista {
+  position: relative;
+}
+.panel_lista_mejores_estuduantes .item_lista {
+  position: relative;
+  list-style: none;
+  /* list-style-type: decimal; */
+  height: 40px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  vertical-align: middle;
+  counter-increment: li;
+}
+.panel_lista_mejores_estuduantes .item_lista::before {
+  content: counter(li);
+  color: rgb(255, 255, 255);
+  display: inline-block;
+  width: 1em;
+  margin-left: -16px;
+  margin-top: 0px;
+  font-weight: bold;
+  z-index: 100;
+  position: relative;
+}
+.panel_lista_mejores_estuduantes .item_lista .nombre {
+  position: initial;
+  vertical-align: middle;
+  display: inline;
+}
+.panel_lista_mejores_estuduantes .icono_list {
+  color: green;
+  padding-left: 5px;
+  margin-left: -29px;
+  position: relative;
+  z-index: 1;
+}
+.panel_cursos {
+  /* position: absolute; */
+  /* left: 30%; */
+  padding-top: 40px;
+}
+.panel_cursos .lista_cursos {
+}
+.panel_cursos .titulo {
+  color: #e0335f;
+  font-weight: bold;
+  padding-left: 25px;
+}
+/* contenedor  */
+.grid-contenedor {
+  /* display: grid;
+  grid: 150px / auto auto auto; */
+  height: 200px;
+  display: flex;
+}
+
+/* fromas */
+.circulo {
+  width: 40px;
+  height: 40px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background: #5cb85c;
+}
+.personalizar_circulo[data-gerarquia="jefe_departamento"] {
+  background: #e0335e;
+}
+.personalizar_circulo[data-gerarquia="subgerente_tienda"] {
+  background: #0082b7;
+}
+.personalizar_circulo[data-gerarquia="gerente_tienda"] {
+  background: #00adb5;
+}
+.v-line {
+  border-left: thick solid #000;
+  height: 100%;
+  left: 45%;
+  position: relative;
+}
+.v-line-invertido {
+  border-left: thick solid #000;
+  height: calc(100% + 10px);
+  left: 45%;
+  position: relative;
+  /* padding-top: -20px; */
+  margin-top: -40px;
+}

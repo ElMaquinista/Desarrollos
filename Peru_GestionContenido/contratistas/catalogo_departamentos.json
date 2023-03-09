@@ -1,0 +1,146 @@
+[
+    {
+        "id_region": "3",
+        "departamento": "AYACUCHO",
+        "id": "1",
+        "activo": "1"
+    },
+    {
+        "id_region": "3",
+        "departamento": "HUANUCO",
+        "id": "2",
+        "activo": "1"
+    },
+    {
+        "id_region": "3",
+        "departamento": "ICA",
+        "id": "3",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "JUNIN",
+        "id": "4",
+        "activo": "1"
+    },
+    {
+        "id_region": "4",
+        "departamento": "LIMA",
+        "id": "5",
+        "activo": "1"
+    },
+    {
+        "id_region": "3",
+        "departamento": "SAN MARTIN",
+        "id": "6",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "UCAYALI",
+        "id": "7",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "AMAZONAS",
+        "id": "8",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "ANCASH",
+        "id": "9",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "APURIMAC",
+        "id": "10",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "AREQUIPA",
+        "id": "11",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "CAJAMARCA",
+        "id": "12",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "CUSCO",
+        "id": "14",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "HUANCAVELICA",
+        "id": "15",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "LA LIBERTAD",
+        "id": "16",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "LAMBAYEQUE",
+        "id": "17",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "LORETO",
+        "id": "18",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "MADRE DE DIOS",
+        "id": "19",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "MOQUEGUA",
+        "id": "20",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "PASCO",
+        "id": "21",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "PIURA",
+        "id": "22",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "PUNO",
+        "id": "23",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "TACNA",
+        "id": "24",
+        "activo": "1"
+    },
+    {
+        "id_region": null,
+        "departamento": "TUMBES",
+        "id": "25",
+        "activo": "1"
+    }
+]

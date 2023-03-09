@@ -1,0 +1,95 @@
+:root {
+  --vista_items_carrusel: 3;
+  --ancho_item_carrusel: 300px;
+}
+.pizarra_diplomas {
+  display: grid;
+  align-content: center;
+}
+.diplomas_carrusel {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  width: calc(var(--ancho_item_carrusel) * var(--vista_items_carrusel));
+  padding-top: 50px;
+}
+.diplomas_carrusel .carrusel_card {
+  width: var(--ancho_item_carrusel);
+  border-style: none;
+  /* height: 200px; */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.diplomas_carrusel .div_imagen_card {
+  width: 100%;
+  height: calc(100% - 50px);
+  align-content: center;
+  align-items: center;
+}
+.diplomas_carrusel .div_imagen_card .imagen_card {
+  border-style: double;
+  border-width: 7px;
+}
+
+.diplomas_carrusel .cuerpo_card {
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+.diplomas_carrusel .texto_titulo {
+  margin: 0 auto;
+  background-color: #002060;
+  color: white;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+}
+.diplomas_carrusel .div_birrete {
+}
+.diplomas_carrusel .img_birrrete {
+  border-radius: 150px;
+}
+.con-scroll-visible::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  display: block;
+}
+/* Modal para el pdf */
+.modal_visor_pdf .frame_pdf {
+  width: 100%;
+  height: 600px;
+}
+.diplomas_carrusel .canvas_diploma {
+  width: 100%;
+}
+
+.titulo_diplomas {
+  text-align: center;
+  /* font-weight: bold; */
+  text-decoration: underline;
+  font-size: 80px;
+}
+.pizarra_diplomas .diplomas_carrusel_capa_botones {
+  display: flex;
+}
+.pizarra_diplomas .carrusel_item_siguiente {
+  height: 100%;
+  color: #195399;
+}
+.pizarra_diplomas .carrusel_item_anterior {
+  height: 100%;
+  color: #195399;
+}
+.pizarra_diplomas .diplomas_carrusel_capa_botones {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.pizarra_diplomas .lista_items_carrusel {
+  display: inline-flex;
+  list-style: none;
+  margin: 0 0 0 0;
+  padding-left: 0;
+}
+.modal > .modal-dialog {
+  margin: 0% auto;
+}

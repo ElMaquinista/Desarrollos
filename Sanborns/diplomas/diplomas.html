@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- bootstrap@4.6.2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+    <!-- Para hacer las miniaturas de los pdf -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script> -->
+    <script src="./../../Recursos/PDFjs-2-0-9/pdf.min.js"></script>
+    <!-- <script src="./../../Recursos/PDFjs-2-0-9/pdf.js"></script> -->
+    <!-- <script src="./../../Recursos/PDFjs-2-0-9/pdf.js.map"></script>s -->
+    <!-- <script src="./../../Recursos/PDFjs-2-0-9/pdf.worker.js"></script> -->
+    <!-- <script src="./../../Recursos/PDFjs-3-2-1/pdf.min.js"></script>
+    <script src="./../../Recursos/PDFjs-3-2-1/pdf.js"></script>
+    <script src="./../../Recursos/PDFjs-3-2-1/pdf.sandbox.js"></script>
+    <script src="./../../Recursos/PDFjs-3-2-1/pdf.worker.js"></script> -->
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/d533bbc844.js" crossorigin="anonymous"></script>
+    <!-- endemicos -->
+    <link rel="stylesheet" href="diplomas.css">
+</head>
+
+<body>
+    <div class="row col-12 m-0 p-3 h-100 overflow-auto" id="base_modulo_${id}">
+        <div class="col-12 col-sm-12 mx-auto container shadow p-3 bg-white h-100">
+            <div class="card-body px-0 h-100 verflow-auto con-scroll-visible">
+                <div class="card-header">
+                    <span class="title">
+
+                    </span>
+                </div>
+                <div class="card-body px-0 h-100">
+                    <!-- ----------------------------------------------------------------- -->
+                    <!-- Vista -->
+                    <!-- ----------------------------------------------------------------- -->
+                    <div class="pizarra_diplomas">
+                        <div class="titulo_diplomas font-weight-bol">
+                            ¡Muy bien!
+                        </div>
+                        <div class="titulo_diplomas font-weight-bol">
+                            <h2>Descarga las constancias de tus capacitaciones concluidas</h2>
+                        </div>
+
+                        <br>
+                        <br>
+
+                        <div class="diplomas_carrusel_capa_botones">
+                            <div><button type="button" class="btn carrusel_item_anterior shadow-none"
+                                    onclick="init_diplomas.carrusel_item_anterior()"><i
+                                        class="fa-thin fa-less-than fa-2x"></i></button></div>
+                            <div class="diplomas_carrusel con-scroll-visible">
+                                <ul class="lista_items_carrusel">
+                                    <li class="card carrusel_card">
+                                        <div class="div_imagen_card">
+                                            <img class="card-img-top imagen_card" src="https://empresas.claro360.com/sanborns/resources/views/diplomas/diploma.jpg" alt="Mi espacio">
+                                        </div>
+                                        <div class="cuerpo_card">
+                                            <div class="texto_titulo  ">
+                                                <div class="align-middle h-100 mx-auto">Bienvenidos</div>
+                                            </div>
+                                            <div class="div_birrete">
+                                                <img class="img_birrrete" src="https://empresas.claro360.com/sanborns/resources/views/birrete.PNG" alt="birrete">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="card carrusel_card">
+                                        <div class="div_imagen_card">
+                                            <img class="card-img-top imagen_card" src="https://empresas.claro360.com/sanborns/resources/views/diplomas/diploma.jpg" alt="Mi espacio">
+                                        </div>
+                                        <div class="cuerpo_card">
+                                            <div class="texto_titulo  ">
+                                                <div class="align-middle h-100 mx-auto"> Seguridad de la información
+                                                    2023
+                                                </div>
+                                            </div>
+                                            <div class="div_birrete">
+                                                <img class="img_birrrete" src="https://empresas.claro360.com/sanborns/resources/views/birrete.PNG" alt="birrete">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="card carrusel_card">
+                                        <div class="div_imagen_card">
+                                            <img class="card-img-top imagen_card" src="https://empresas.claro360.com/sanborns/resources/views/diplomas/diploma.jpg" alt="Mi espacio">
+                                        </div>
+                                        <div class="cuerpo_card">
+                                            <div class="texto_titulo  ">
+                                                <div class="align-middle h-100 mx-auto"> Nueva Normalidad</div>
+                                            </div>
+                                            <div class="div_birrete">
+                                                <img class="img_birrrete" src="https://empresas.claro360.com/sanborns/resources/views/birrete.PNG" alt="birrete">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="card carrusel_card">
+                                        <div class="div_imagen_card">
+                                            <img class="card-img-top imagen_card" src="https://empresas.claro360.com/sanborns/resources/views/diplomas/diploma.jpg" alt="Mi espacio">
+                                        </div>
+                                        <div class="cuerpo_card">
+                                            <div class="texto_titulo  ">
+                                                <div class="align-middle h-100 mx-auto"> Otro tipo</div>
+                                            </div>
+                                            <div class="div_birrete">
+                                                <img class="img_birrrete" src="https://empresas.claro360.com/sanborns/resources/views/birrete.PNG" alt="birrete">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="card carrusel_card">
+                                        <div class="div_imagen_card">
+                                            <img class="card-img-top imagen_card" src="https://empresas.claro360.com/sanborns/resources/views/diplomas/diploma.jpg" alt="Mi espacio">
+                                        </div>
+                                        <div class="cuerpo_card">
+                                            <div class="texto_titulo  ">
+                                                <div class="align-middle h-100 mx-auto"> Consurso de </div>
+                                            </div>
+                                            <div class="div_birrete">
+                                                <img class="img_birrrete" src="https://empresas.claro360.com/sanborns/resources/views/birrete.PNG" alt="birrete">
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div><button type="button" class="btn carrusel_item_siguiente shadow-none"
+                                    onclick="init_diplomas.carrusel_item_siguiente()"><i
+                                        class="fa-thin fa-greater-than fa-2x"></i></button></div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- ----------------- -->
+                    <!-- modal vista del pdf -->
+                    <!-- ----------------- -->
+
+                    <div class="modal fade bd-example-modal-lg modal_visor_pdf" tabindex="-1" role="dialog"
+                        aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal_visor_pdf">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Diploma</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <iframe id="iframepdf" class="frame_pdf"
+                                        src="https://bibliospd.files.wordpress.com/2018/06/diploma.pdf"></iframe>
+
+                                </div>
+                                <!-- <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ----------------------------------------------------------------- -->
+                    <!-- Vista -->
+                    <!-- ----------------------------------------------------------------- -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="diplomas.js"></script>
+    <script>
+        let init_diplomas = diplomas();
+    </script>
+</body>
+
+</html>

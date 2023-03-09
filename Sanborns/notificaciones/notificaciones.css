@@ -1,0 +1,82 @@
+:root{
+    --color_mensaje_leido: #6cd18259;
+    --color_mensaje_no_leido: #a7a7a759;
+    --color_mensaje_visualizando: #0b46c465;
+}
+.pizarra_notificaciones {
+
+}
+.pizarra_notificaciones .zona_mensajes {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* align-content: center; */
+  padding-top: 20px;
+}
+/* ------------------- */
+/* lista de mensajes  */
+/* ------------------- */
+.pizarra_notificaciones .zona_mensajes .div_lista_mesajes {
+  /* display: grid;
+  grid-template-columns: repeat(3, 1rf); */
+  width: 50%;
+  height: 100%;
+}
+.pizarra_notificaciones .zona_mensajes .div_lista_mesajes .lista_mensajes {
+    margin: 20px;
+}
+.pizarra_notificaciones
+  .zona_mensajes
+  .div_lista_mesajes
+  .lista_mensajes
+  .item_mensaje {
+  display: flex;
+  height: 50px;
+}
+.pizarra_notificaciones
+  .zona_mensajes
+  .div_lista_mesajes
+  .lista_mensajes
+  .item_mensaje
+  .div_icono {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 55px;
+}
+.pizarra_notificaciones
+  .zona_mensajes
+  .div_lista_mesajes
+  .lista_mensajes
+  .item_mensaje
+  .asunto {
+  overflow: hidden;
+  width: calc(100% - 55px);
+  cursor: pointer;
+}
+.div_lista_mesajes .no_leido {
+  background-color: var(--color_mensaje_no_leido)
+}
+.div_lista_mesajes .leido {
+  background-color: var(--color_mensaje_leido);
+}
+.div_lista_mesajes .visualizando {
+  background-color: var(--color_mensaje_visualizando)
+}
+/* ------------------- */
+/* previsualizar mensajes  */
+/* ------------------- */
+
+.pizarra_notificaciones .zona_mensajes .panel_previsualizar {
+  width: 50%;
+  /* margin: 20px; */
+  border-style: solid;
+  border-width: 1px;
+  padding: 10px;
+}
+.pizarra_notificaciones .zona_mensajes .panel_previsualizar .mensaje_asunto {
+}
+.pizarra_notificaciones .zona_mensajes .panel_previsualizar .cuerpo {
+    overflow: hidden;
+}

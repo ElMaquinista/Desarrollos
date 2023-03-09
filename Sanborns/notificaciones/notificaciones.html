@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap@4.6.2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+    <!-- fontawesome version personal-->
+    <script src="https://kit.fontawesome.com/d533bbc844.js" crossorigin="anonymous"></script>
+
+    <!-- endemicos -->
+    <link rel="stylesheet" href="notificaciones.css">
+    <title>Notificaiones</title>
+</head>
+
+<body>
+
+    <!-- ----------------------------------------------------------------- -->
+    <!-- Vista -->
+    <!-- ----------------------------------------------------------------- -->
+
+    <div class="pizarra_notificaciones ">
+
+        <div class="zona_mensajes">
+            <div class="div_lista_mesajes">
+                <div class="lista_mensajes">
+                    <div class="item_mensaje">
+                        <div class="div_icono"><i class="far fa-envelope fa-2x"></i></div>
+                        <div class="asunto shadow-sm p-1 mb-1 rounded no_leido">Tienes un nuevo curso asignado a tú
+                            perfil.
+                        </div>
+
+                    </div>
+                    <div class="item_mensaje">
+                        <div class="div_icono"><i class="far fa-envelope fa-2x"></i>
+                        </div>
+                        <div class="asunto shadow-sm p-1 mb-1 rounded no_leido">Concluiste tu curso ¡Bienvenidos!</div>
+                    </div>
+                    <div class="item_mensaje">
+                        <div class="div_icono"><i class="far fa-envelope fa-2x"></i></div>
+                        <div class="asunto shadow-sm p-1 mb-1 rounded no_leido">
+                            Próximas inscripciones al programa iASUME!
+                        </div>
+
+                    </div>
+                    <div class="item_mensaje actual">
+                        <div class="div_icono"><i class="far fa-envelope fa-2x "></i></div>
+                        <div class="asunto shadow-sm p-1 mb-1  rounded no_leido">Bienestar Social Te invita...</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="panel_previsualizar con-scroll-visible">
+                <div class="mensaje_asunto">Tienes un nuevo curso asignado a tú perfil.</div>
+                <hr class="separdor" />
+                <div class="cuerpo">
+                    <div>Seguridad de Ia Información 2022, fecha limite 01
+                        de septiembre del 2022.</div>
+                    <div>
+                        <img src="./mensaje_imagen.PNG" alt="" srcset="">
+                    </div>
+                    <div>Da clic en la imagen para iniciar tu curso.</div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- ----------------------------------------------------------------- -->
+    <!-- Vista -->
+    <!-- ----------------------------------------------------------------- -->
+
+    <script src="./notificaciones.js"></script>
+    <script>
+        const init_notificaciones = notificaciones();
+    </script>
+</body>
+
+</html>

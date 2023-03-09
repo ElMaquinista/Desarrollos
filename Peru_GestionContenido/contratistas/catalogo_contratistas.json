@@ -1,0 +1,298 @@
+[
+    {
+        "contratista": "CLARO",
+        "id_region": null,
+        "id": "0",
+        "region": null,
+        "nombre_corto": null,
+        "activo": "1"
+    },
+    {
+        "contratista": "CARLEI TELECOMUNICACIONES SAC",
+        "id_region": "4",
+        "id": "1",
+        "region": "LIMA",
+        "nombre_corto": "CARLEI",
+        "activo": "1"
+    },
+    {
+        "contratista": "TELECOM DATA S.A.C.",
+        "id_region": "4",
+        "id": "2",
+        "region": "LIMA",
+        "nombre_corto": "TELECOM",
+        "activo": "1"
+    },
+    {
+        "contratista": "INSERTEL",
+        "id_region": "4",
+        "id": "3",
+        "region": "LIMA",
+        "nombre_corto": "INSERTEL",
+        "activo": "1"
+    },
+    {
+        "contratista": "DT PROYECTOS S.A.C",
+        "id_region": "4",
+        "id": "4",
+        "region": "LIMA",
+        "nombre_corto": "DT",
+        "activo": "1"
+    },
+    {
+        "contratista": "COBRA PERU",
+        "id_region": "4",
+        "id": "5",
+        "region": "LIMA",
+        "nombre_corto": "COBRA",
+        "activo": "1"
+    },
+    {
+        "contratista": "COMMUNICATIONS AND SYSTEMS DEVELOPMENT S.A.C.",
+        "id_region": "4",
+        "id": "6",
+        "region": "LIMA",
+        "nombre_corto": "COMMUNICATIONS",
+        "activo": "1"
+    },
+    {
+        "contratista": "CONECTAR TELECOMUNICACIONES S.A.C.",
+        "id_region": "4",
+        "id": "7",
+        "region": "LIMA",
+        "nombre_corto": "CONECTAR",
+        "activo": "1"
+    },
+    {
+        "contratista": "DOMINIONPERU SOLUCIONES Y SERVICIOS S.A.C.",
+        "id_region": "4",
+        "id": "8",
+        "region": "LIMA",
+        "nombre_corto": "DOMINION",
+        "activo": "1"
+    },
+    {
+        "contratista": "IGW PERU S.A.C.",
+        "id_region": "4",
+        "id": "9",
+        "region": "LIMA",
+        "nombre_corto": "IGW",
+        "activo": "1"
+    },
+    {
+        "contratista": "WORK NET INGENIERIA Y TELECOMUNICACIONES S.A.",
+        "id_region": "4",
+        "id": "10",
+        "region": "LIMA",
+        "nombre_corto": "WORKNET",
+        "activo": "1"
+    },
+    {
+        "contratista": "COM2NET",
+        "id_region": "4",
+        "id": "11",
+        "region": "LIMA",
+        "nombre_corto": "COM2NET",
+        "activo": "1"
+    },
+    {
+        "contratista": "C&S TELECOMUNICACIONES EIRL",
+        "id_region": "4",
+        "id": "12",
+        "region": "LIMA",
+        "nombre_corto": "C&S",
+        "activo": "1"
+    },
+    {
+        "contratista": "SISCARD PERU S.A.C.",
+        "id_region": "4",
+        "id": "13",
+        "region": "LIMA",
+        "nombre_corto": "SISCARD",
+        "activo": "1"
+    },
+    {
+        "contratista": "SEMI PERU MONTAJES INDUSTRIALES S.A.C.",
+        "id_region": "4",
+        "id": "14",
+        "region": "LIMA",
+        "nombre_corto": "SEMI",
+        "activo": "1"
+    },
+    {
+        "contratista": "HANSA ANDINA S.A.C",
+        "id_region": "4",
+        "id": "15",
+        "region": "LIMA",
+        "nombre_corto": "HANSA",
+        "activo": "1"
+    },
+    {
+        "contratista": "B & R BUSSINES GROUP PERU E.I.R.L.",
+        "id_region": "1",
+        "id": "16",
+        "region": "SUR",
+        "nombre_corto": "B&R",
+        "activo": "1"
+    },
+    {
+        "contratista": "DIMERA SERVICIOS MULTIPLES S.A.C.",
+        "id_region": "1",
+        "id": "17",
+        "region": "SUR",
+        "nombre_corto": "DIMERA",
+        "activo": "1"
+    },
+    {
+        "contratista": "NIZA REGION SUR S.A.C.",
+        "id_region": "1",
+        "id": "18",
+        "region": "SUR",
+        "nombre_corto": "NIZA",
+        "activo": "1"
+    },
+    {
+        "contratista": "SANTY DISTRIBUCIONES",
+        "id_region": "1",
+        "id": "19",
+        "region": "SUR",
+        "nombre_corto": "SANTY",
+        "activo": "1"
+    },
+    {
+        "contratista": "SOLUCIONES L & F S.A.C.",
+        "id_region": "1",
+        "id": "20",
+        "region": "SUR",
+        "nombre_corto": "L&F",
+        "activo": "1"
+    },
+    {
+        "contratista": "SOLUCIONES Y SERVICIOS MULTIPLES PERU SAC",
+        "id_region": "1",
+        "id": "21",
+        "region": "SUR",
+        "nombre_corto": "MULTIPLES",
+        "activo": "1"
+    },
+    {
+        "contratista": "ZARBAR SAC",
+        "id_region": "1",
+        "id": "22",
+        "region": "SUR",
+        "nombre_corto": "ZARBAR",
+        "activo": "1"
+    },
+    {
+        "contratista": "COMUNICACIONES SUR PERUANA E.I.R.L.",
+        "id_region": "1",
+        "id": "23",
+        "region": "SUR",
+        "nombre_corto": "COMUNICACIONESSUR",
+        "activo": "1"
+    },
+    {
+        "contratista": "USUR SOLUCIONES E.I.R.L.",
+        "id_region": "1",
+        "id": "24",
+        "region": "SUR",
+        "nombre_corto": "USUR",
+        "activo": "1"
+    },
+    {
+        "contratista": "CONECTATEC SAC",
+        "id_region": "1",
+        "id": "25",
+        "region": "SUR",
+        "nombre_corto": "CONECTATEC",
+        "activo": "1"
+    },
+    {
+        "contratista": "INKA CELL S.A.C.",
+        "id_region": "1",
+        "id": "26",
+        "region": "SUR",
+        "nombre_corto": "INKA",
+        "activo": "1"
+    },
+    {
+        "contratista": "LIZVAL CORPORACION SAC",
+        "id_region": "1",
+        "id": "27",
+        "region": "SUR",
+        "nombre_corto": "LIZVAL",
+        "activo": "1"
+    },
+    {
+        "contratista": "ARCE TELECOMUNICACIONES E INFORMATICA S.A.C.",
+        "id_region": "0",
+        "id": "28",
+        "region": null,
+        "nombre_corto": null,
+        "activo": "1"
+    },
+    {
+        "contratista": "CONEXIT SAC",
+        "id_region": "0",
+        "id": "29",
+        "region": null,
+        "nombre_corto": null,
+        "activo": "1"
+    },
+    {
+        "contratista": "FG TELECOMUNICACIONES S.A.C",
+        "id_region": null,
+        "id": "30",
+        "region": null,
+        "nombre_corto": null,
+        "activo": "1"
+    },
+    {
+        "contratista": "IGTEL SAC",
+        "id_region": null,
+        "id": "31",
+        "region": null,
+        "nombre_corto": null,
+        "activo": "1"
+    },
+    {
+        "contratista": "JAMAPUC DISTRIBUCIONES E.I.R.L.",
+        "id_region": null,
+        "id": "32",
+        "region": null,
+        "nombre_corto": null,
+        "activo": "1"
+    },
+    {
+        "contratista": "MARTEL COMUNICACIONES SAC",
+        "id_region": null,
+        "id": "33",
+        "region": null,
+        "nombre_corto": null,
+        "activo": "1"
+    },
+    {
+        "contratista": "TEL AND NET SOLUTION SAC",
+        "id_region": null,
+        "id": "34",
+        "region": null,
+        "nombre_corto": null,
+        "activo": "1"
+    },
+    {
+        "contratista": "TELECOMMUNICATIONS AND NETWORKS SOLUTION S.A.C.",
+        "id_region": null,
+        "id": "35",
+        "region": null,
+        "nombre_corto": null,
+        "activo": "1"
+    },
+    {
+        "contratista": "WITLINK SAC ",
+        "id_region": null,
+        "id": "38",
+        "region": null,
+        "nombre_corto": null,
+        "activo": "1"
+    }
+]

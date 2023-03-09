@@ -1,0 +1,17 @@
+.div_video_capacitacion{
+    display: flex;
+    align-items: center;
+    align-content: center;
+
+}
+.video_capacitacion{
+    margin: 0 auto;
+}
+.video_no_disponible{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.txt_video_no_disponbible{
+    margin: 0 auto;
+}

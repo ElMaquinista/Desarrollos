@@ -1,0 +1,37 @@
+.modalFirma canvas {
+  border: 1px solid #999;
+  cursor: crosshair;
+}
+
+.modalFirma .modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.firma {
+  text-align: center;
+
+  margin-bottom: 20px;
+}
+
+.content_canvas_img_canvas {
+  margin: auto;
+}
+
+.content_canvas_img_canvas img {
+  max-width: 100%;
+}
+
+.controles_canvas {
+  margin-top: 5px;
+}
+
+.controles_canvas button {
+  border: 1px solid #ddd;
+}
+
+.label_canvas {
+  text-transform: uppercase;
+  margin-top: 10px;
+}

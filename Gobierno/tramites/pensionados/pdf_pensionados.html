@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <meta name="x-apple-disable-message-reformatting" />
+    <title>PDF pensionados</title>
+</head>
+
+<body>
+    <!-- -------------------------------------------------- -->
+    <!-- --------------------------------------Hoja 1 -->
+    <!-- -------------------------------------------------- -->
+
+
+    <div class="documento"
+        style="width: 700px; height: 1010px; border-style: dashed; font-size: 8px; overflow: hidden;">
+        <!-- --------------------------------------barra de titulo -->
+        <div class="barra_titulo" style="font-size: 20px; width: 100%; overflow: hidden; height: 130px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="padding: 0; width: 20%;">
+                        <img style="width: 150px"
+                            src="./japama_comp.jpg" alt="" />
+                    </td>
+                    <td style="width: auto; ">
+                        <div style="text-align: center; font-size: 12px;" align="center">
+                            <table
+                                style="border-style: none; border-width: 1px; width: 100%; border-collapse: collapse; text-align: left;">
+                                <tr>
+                                    <td style="width: 20px;">
+                                        <input type="checkbox" class="form-check-input" name="" id="supervivencia"
+                                            value="checkedValue" *!tipo_formato1*?="">
+                                    </td>
+                                    <td>SUPERVIVENCIA</td>
+                                    <td style="width: 20px;">
+                                        <input type="checkbox" class="form-check-input" name="" id="restablecer"
+                                            value="checkedValue" *!tipo_formato2*?="">
+                                    </td>
+                                    <td>RESTABLECER</td>
+
+                                </tr>
+                                <tr>
+                                    <td style="width: 20px;">
+                                        <input type="checkbox" class="form-check-input" name="" id="alta_tarifa"
+                                            value="checkedValue" *!tipo_formato3*?="">
+                                    </td>
+                                    <td>ALTA TARIFA</td>
+                                    <td style="width: 20px;">
+                                        <input type="checkbox" class="form-check-input" name="" id="baja"
+                                            value="checkedValue" *!tipo_formato4*?="">
+                                    </td>
+                                    <td>BAJA</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                    <td style="padding: 0; width: 20%; font-size: 10px;">
+                        <div align="right" style="padding-right: 10px; width: auto;">DEPTO. DE PARTICIPACION SOCIAL</div>
+                        <div>
+                            <table
+                                style="border-style: none; border-width: 1px; width: 100%; border-collapse: collapse; margin-right: 20px;"
+                                align="right">
+                                <tr>
+                                    <td>Folio</td>
+                                    <td style="border: 1px solid; width: 100px; height: 50px;">
+                                        <span style="font-weight: bold;">B</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- --------------------------------------seccion 1 -->
+        <br>
+        <div class="cuerpo de la pagin" style="font-size: 10px;">
+
+            <div style="font-size: 18px; text-align: center;">
+                SUPERVIVENCIA DE PENSIONADOS, TERCERA EDAD Y/O MINUSVALIDOS
+            </div>
+
+            <br>
+
+            <div>
+                <table style="border-style: none; border-width: 1px; width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td style="width: 80px; text-align: center;">CLAVE</td>
+                        <td
+                            style="width: 80px; text-align: center; border-bottom-style: solid; border-bottom-width: 1px;">
+                            *!clave*?
+                        </td>
+                        <td style="width: 80px; text-align: center;">USUARIO</td>
+                        <td
+                            style="width: 80px; text-align: center; border-bottom-style: solid; border-bottom-width: 1px;">
+                            *!usuario*?
+                        </td>
+                        <td style="width: 80px; text-align: center;">Fecha</td>
+                        <td
+                            style="width: 80px; text-align: center; border-bottom-style: solid; border-bottom-width: 1px;">
+                            *!fecha_solicitud_pensionados*?
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div>
+                <table
+                    style="border-style: none; border-width: 1px; width: 100%; border-collapse: separate; border-radius: 10px; border-spacing: 0;">
+                    <tr>
+                        <td style="width: 15%; border-bottom: 1px;"></td>
+                        <td style="width: 35%;"></td>
+                        <td style="width: 15%;"></td>
+                        <td style="width: 35%;"></td>
+                    </tr>
+                    <tr style="border-style: none; border-width: 2px; height: 20px; ">
+                        <td
+                            style="border-style: solid none solid solid; border-top-left-radius: 10px; border-width: 1px; padding: 5px;">
+                            NOMRBE:</td>
+                        <td colspan="4"
+                            style="border-style: solid solid solid none; border-top-right-radius: 10px; border-width: 1px;">
+                            *!nombre*?</td>
+                    </tr>
+                    <tr style="border-style: none; border-width: 1px; height: 20px;">
+                        <td
+                            style="border-style: none none solid solid; border-top-left-radius: 0px; border-width: 1px; padding: 5px;">
+                            DOMICILIO</td>
+                        <td style="border-style: none none solid none; border-top-left-radius: 0px; border-width: 1px;">
+                            *!domicilio*?</td>
+                        <td
+                            style="border-style: none none solid none; border-top-left-radius: 0px; border-width: 1px; padding: 5px;">
+                            TEÉFONO</td>
+                        <td
+                            style="border-style: none solid solid none; border-top-left-radius: 0px; border-width: 1px;">
+                            *!telefono*?</td>
+                    </tr>
+                    <tr style="border-style: none; border-width: 1px; height: 20px;">
+                        <td
+                            style="border-style: none none solid solid; border-bottom-left-radius: 0px; border-width: 1px; padding: 5px;">
+                            EDAD</td>
+                        <td style="border-style: none none solid none; border-top-left-radius: 0px; border-width: 1px;">
+                            *!edad*?</td>
+                        <td
+                            style="border-style: none none solid none; border-top-left-radius: 0px; border-width: 1px; padding: 5px;">
+                            FECHA DE NACIMIENTO</td>
+                        <td
+                            style="border-style: none solid solid none; border-bottom-right-radius: 0px; border-width: 1px;">
+                            *!fecha_nacimiento*?</td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div>
+                <table
+                    style="border-style: none; border-width: 1px; width: 100%; border-collapse: separate; border-spacing: 0;">
+                    <tr>
+                        <td
+                            style="width: 50%; border: 1px solid; border-radius: 0px 10px 0px 0px; border-style: none none solid solid; padding: 5px;">
+                            <div> FOLIO DE IDENTIFICACIÓN OFFICIAL</div>
+                            <div
+                                style="border-bottom-style: solid; border-bottom-width: 1px; text-align: center; padding: 5px;">
+                                *!folio_identificacion_oficial*?
+                            </div>
+                        </td>
+                        <td
+                            style="width: 50%; border: 1px solid; border-radius: 0px 0px 0px 0px; border-style: none solid solid none;">
+                            <table
+                                style="border-style: none; border-width: 1px; width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <td style="width: 80px;"></td>
+                                    <td style="width: 80px;"></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>INE</td>
+                                    <td>
+                                        <input type="checkbox" class="form-check-input" name="" id="INE"
+                                            value="checkedValue" *!tipo_identificacion1*?="">
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>PASAPORTE</td>
+                                    <td>
+                                        <input type="checkbox" class="form-check-input" name="" id="INE"
+                                            value="checkedValue" *!tipo_identificacion2*?="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>LICENCIA</td>
+                                    <td>
+                                        <input type="checkbox" class="form-check-input" name="" id="INE"
+                                            value="checkedValue" *!tipo_identificacion3*?="">
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div>
+                <table
+                    style="border-style: none; border-width: 1px; width: 100%; border-collapse: separate; border-spacing: 0;">
+                    <tr>
+                        <td
+                            style="width: 50%; border: 1px solid; border-radius: 0px 0px 0px 0px; border-style: none none solid solid;">
+                            <table
+                                style="border-style: none; border-width: 1px; width: 100%; border-collapse: collapse;">
+                                <tr>
+                                <tr>
+                                    <td style="width: 120px;"></td>
+                                    <td style="width: 80px;"></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px;">INAPAM</td>
+                                    <td>
+                                        <input type="checkbox" class="form-check-input" name="" id=""
+                                            value="checkedValue" *!tipo_identificacion_beneficio1*?="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px;">PENSIONADO IMSS</td>
+                                    <td>
+                                        <input type="checkbox" class="form-check-input" name="" id=""
+                                            value="checkedValue" *!tipo_identificacion_beneficio2*?="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px;">PENSIONADO ISSSTE</td>
+                                    <td>
+                                        <input type="checkbox" class="form-check-input" name="" id=""
+                                            value="checkedValue" *!tipo_identificacion_beneficio3*?="">
+                                    </td>
+                                </tr>
+                    </tr>
+                </table>
+                </td>
+                <td
+                    style="width: 50%; border: 1px solid; border-radius: 0px 0px 0px 0px; border-style: none solid solid none;">
+                    <table style="border-style: none; border-width: 1px; width: 100%; border-collapse: collapse;">
+                        <tr>
+                            <td style="width: 120px;"></td>
+                            <td style="width: 80px;"></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td>PENSIONADO ISSSTESIN</td>
+                            <td>
+                                <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue"
+                                    *!tipo_identificacion_beneficio4*?="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>MINUSVALIDO</td>
+                            <td>
+                                <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue"
+                                    *!tipo_identificacion_beneficio5*?="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PENSIONADO OTRO</td>
+                            <td style="border-bottom-style: solid; border-bottom-width: 1px;">
+                                *!tipo_identificacion_beneficio6*?
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                </tr>
+                </table>
+            </div>
+            <div>
+                <table
+                    style="border-style: none solid solid solid; border-width: 1px; width: 100%; border-collapse: separate; border-spacing: 0; padding: 5px;">
+                    <tr>
+                        <td style="width: 50px;">CURP</td>
+                        <td>*!curp*? </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div
+                style="border-style: none solid solid solid; border-width: 1px; height: 100px; border-radius: 0px 0px 10px 10px; padding: 10px;">
+                <div>Observación</div>
+                <div>*!observacion*?</div>
+            </div>
+            <br>
+            <br>
+            <div style="font-weight: bold;">
+                Para continuar con su tarifa es necesario presentarse cada año en el mes de noviembre.
+            </div>
+            <!-- <hr> -->
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div style="text-align: cente; width: 80%; margin: 0 auto;">
+                <table
+                    style="border-style: none; border-width: 1px; width: 100%; border-collapse: collapse; text-align: center;">
+                    <tr>
+                        <td style="width: 40%;"></td>
+                        <td style="width: 30%;"></td>
+                        <td style="width: 40%;"></td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid;"></td>
+                        <td></td>
+                        <td style="border-bottom: 1px solid;"></td>
+                    </tr>
+                    <tr>
+                        <td>Nombre y Firma de Quien La Elaboró</td>
+                        <td></td>
+                        <td>Nombre y Firma del Solicitante</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <p align="right" style="padding-right: 10px;">FATU-22</p>
+            </div>
+
+        </div>
+    </div> <!-- fin de pagina-->
+
+
+</body>
+
+</html>

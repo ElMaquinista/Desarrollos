@@ -124,7 +124,7 @@
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="form-group">
-                        <label for="telefono">Telefono</label>
+                        <label for="telefono">Teléfono</label>
                         <input data-required="true" type="text" id="telefono" class="form-control" min="0">
                         <div class="invalid-feedback">
                             Debe llenar este campo
@@ -164,7 +164,7 @@
                         </div>
                         <div class="form-check form-check-inline h-100 align-middle">
                             <input class="form-check-input" type="radio" name="tipo_identificacion"
-                                id="tipo_identificacion2" value="PASAPORTE" >
+                                id="tipo_identificacion2" value="PASAPORTE">
                             <label class="form-check-label" for="tipo_identificacion2">
                                 Pasaporte
                             </label>
@@ -275,6 +275,83 @@
                     </div>
                 </div>
             </div>
+            <div class="div_forma_notificacion">
+                <div>
+                    Seleccione alguna opción para recibir notificaciones
+                </div>
+                <div class="opciones_formas_notificacion">
+                    <div class="row opcion_notificacion sms">
+                        <div class="col-sm-12 col-md-4 opcion notif_radio">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input notif_sms" type="checkbox" id="notif_sms_check"
+                                    value="sms" data-grupo="forma_notif">
+                                <label class="form-check-label" for="notif_sms_check">
+                                    Teléfono (SMS)
+                                </label>
+                                <div class="invalid-feedback">
+                                    Debe llenar este campo
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 notif_datos">
+                            <div class="form-group ">
+                                <label for="notif_sms_text">No de teléfono (SMS)</label>
+                                <input data-required="true" type="text" id="notif_sms_text" class="form-control"
+                                    data-grupo="forma_notif">
+                                <div class="invalid-feedback">
+                                    Debe llenar este campo
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row opcion_notificacion correo">
+                        <div class="col-sm-12 col-md-4 notif_radio">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="notif_correo_check" value="correo"
+                                    data-grupo="forma_notif">
+                                <label class="form-check-label" for="notif_correo_check">
+                                    Correo
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 notif_datos">
+                            <div class="form-group ">
+                                <label for="notif_correo_text">Correo para las notificacaciones</label>
+                                <input data-required="true" type="email" id="notif_correo_text" class="form-control"
+                                    data-grupo="forma_notif">
+                                <div class="invalid-feedback">
+                                    Debe llenar este campo correctamente
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row opcion_notificacion whatsapp">
+                        <div class="col-sm-12 col-md-4 notif_radio">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="notif_whatsapp_check"
+                                    value="whatsapp" data-grupo="forma_notif">
+                                <label class="form-check-label" for="notif_whatsapp_check">
+                                    Mensaje Whatsapp
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 notif_datos">
+                            <div class="form-group ">
+                                <label for="notif_whatsapp_text">Whatsapp para las notificacaciones</label>
+                                <input data-required="true" type="text" id="notif_whatsapp_text" class="form-control"
+                                    data-grupo="forma_notif">
+                                <div class="invalid-feedback">
+                                    Debe llenar este campo
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="invalid-feedback">
+                    Debe Seleccionar alguna opcion para notificarle
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-sm-12 col-md-12">
                     <div class="form-group ">
@@ -289,7 +366,30 @@
             </div>
         </form>
         <div class="botonera_pensionados">
-            <button class="btn btn-info genrar_pdf_pensionados">Generar PDF</button>
+            <button class="btn btn-info genrar_pdf_pensionados" data-toggle="modal" data-target="#exampleModal">Tramitar
+                en linea</button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Solicitud de Supervivientes Ahome</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div> Su solicitud ha sido enviada con exito </div>
+                        <div>(bobotn de deacargar)</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-primary">Descargar comprobante</button> -->
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- test mask -->
         <br>
@@ -299,6 +399,30 @@
         <input type="text" data-format="**-**-****" data-mask="MM-DD-YYYY">
 
         <input type="text" id="selector">
+        <!-- //------- -->
+        <input type="checkbox" class="checkbox">
+
+        <div class="div_box">
+            Show me when checkbox is checked and hide me when checkbox is unchecked.
+        </div>
+
+        <!-- boton de descargas -->
+        <div class="descargas">
+            <div>
+                <a href="https://lineamientos.s3.amazonaws.com/Instituciones/solicitudes_ahome/supervivientes/45/supervivientes68f1061c.pdf"
+                    download="Solicitud supervivientes.pdf">Descargar comprobante de solicitud</a>
+            </div>
+            <div>
+                <button
+                    href="https://lineamientos.s3.amazonaws.com/Instituciones/solicitudes_ahome/supervivientes/45/supervivientes68f1061c.pdf"
+                    download="Solicitud supervivientes.pdf">Descargar comprobante de solicitud</button>
+            </div>
+            <div>
+                <form method="get" action="https://lineamientos.s3.amazonaws.com/Instituciones/solicitudes_ahome/supervivientes/45/supervivientes68f1061c.pdf">
+                    <button class="btn btn-info" type="submit">Download!</button>
+                </form>
+            </div>
+        </div>
     </div>
 
     <!-- ----------------------------------------------------------------- -->

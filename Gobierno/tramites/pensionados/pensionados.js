@@ -7,6 +7,14 @@ const formato_pensionados = async (data) => {
     array_imask.push(['#folio_identificacion_oficial', null, null, null]);
     array_imask.push(['#curp', 'curp', null, null]);
     array_imask.push(['#usuario', 'usuario_japama', null, null]);
+    array_imask.push(['#notif_sms_text', 'telefono', null, null]);
+    // array_imask.push(['#notif_correo_text', 'correo', null, null]);
+    array_imask.push(['#notif_whatsapp_text', 'telefono', null, null]);
+
+    // expresion regular para validar correo  
+    const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+
+    const clase_invalido = 'is-invalid';
 
     const recaudar_respuestas = () => {
         // recaudar respuestas del fromulario de pensionados
@@ -156,6 +164,7 @@ const formato_pensionados = async (data) => {
             switch (true) {
                 case clases.includes("genrar_pdf_pensionados"):
                     recaudar_respuestas();
+                    recaudar_respuetsas_BD();
                     fin_validacion();
                     break;
 
@@ -243,9 +252,6 @@ const formato_pensionados = async (data) => {
                 if (id_nodo) {
                     mapear_mascaras(id_nodo);
                 }
-                // p_val_tipo_identificacion(target);
-
-
 
             });
 
@@ -273,9 +279,24 @@ const formato_pensionados = async (data) => {
         nodo_otro.hidden = true;
 
         // aplicando mascaras
-
-
         mapear_mascaras();
+
+        // bloque de forma de notificar
+        let forma_notif = new Array();
+        forma_notif.push(['#', 'notif_sms_text']);
+        forma_notif.push(['#', 'notif_correo_text']);
+        forma_notif.push(['#', 'notif_whatsapp_text']);
+
+        for (let j = 0; j < forma_notif.length; j++) {
+            const element = forma_notif[j];
+            let nodo = document.querySelector(element[0] + element[1]);
+            if (nodo) {
+                let abuelo = nodo.parentElement.parentElement;
+                if (abuelo) {
+                    abuelo.hidden = true;
+                }
+            }
+        }
 
     };
 
@@ -308,7 +329,7 @@ const formato_pensionados = async (data) => {
                             break;
                         case 'clave':
                             maskOptions = {
-                                mask: '** **-**-****',
+                                mask: '**/**/**/****',
                             };
                             break;
                         case 'curp':
@@ -343,6 +364,11 @@ const formato_pensionados = async (data) => {
                                 max: 9999999999
                             };
                             break;
+                        // case 'correo':
+                        //     maskOptions = {
+                        //         mask: /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/,
+                        //     };
+                        //     break;
 
                         default:
                             agregar_mascara = false;
@@ -373,57 +399,39 @@ const formato_pensionados = async (data) => {
         return index;
     }
 
-    const p_val_tipo_identificacion = (nodo) => {
-        if (nodo) {
-            let name = nodo.name;
-            if (name) {
-                if (name = 'tipo_identificacion') {
-                    let id = nodo.getAttribute('id');
-                    let nodo_folio = document.querySelector('#folio_identificacion_oficial');
-                    let maskOptions = {};
-                    if (nodo_folio) {
-                        nodo_folio.parentElement.hidden = false;
-                        switch (id) {
-                            case 'tipo_identificacion1':// ine
-                                nodo_folio.setAttribute("maxlength", 18);
-                                maskOptions = {
-                                    mask: '******************'
-                                };
-                                break;
-                            case 'tipo_identificacion2':// pasaporte
-                                nodo_folio.setAttribute("maxlength", 10);
-                                maskOptions = {
-                                    mask: '**********'
-                                };
-                                break;
-                            case 'tipo_identificacion3':// licencia
-                                nodo_folio.setAttribute("maxlength", 10);
-                                maskOptions = {
-                                    mask: '**********'
-                                };
-                                break;
-
-                            default:
-                                break;
-                        }
-                        nodo_folio.value = "";
-                        let mask = IMask(nodo_folio, maskOptions);
-
-                    }
-                }
-            }
-        }
-    };
-
-    const proceso_validacion = (nodo) => {
+    const proceso_validacion = (nodo, aplicar_excep = true) => {
         if (nodo) {
             const tagName = nodo.tagName;
             let tipo = null;
-            const clase_invalido = 'is-invalid';
+
             let d = {}; // data
             let es_valido = false;
 
-            // console.log("proceso_validacion", tagName);s
+            // console.log("proceso_validacion", tagName);
+            if (aplicar_excep) {
+                let array_excepciones = new Array();
+                array_excepciones.push(['#', 'notif_sms_text']);
+                array_excepciones.push(['#', 'notif_correo_text']);
+                array_excepciones.push(['#', 'notif_whastapp_text']);
+
+                let id_verificar = nodo.getAttribute('id');
+                let clases_verificar = nodo.getAttribute('class');
+                for (let i = 0; i < array_excepciones.length; i++) {
+                    const element = array_excepciones[i];
+
+                    if (element[0] === '#') {
+                        if (id_verificar === element[1]) {
+                            return;
+                        }
+                    }
+                    if (element[0] === '.') {
+                        if (clases_verificar === element[1]) {
+                            return;
+                        }
+                    }
+                }
+            }
+
 
             switch (tagName) {
                 case "INPUT":
@@ -433,6 +441,7 @@ const formato_pensionados = async (data) => {
                     if (tipo) {
                         switch (tipo) {
                             case "date":
+                            case "email":
                             case "text":
                             case "number":
                                 // secuencia de validacion
@@ -512,6 +521,41 @@ const formato_pensionados = async (data) => {
                         d.nodo_edad.value = d.edad.años + ' ' + 'años'
                     }
                     break;
+                case id.includes('notif_sms_check'):
+                case id.includes('notif_correo_check'):
+                case id.includes('notif_whatsapp_check'):
+                    d = {};
+                    d.nodo_datos = nodo.parentElement.parentElement.nextElementSibling;
+                    d.nodo_opciones = document.querySelector('.opciones_formas_notificacion'); 
+                    d.checked = nodo.checked;
+                    if (d.nodo_datos) {
+                        d.textdata = d.nodo_datos.querySelector('input');
+                        if (d.checked) {
+                            d.nodo_datos.hidden = false;
+                            console.log("nodo_opciones", d.nodo_opciones);
+                            d.nodo_opciones.classList.remove(clase_invalido);
+
+                        } else {
+                            d.nodo_datos.hidden = true;
+                        }
+                        (d.textdata) ? d.textdata.value = "" : "";
+                        d.textdata.classList.remove(clase_invalido);
+                    }
+                    break;
+                case id.includes('notif_correo_text'):
+                    d = {};
+                    d.value_correo = nodo.value;
+                    if (validEmail.test(d.value_correo)) {
+                        // alert('Email is valid, continue with form submission');
+                        nodo.classList.remove(clase_invalido);
+                        return true;
+                    } else {
+                        // alert('Email is invalid, skip form submission');
+                        nodo.classList.add(clase_invalido);
+                        return false;
+                    }
+
+                    break;
                 default:
                     break;
             }
@@ -531,7 +575,7 @@ const formato_pensionados = async (data) => {
                             switch (id) {
                                 case 'tipo_identificacion1':
                                     d.mask[1] = 'ine';
-                                    break;
+                                    breaskk;
                                 case 'tipo_identificacion2':
                                     d.mask[1] = 'pasaporte';
                                     break;
@@ -585,8 +629,44 @@ const formato_pensionados = async (data) => {
             if (nodo) {
                 proceso_validacion(nodo);
             }
-
         }
+        // debe haber algun metodo de contacto seleccionado 
+        let array_forma_noti = new Array();
+        array_forma_noti.push(['#', 'notif_sms_check']);
+        array_forma_noti.push(['#', 'notif_correo_check']);
+        array_forma_noti.push(['#', 'notif_whatsapp_check']);
+
+        let alguno_true = false;
+
+        let nodo_data = null;
+
+
+        for (let i = 0; i < array_forma_noti.length; i++) {
+            const element = array_forma_noti[i];
+
+            let nodo = document.querySelector(element[0] + element[1]);
+
+
+            if (nodo) {
+                nodo_data = nodo.parentElement.parentElement.nextElementSibling.querySelector('input')
+                if (nodo.checked) {
+                    alguno_true = true;
+                    proceso_validacion(nodo_data, false);
+                }
+            }
+        }
+
+        let nodo_formas_notif = document.querySelector('.opciones_formas_notificacion');
+
+        if (nodo_formas_notif) {
+            if (alguno_true) {
+                nodo_formas_notif.classList.remove(clase_invalido);
+            } else {
+                nodo_formas_notif.classList.add(clase_invalido);
+            }
+        }
+
+
 
     };
     const calcular_edad = (fecha) => {
@@ -796,5 +876,5 @@ function lanzar_uri() {
         type: blob.type,
     });
 
-    console.log(myFile);
+
 }

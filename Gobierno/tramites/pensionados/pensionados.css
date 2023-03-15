@@ -1,5 +1,21 @@
-.pizarra_formato_pensionados{
-    width: 800px;
-    margin: 0 auto;
-    overflow: hidden;
+.pizarra_formato_pensionados {
+  width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
 }
+/* ------------------------------------------ */
+/* bloque de notificaciones  */
+/* ------------------------------------------ */
+
+.pizarra_formato_pensionados .div_forma_notificacion {
+}
+.div_forma_notificacion .opcion_notificacion {
+  /* height: 90px; */
+}
+.div_forma_notificacion .notif_radio {
+  display: flex;
+  align-content: center;
+}
+.div_forma_notificacion .notif_datos {
+}
+

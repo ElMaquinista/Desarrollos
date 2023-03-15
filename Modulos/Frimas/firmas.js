@@ -169,13 +169,96 @@ const Crear_Firma_Digital = (() => {
         });
 
         modal.querySelector(".guardar").addEventListener("click", function () {
-            content_canvas.innerHTML = "";
-            const img = document.createElement("img");
             const canvas = modal.querySelector("canvas");
-            img.src = canvas.toDataURL();
-            content_canvas.appendChild(img);
-            myModal.hide();
+            let calculado = calcular_contenido_canvas(canvas).porc_diferentes;
+            const breakpoint = 0.3;
+
+            let permiso_guardar = false;
+            console.log("calculo pixeles", calculado);
+
+            switch (true) {
+                case calculado === 0:
+                    console.log("Se debe ingresar una firma");
+                    alert("Se debe ingresar una firma");
+                    break;
+                case calculado < breakpoint:
+                    console.log("La firma es muy pequeña");
+                    alert("La firma es muy pequeña");
+                    break;
+                case calculado >= breakpoint:
+                    console.log("La firma se valido");
+                    permiso_guardar = true;
+                    break;
+
+                default:
+                    break;
+            }
+            if (permiso_guardar) {
+                content_canvas.innerHTML = "";
+                const img = document.createElement("img");
+                img.src = canvas.toDataURL();
+                content_canvas.appendChild(img);
+                myModal.hide();
+            }
         });
+
+    };
+    // validacion de canvas
+    function calcular_contenido_canvas(canvas) {
+        if (canvas) {
+            ctx = canvas.getContext("2d");
+            const myImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            let array_data_pixel = myImageData.data;
+            let buffer_lenght = myImageData.data.byteLength;
+
+            let contador = 0;
+            let pixeles = new Array();
+            let pixel = new Array();
+            for (let index = 0; index < buffer_lenght; index++) {
+                const element = array_data_pixel[index];
+                if (contador < 4) {
+                    pixel.push(element);
+                }
+                contador++;
+                if (contador == 4) {
+                    pixeles.push(pixel);
+                    pixel = new Array();
+                    contador = 0;
+                }
+
+            }
+            // verificar cuantos pixeles son de diferentes al patron 
+            const patron = [0, 0, 0, 0];
+            let pixeles_diferentes = new Array()
+            for (let i = 0; i < pixeles.length; i++) {
+                const element = pixeles[i];
+                let rojo = element[0];
+                let verde = element[1];
+                let azul = element[3];
+                let alfa = element[4];
+
+                for (let j = 0; j < element.length; j++) {
+                    const color = element[j];
+                    if (color !== patron[j]) {
+                        pixeles_diferentes.push(element);
+                        break;
+                    }
+
+                }
+
+            }
+            let pixeles_totales = pixeles.length;
+            let pixeles_dif = pixeles_diferentes = pixeles_diferentes.length;
+            let porc_diferentes = pixeles_dif * 100 / pixeles_totales;
+
+            return {
+                porc_diferentes,
+                pixeles,
+                pixeles_diferentes
+            }
+        } else {
+            return null;
+        }
 
     };
 
@@ -187,3 +270,91 @@ const Crear_Firma_Digital = (() => {
 
 Crear_Firma_Digital.component_firma("firma_elaborador", "Nombre y firma quien la elaboró");
 Crear_Firma_Digital.component_firma("firma_solicitante", "Nombre y firma del Solicitante");
+
+function test() {
+
+}
+
+
+
+// var canvas = document.getElementById("myCanvas");
+// var ctx = canvas.getContext("2d");
+// ctx.beginPath();
+// ctx.rect(0, 0, 100, 50);
+// ctx.fillStyle = "#FF0000";
+// ctx.fill();
+// ctx.closePath();
+
+// console.log("canvas", canvas);
+
+
+// var firma_canvas = document.querySelector('.content_canvas').querySelector('canvas');s
+function calcular_contenido_canvas(canvas) {
+    if (canvas) {
+        console.log(canvas);
+        ctx = canvas.getContext("2d");
+        const myImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        // const myImageData = ctx.getImageData(0, 0, 480, 320);
+        console.log(myImageData);
+        let array_data_pixel = myImageData.data;
+        let buffer_lenght = myImageData.data.byteLength;
+
+        // console.log(array_data_pixel);
+        console.log(buffer_lenght);
+
+        let contador = 0;
+        let pixeles = new Array();
+        let pixel = new Array();
+        for (let index = 0; index < buffer_lenght; index++) {
+            const element = array_data_pixel[index];
+            if (contador < 4) {
+                pixel.push(element);
+            }
+            contador++;
+            if (contador == 4) {
+                pixeles.push(pixel);
+                pixel = new Array();
+                contador = 0;
+            }
+
+        }
+        const bounding = canvas.getBoundingClientRect();
+        // console.log(bounding);
+
+        console.log('arreglo pixeles', pixeles);
+
+        // verificar cuantos pixeles son de diferentes al patron 
+        const patron = [0, 0, 0, 0];
+        let pixeles_diferentes = new Array()
+        for (let i = 0; i < pixeles.length; i++) {
+            const element = pixeles[i];
+            let rojo = element[0];
+            let verde = element[1];
+            let azul = element[3];
+            let alfa = element[4];
+
+            for (let j = 0; j < element.length; j++) {
+                const color = element[j];
+                if (color !== patron[j]) {
+                    pixeles_diferentes.push(element);
+                    break;
+                }
+
+            }
+
+        }
+        console.log("pixeles_diferentes", pixeles_diferentes);
+        let pixeles_totales = pixeles.length;
+        let pixeles_dif = pixeles_diferentes = pixeles_diferentes.length;
+        let porc_diferentes = pixeles_dif * 100 / pixeles_totales;
+
+        console.log("porc_diferentes", porc_diferentes);
+
+        return {
+            porc_diferentes
+        }
+    } else {
+        return null;
+    }
+
+};

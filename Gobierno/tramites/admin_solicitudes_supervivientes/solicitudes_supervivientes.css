@@ -1,0 +1,26 @@
+.ocultar {
+  display: none;
+}
+.vista_solicitudes_supervivientes {
+  padding: 50px;
+}
+/* ----------------------------------- */
+/* ----------------------------------- */
+/* ----------------------------------- */
+.pizarra_solicitudes_supervivientes {
+}
+/* ----------------------------------- */
+/* ----------------------------------- */
+/* ----------------------------------- */
+.pizzarra_detalles_solicitud {
+}
+.pizzarra_detalles_solicitud .titulo_detalle{
+    display: flex;
+}
+.pizzarra_detalles_solicitud .retornar_solicitudes{
+    width: 20px;
+    cursor: pointer;
+}
+.pizzarra_detalles_solicitud .label_titulo{
+
+}

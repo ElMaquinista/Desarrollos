@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "failure": false,
+  "detalles": {
+    "clave": "35/45/64/6879",
+    "url_pdf": "https://lineamientos.s3.amazonaws.com/Instituciones/solicitudes_ahome/supervivientes/45/supervivientes68f1061c.pdf",
+    "estado": "1",
+    "date_updated": "2023-03-13",
+    "tipo_formato": "SUPERVIVENCIA",
+    "date_created": "2023-03-13",
+    "id360": "9991336774",
+    "fecha_nacimiento": "1991-09-19",
+    "url_firma_solicitante": "https://lineamientos.s3.amazonaws.com/Instituciones/solicitudes_ahome/supervivientes/45/firma8a738f62.png",
+    "nombre": "Evelio Moises Juárez Hernández",
+    "edad": "31 años",
+    "time_updated": "17:46:51",
+    "domicilio": "DEMO",
+    "folio_identificacion_oficial": "E5S4G46EA5",
+    "time_created": "17:46:50",
+    "tipo_identificacion_oficial": "PASAPORTE",
+    "id": "45",
+    "tipo_identificacion_beneficio": "PENSIONADO IMSS",
+    "curp": "SFGE654654EFGEFG46",
+    "observacion": "demo",
+    "activo": "1"
+  },
+  "mensaje": "Consulta exitosa de detalles de solicitud"
+}

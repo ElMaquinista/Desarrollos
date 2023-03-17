@@ -25,3 +25,35 @@ function buscar_nodos_padre(e, funcion_switch) {
         }
     }
 }
+
+async function construir_miniatura_canvas_pdf(d = {}) {
+    // requiere PDF js 2.0.9
+    let retorno = await pdfjsLib.getDocument(d.url_pdf).then(async (pdf) => {
+        let pdf_estado = {
+            pdf: d.url_pdf,
+            currentPage: 1,
+            zoom: 0.5
+        };
+        pdf_estado.pdf = pdf;
+        let div_canvas_respuesta = await pdf_estado.pdf.getPage(pdf_estado.currentPage).then((page) => {
+
+            let canvas_requisito = document.createElement('canvas');
+            canvas_requisito.className = d.claseName;
+
+            let contexto_canvas = canvas_requisito.getContext('2d');
+
+            let vista_port = page.getViewport(pdf_estado.zoom);
+            //                console.log("vista_port", vista_port);
+            canvas_requisito.width = vista_port.width;
+            canvas_requisito.height = vista_port.height;
+            page.render({
+                canvasContext: contexto_canvas,
+                viewport: vista_port
+            });
+
+            return canvas_requisito;
+        });
+        return div_canvas_respuesta;
+    });
+    return retorno;
+}

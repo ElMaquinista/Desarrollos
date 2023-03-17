@@ -116,7 +116,7 @@ const diplomas = (data) => {
     };
     manager_eventos_carrusel();
 
-    async function construir_miniatura_canvas_pdf(url_pdf,) {
+    async function construir_miniatura_canvas_pdf(url_pdf) {
         let retorno = await pdfjsLib.getDocument(url_pdf).then(async (pdf) => {
             let pdf_estado = {
                 pdf: url_pdf,

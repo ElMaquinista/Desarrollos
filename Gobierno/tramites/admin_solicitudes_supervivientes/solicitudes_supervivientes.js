@@ -78,7 +78,7 @@ const solicitudes_supervivientes = async () => {
                                         // hacer peticion de detalles
                                         await detalles_solicitud.peticion_detalle_solicitud(d.id_ahome_supervivientes);
                                         // pintar los detalles
-                                        detalles_solicitud.pintar_detalle_solicitud();
+                                        await detalles_solicitud.pintar_detalle_solicitud();
                                     }else{
                                         console.log('Identificador no encontrado');
                                     }

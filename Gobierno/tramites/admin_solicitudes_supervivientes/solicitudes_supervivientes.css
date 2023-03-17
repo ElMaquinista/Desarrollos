@@ -14,13 +14,31 @@
 /* ----------------------------------- */
 .pizzarra_detalles_solicitud {
 }
-.pizzarra_detalles_solicitud .titulo_detalle{
-    display: flex;
+.pizzarra_detalles_solicitud .titulo_detalle {
+  display: flex;
 }
-.pizzarra_detalles_solicitud .retornar_solicitudes{
-    width: 20px;
-    cursor: pointer;
+.pizzarra_detalles_solicitud .retornar_solicitudes {
+  width: 20px;
+  cursor: pointer;
 }
-.pizzarra_detalles_solicitud .label_titulo{
-
+.pizzarra_detalles_solicitud .label_titulo {
+}
+.pizzarra_detalles_solicitud .datos_solicitud .item_dato {
+}
+.pizzarra_detalles_solicitud .datos_solicitud_anexos .item_dato {
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+}
+.pizzarra_detalles_solicitud .datos_solicitud {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* gap: 10px; */
+  /* grid-auto-rows: minmax(100px, auto); */
+}
+.pizzarra_detalles_solicitud .datos_solicitud_anexos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* display: flex;
+  justify-content: space-around; */
 }

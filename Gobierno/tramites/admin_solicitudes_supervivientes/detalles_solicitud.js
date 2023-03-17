@@ -95,6 +95,8 @@ let detalles_solicitud = null;
                 console.log('manager_eventos_solicitudes_supervivientes nodo vacio', nodo);
             }
         };
+        manager_eventos_detalles(document.querySelector('.pizzarra_detalles_solicitud'));
+
 
         const crear_nodo_cabecera = () => {
             let nodo = document.createElement('div');
@@ -110,15 +112,36 @@ let detalles_solicitud = null;
             return nodo;
         };
 
-        const crear_nodo_dato = (data = {}) => {
+        const crear_nodo_dato = async (data = {}) => {
             let div = document.createElement('div');
+            div.className = 'item_dato';
+            d = {};
             switch (data.tipo) {
                 case 'texto':
                     div.innerHTML = `
-                    <div class="item_dato">
                         <div class="font-weight-bold">${data.label}</div>
                         <div>${data.value}</div>
-                    </div>`;
+                    `;
+                    break;
+                case 'imagen':
+                    div.innerHTML = `
+                        <div class="font-weight-bold text-center">${data.label}</div>
+                        <div><img class="w-100" src="${data.value}" alt=""></div>
+                    `;
+                    break;
+                case 'pdf':
+                    d = {};
+                    d.div_canvas = document.createElement('div');
+                    div.innerHTML = `
+                        <div class="font-weight-bold text-center">${data.label}</div>
+                    `;
+                    let datos_canvas = {
+                        url_pdf: data.value,
+                        className: "canvas_pdf_solicitud"
+                    }
+                    d.canvas = await construir_miniatura_canvas_pdf(datos_canvas);
+                    d.div_canvas.insertAdjacentElement("beforeEnd", d.canvas);
+                    div.insertAdjacentElement("beforeEnd", d.div_canvas);
                     break;
 
                 default:
@@ -128,7 +151,7 @@ let detalles_solicitud = null;
             return div;
         };
 
-        const pintar_detalle_solicitud = () => {
+        const pintar_detalle_solicitud = async () => {
 
             let nodo_detalles = document.querySelector('.pizzarra_detalles_solicitud');
             let nodo_cabecera = crear_nodo_cabecera();
@@ -138,43 +161,64 @@ let detalles_solicitud = null;
             if (registro_detalle) {
                 nodo_cabecera.querySelector('.label_titulo').innerHTML = registro_detalle.tipo_formato;
                 // agregar eventos 
-                manager_eventos_detalles(nodo_detalles);
 
                 let array_datos = new Array();
                 // label --- nombre columna
-                array_datos.push(['Clave', 'clave', "texto"]);
-                array_datos.push(['Estado', 'estado', "texto"]);
-                array_datos.push(['Fecha de solicitud', 'date_created', "texto"]);
-                array_datos.push(['Tipo de formato', 'tipo_formato', "texto"]);
-                array_datos.push(['Fecha de nacimiento', 'fecha_nacimiento', "texto"]);
-                array_datos.push(['Nombre', 'nombre', "texto"]);
-                array_datos.push(['Edad', 'edad', "texto"]);
-                array_datos.push(['Domicilio', 'domicilio', "texto"]);
-                array_datos.push(['Folio de identificacion oficial', 'folio_identificacion_oficial', "texto"]);
-                array_datos.push(['Tipo de identificacion oficial', 'tipo_identificacion_oficial', "texto"]);
-                array_datos.push(['Tipo de identificacion beneficio', 'tipo_identificacion_beneficio', "texto"]);
-                array_datos.push(['Curp', 'curp', "texto"]);
-                array_datos.push(['Observacion', 'observacion', "texto"]);
+                array_datos.push(['Tipo de formato', 'tipo_formato', "texto", 'datos']);
+                array_datos.push(['Clave', 'clave', "texto", 'datos']);
+                array_datos.push(['Usuario', 'usuario', "texto", 'datos']);
+                array_datos.push(['Fecha de solicitud', 'date_created', "texto", 'datos']);
+                array_datos.push(['Nombre', 'nombre', "texto", 'datos']);
+                array_datos.push(['Domicilio', 'domicilio', "texto", 'datos']);
+                array_datos.push(['Teléfono', 'telefono', "texto", 'datos']);
+                array_datos.push(['Fecha de nacimiento', 'fecha_nacimiento', "texto", 'datos']);
+                array_datos.push(['Edad', 'edad', "texto", 'datos']);
+                array_datos.push(['Tipo de identificacion oficial', 'tipo_identificacion_oficial', "texto", 'datos']);
+                array_datos.push(['Folio de identificacion oficial', 'folio_identificacion_oficial', "texto", 'datos']);
+                array_datos.push(['Tipo de identificacion beneficio', 'tipo_identificacion_beneficio', "texto", 'datos']);
+                array_datos.push(['Curp', 'curp', "texto", 'datos']);
 
-                for (const key in registro_detalle) {
+                array_datos.push(['Observacion', 'observacion', "texto", 'datos']);
+                array_datos.push(['Solicitud PDF', 'url_pdf', "pdf", 'anexos']);
+                array_datos.push(['Firma del solicitante', 'url_firma_solicitante', "imagen", 'anexos']);
 
-                    for (let j = 0; j < array_datos.length; j++) {
-                        const element = array_datos[j];
+                let nodo_datos = document.createElement('div');
+                nodo_datos.className = "datos_solicitud";
 
-                        if (element[1] === key) {
-                            console.log(key);
+                let nodo_datos_anexos = document.createElement('div');
+                nodo_datos_anexos.className = "datos_solicitud_anexos";
 
-                            let data = {
-                                label: element[0],
-                                value: registro_detalle[key],
-                                tipo: element[2]
-                            }
-                            let nodo_dato = crear_nodo_dato(data);
-                            nodo_detalles.insertAdjacentElement("beforeEnd", nodo_dato);
+                for (let index = 0; index < array_datos.length; index++) {
+                    const element = array_datos[index];
+
+                    let dat_columna = registro_detalle[element[1]];
+
+                    if (dat_columna) {
+                        let data = {
+                            label: element[0],
+                            value: dat_columna,
+                            tipo: element[2]
                         }
+                        let nodo_dato = null;
+                        switch (element[3]) {
+                            case 'datos':
+                                nodo_dato = await crear_nodo_dato(data);
+                                nodo_datos.insertAdjacentElement("beforeEnd", nodo_dato);
+                                break;
+                            case 'anexos':
+                                nodo_dato = await crear_nodo_dato(data);
+                                nodo_datos_anexos.insertAdjacentElement("beforeEnd", nodo_dato);
+                                break;
 
+                            default:
+                                break;
+                        }
                     }
+
                 }
+                nodo_detalles.insertAdjacentElement("beforeEnd", nodo_datos);
+                nodo_detalles.insertAdjacentElement("beforeEnd", nodo_datos_anexos);
+
 
             } else {
 
@@ -184,8 +228,6 @@ let detalles_solicitud = null;
                 nodo_para_vacio.classList = "sin_registro";
                 nodo_para_vacio.innerText = 'No se encontro el registro de la solicitud';
                 nodo_detalles.insertAdjacentElement('beforeEnd', nodo_para_vacio);
-
-
 
             }
 

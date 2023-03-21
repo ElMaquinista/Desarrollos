@@ -109,7 +109,7 @@ class datatable_generico {
             "aServerSide": true,
             "Destroy": true,
             "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+                "url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
             },
             // "initComplete": Filtro_Encabezados(false),
             data: datos_tala,

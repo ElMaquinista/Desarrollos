@@ -45,7 +45,33 @@
     <!-- empieza vista -->
     <!-- ------------------------- -->
     <div class="vista_solicitudes_supervivientes w-100">
-        <div class="botonera_funciones"></div>
+        <div class="botonera_funciones">
+            <div class="row">
+                <div class="col-sm-12 col-md-3">
+                    <label for="fecha_inicio">Fecha de inicio</label>
+                    <input type="date" name="" id="fecha_inicio" class="form-control" min="1900-01-01" max="3000-12-31"
+                        data-requerido="true">
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <label for="fecha_fin">Fecha final</label>
+                    <input type="date" name="" id="fecha_fin" class="form-control" min="1900-01-01" max="3000-12-31"
+                        data-requerido="true">
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <button class="btn btn-dark align-text-bottom align-bottom d-flex traer_registro_intervalo" data-evento="traer_registro_intervalo" data-desencadenador="data-evento">Traer registros</button>
+                </div>
+
+            </div>
+            <div class="row pt-3 pb-3">
+                <div class="col-sm-12 col-md-3">
+                    <button class="btn btn-dark align-text-bottom" data-evento="traer_registros_excel" data-desencadenador="data-evento">Descargar excel</button>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <button class="btn btn-dark align-text-bottom" data-evento="traer_registros_zip" data-desencadenador="data-evento">Descargar .zip</button>
+                </div>
+            </div>
+
+        </div>
 
         <div class="pizarra_solicitudes_supervivientes">
             <div class="panel_filtros"></div>

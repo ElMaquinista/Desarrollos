@@ -6,7 +6,7 @@ const solicitudes_supervivientes = async () => {
 
     const c_ocultar = 'ocultar';
 
-    const peticion_solicitudes_supervivientes = async () => {
+    const peticion_solicitudes_supervivientes = async (fecha_inicio, fecha_fin) => {
         let peticion = await fetch('./solicitudes_supervivientes.json')
             .then((response) => response.json())
             .then((json) => json);
@@ -25,6 +25,83 @@ const solicitudes_supervivientes = async () => {
         return peticion;
     };
     await peticion_solicitudes_supervivientes();
+
+    const manager_eventos_botonera_fuciones = () => {
+        let nodo = document.querySelector('.botonera_funciones');
+        if (nodo) {
+            nodo.addEventListener("click", async function eventos_botonera_funciones(e) {
+                const target = e.target;
+
+                // console.log(target);
+
+                let evento = target.getAttribute('data-evento');
+                let desencadenador = target.getAttribute('data-desencadenador');
+                let heredado = target.getAttribute('data-evento-heredado');
+                let nodo = target;
+
+                if (heredado) {
+                    buscar_nodos_padre(e, (element) => {
+                        let bandera_control = false; // parar detener las iteraciones hacia nodos padre 
+
+                        const bnp_evento = element.getAttribute("data-evento");
+                        const bnp_desencadenador = element.getAttribute('data-desencadenador');
+
+                        if (bnp_evento && bnp_desencadenador) {
+                            evento = bnp_evento;
+                            desencadenador = bnp_desencadenador;
+                            bandera_control = true;
+                            nodo = element;
+                        }
+                        return bandera_control;
+                    });
+                }
+
+                let d = {};
+
+                if (desencadenador && evento) {
+
+                    switch (desencadenador) {
+                        case 'data-evento':
+
+                            switch (evento) {
+                                case "traer_registro_intervalo":
+                                    d = {};
+                                    console.log("traer registros por fecha");
+                                    d.validacion = validar_para_traer_registros();
+                                    if (d.validacion) {
+                                        await repintar_tabla_solicitudes_supervivientes();
+                                    }
+                                    break;
+                                case "traer_registros_excel":
+                                    console.log("traer registros excel");
+                                    break;
+                                case "traer_registros_zip":
+                                    console.log("trear registros en zip");
+                                    break;
+
+                                default:
+                                    break;
+                            }
+
+                            break;
+                        case 'id':
+
+                            break;
+                        case 'clase':
+
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+
+            });
+        } else {
+            console.log('nodo de botonera de funciones no encontrado');
+        }
+    };
+    manager_eventos_botonera_fuciones();
 
     const manager_eventos_solicitudes_supervivientes = (nodo) => {
         if (nodo) {
@@ -153,6 +230,8 @@ const solicitudes_supervivientes = async () => {
                     }
                 }
             ];
+        } else {
+            console.log("datos nulos");
         }
         obj_datatable.habiliar_filtros_encabezado = true;
         obj_datatable.crear_nodo_datatable();
@@ -169,6 +248,8 @@ const solicitudes_supervivientes = async () => {
         return obj_datatable;
     }
     pintar_tabla_solicitudes_supervivientes();
+
+
 
     const pintar_nueva_solicitud = (data) => {
         data = {
@@ -204,15 +285,114 @@ const solicitudes_supervivientes = async () => {
         // sacar usuario de la vista de detalle 
     };
 
+    // repintar por nueva peticion
+    const repintar_tabla_solicitudes_supervivientes = async () => {
+        // validacion antesde borrar y destruir
+
+        let validacion = validar_para_traer_registros();
+
+        if (!validacion) {
+            return false;
+        }
+
+        // lanzar loader;
+
+        // destruir la tabla 
+        obj_datatable.destruir_tabla();
+        // limpiar el div pizarra 
+        document.querySelector('.panel_solicitudes_supervivientes').innerHTML = "";
+        // peticion de los nuevos datos
+
+        registros_solicitudes_supervivientes = null;
+
+        registros_solicitudes_supervivientes
+
+        let s_fecha_inicio = document.querySelector(".fecha_inicio");
+        let s_fecha_fin = document.querySelector(".fecha_fin");
+
+        await peticion_solicitudes_supervivientes(s_fecha_inicio, s_fecha_fin);
+
+        // pintar los nuevos datos de peticion
+        pintar_tabla_solicitudes_supervivientes();
+
+        // ocultar loader
+
+        
+
+    }
+
+
+    // validar para peticion
+
+    const validar_nodo = (nodo) => {
+        // el nodo debe tener sus validaciones requerias en forma de el atributo data
+        if (nodo) {
+            // que no tenga cadena vacia 
+
+            // que tenga la longitud maxima 
+
+            // que tenga la longitud minima 
+
+
+        }
+
+    }
+
+    const validar_para_traer_registros = () => {
+        // retorna un boolean indica estado de validacion 
+        // fechas completas 
+        let nodo_fecha_inicio = document.querySelector('#fecha_inicio');
+
+        let nodo_fecha_fin = document.querySelector('#fecha_fin');
+
+        if (!nodo_fecha_inicio || !nodo_fecha_fin) {
+            console.log("nodo fecha inicio", nodo_fecha_inicio, "nodo fecha fin", nodo_fecha_inicio);
+            return false;
+        }
+
+        let fecha_inicio = nodo_fecha_inicio.value;
+        let fecha_fin = nodo_fecha_fin.value;
+
+        if (!fecha_inicio || !fecha_fin) {
+            console.log('valor no valido', fecha_inicio, fecha_fin);
+            return false;
+        }
+
+        // fecha de inicio debe ser menor o igual que fecha final
+
+        let date_inicio = new Date(fecha_inicio);
+        let date_fin = new Date(fecha_fin);
+
+        if (date_inicio > date_fin) {
+            console.log('la fecha de inicio debe ser menor o igual a la fecha de fin');
+            lanzar_aviso('La fecha de inicio debe ser menor o igual que la fecha Final');
+            return false;
+        }
+
+        // retornar si estado de validacion
+
+        return true;
+
+    };
+
+    const lanzar_aviso = (texto) => {
+        alert(texto);
+    };
+
     // get
     const get_registros_solicitudes_supervivientes = () => {
         return registros_solicitudes_supervivientes;
     };
+    const get_datatable = () => {
+        return obj_datatable;
+    };
+
     // --------
     return {
         pintar_tabla_solicitudes_supervivientes,
         get_registros_solicitudes_supervivientes,
         pintar_nueva_solicitud,
-        despintar_solicitud
+        despintar_solicitud,
+        get_datatable
     };
 }

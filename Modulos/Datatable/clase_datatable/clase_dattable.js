@@ -119,7 +119,7 @@ class datatable_generico {
             initComplete: ""
         }
         );
-
+        datatble = objeto_datatable;
         this.objeto_datatable = objeto_datatable;
         return true;
     }
@@ -139,14 +139,16 @@ class datatable_generico {
         let indice = -1;
         while (true) {
 
-            const row = objeto_datatable.row(x).data();
-            if (!row)
+            const row = objeto_datatable.row(':eq(' + x + ')')
+            const row_data = row.data();
+
+            if (!row_data)
                 break;
             // console.log(row);
-            if (row[columna].toString() === solicitud.toString()) {
+            if (row_data[columna].toString() === solicitud.toString()) {
 
                 indice = x;
-                break;
+                break; s
             }
             x++;
         }
@@ -155,7 +157,7 @@ class datatable_generico {
     }
     agregar_renglon_datatable(datos_columnas, identificador) {
         let objeto_datatable = this.objeto_datatable;
-        buscar_eliminar_renglon_datatable_idendificador(datos_columnas[identificador]);
+        this.buscar_eliminar_renglon_datatable_idendificador(identificador, datos_columnas[identificador]);
         objeto_datatable.row.add(datos_columnas).draw(false);
     }
     buscar_eliminar_renglon_datatable_idendificador(llave, valor) {
@@ -286,3 +288,5 @@ function test_crear_tabla() {
         // });
     });
 }
+
+var datatble = null;

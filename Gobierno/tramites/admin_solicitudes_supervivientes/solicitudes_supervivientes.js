@@ -79,7 +79,7 @@ const solicitudes_supervivientes = async () => {
                                         await detalles_solicitud.peticion_detalle_solicitud(d.id_ahome_supervivientes);
                                         // pintar los detalles
                                         await detalles_solicitud.pintar_detalle_solicitud();
-                                    }else{
+                                    } else {
                                         console.log('Identificador no encontrado');
                                     }
                                     break;
@@ -115,7 +115,7 @@ const solicitudes_supervivientes = async () => {
         if (datos_tabla !== null) {
             obj_datatable.datos_tabla = datos_tabla;
             obj_datatable.columnas_tabla = [// reeemplazado
-                { data: 'id360', title: 'id 360', class: "id360_solicitante" },
+                { data: 'id', title: 'Folio', class: "id_ahome_supervivientes" },
                 { data: 'nombre', title: 'Nombre', class: "nombre_completo" },
                 { data: null, title: 'Fecha de solicitud', class: 'fecha_solicitud' },
                 // { data: 'time_updated', title: 'Hora de solicitud', class: 'hora de solicitud' },
@@ -170,6 +170,40 @@ const solicitudes_supervivientes = async () => {
     }
     pintar_tabla_solicitudes_supervivientes();
 
+    const pintar_nueva_solicitud = (data) => {
+        data = {
+            "clave": "35/45/64/6879",
+            "url_pdf": "https://lineamientos.s3.amazonaws.com/Instituciones/solicitudes_ahome/supervivientes/45/supervivientes68f1061c.pdf",
+            "estado": "1",
+            "date_updated": "2023-03-13",
+            "tipo_formato": "SUPERVIVENCIA",
+            "date_created": "2023-03-13",
+            "id360": "9991336774",
+            "fecha_nacimiento": "1991-09-19",
+            "url_firma_solicitante": "https://lineamientos.s3.amazonaws.com/Instituciones/solicitudes_ahome/supervivientes/45/firma8a738f62.png",
+            "nombre": "Demo nuevo renglon para usar socket",
+            "edad": "31 años",
+            "time_updated": "17:46:51",
+            "domicilio": "DEMO",
+            "folio_identificacion_oficial": "E5S4G46EA5",
+            "time_created": "17:46:50",
+            "tipo_identificacion_oficial": "PASAPORTE",
+            "id": "100",
+            "tipo_identificacion_beneficio": "PENSIONADO IMSS",
+            "curp": "SFGE654654EFGEFG46",
+            "observacion": "demo",
+            "activo": "1"
+        };
+        obj_datatable.agregar_renglon_datatable(data, "id");
+    };
+
+    const despintar_solicitud = (data) => {
+        // despintar renglon 
+        obj_datatable.buscar_eliminar_renglon_datatable_idendificador("id", "80");
+
+        // sacar usuario de la vista de detalle 
+    };
+
     // get
     const get_registros_solicitudes_supervivientes = () => {
         return registros_solicitudes_supervivientes;
@@ -177,6 +211,8 @@ const solicitudes_supervivientes = async () => {
     // --------
     return {
         pintar_tabla_solicitudes_supervivientes,
-        get_registros_solicitudes_supervivientes
+        get_registros_solicitudes_supervivientes,
+        pintar_nueva_solicitud,
+        despintar_solicitud
     };
 }

@@ -961,3 +961,90 @@ async function descargar_pdf() {
     });
     console.log(retorno);
 }
+
+var BASE64_MARKER = ';base64,';
+
+function convertDataURIToBinary(dataURI) {
+    var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+    var base64 = dataURI.substring(base64Index);
+    var raw = window.atob(base64);
+    var rawLength = raw.length;
+    var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+    for (var i = 0; i < rawLength; i++) {
+        array[i] = raw.charCodeAt(i);
+    }
+    return array;
+}
+
+async function descargar_pdf_2() {
+    let peticion = await fetch('./base64pdf.json')
+        .then((response) => response.json())
+        .then((json) => json);
+
+    console.log("peticion", peticion);
+
+    let base64 = peticion.base_2;
+
+    console.log("base64", base64);
+
+    // var pdfAsDataUri = "data:application/pdf;base64,JVBERi0xLjUK..."; // shortened
+    // var pdfAsArray = convertDataURIToBinary(pdfAsDataUri);
+    // PDFJS.getDocument(base64);
+    // PDFJS.getDocument({data: base64});
+    pdfjsLib.getDocument(base64).promise.then(doc => {
+        console.log(`este documento tiene ${doc._pdfInfo.numPages} pages.`);
+    });
+    // pdfjsLib.getDocument({data: base64});
+    // let retorno = await pdfjsLib.getDocument({data: base64}).then(async (pdf) => {
+    //     let pdf_estado = {
+    //         pdf: d.url_pdf,
+    //         currentPage: 1,
+    //         zoom: 0.5
+    //     };
+    //     pdf_estado.pdf = pdf;
+    //     let div_canvas_respuesta = await pdf_estado.pdf.getPage(pdf_estado.currentPage).then((page) => {
+
+    //         let canvas_requisito = document.createElement('canvas');
+    //         canvas_requisito.className = d.claseName;
+
+    //         let contexto_canvas = canvas_requisito.getContext('2d');
+
+    //         let vista_port = page.getViewport(pdf_estado.zoom);
+    //         //                console.log("vista_port", vista_port);
+    //         canvas_requisito.width = vista_port.width;
+    //         canvas_requisito.height = vista_port.height;
+    //         page.render({
+    //             canvasContext: contexto_canvas,
+    //             viewport: vista_port
+    //         });
+
+    //         return canvas_requisito;
+    //     });
+    //     return div_canvas_respuesta;
+    // });
+    // console.log(retorno);
+}
+
+// pdfjsLib.GlobalWorkerOptions.workerSrc ="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.7.570/build/pdf.worker.min.js";
+// pdfjsLib.GlobalWorkerOptions.workerSrc ="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.0.943/build/pdf.worker.min.js";
+// pdfjsLib.getDocument('./pdf_supervivienetes.pdf').promise.then(doc => {
+//   console.log(`This document has ${doc._pdfInfo.numPages} pages.`);
+// });
+
+async function crear_boton_descargar_pdf() {
+    let peticion = await fetch('./pdf_peticion.json')
+        .then((response) => response.json())
+        .then((json) => json);
+
+    console.log("peticion", peticion);
+
+    let base64= peticion.base64;
+
+    let div_boton = document.createElement('div');
+    div_boton.innerHTML = `<a href="${base64}" download="Comprobante.pdf">Descargar Comprobante</a>`;
+
+    document.body.insertAdjacentElement("beforeEnd", div_boton);
+
+    return div_boton;
+}

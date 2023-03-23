@@ -21,7 +21,11 @@
     <link href="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/web/pdf_viewer.min.css" rel="stylesheet"> -->
     <!-- <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script> -->
     <!-- IMaskjs -->
-    <script src="https://unpkg.com/imask"></script>
+    <!-- <script src="https://unpkg.com/imask"></script> -->
+    <script src="../../../Recursos/imask.js_6.4.2/imask.js"></script>
+    <!-- alertas personalizadas -->
+    <link rel="stylesheet" href="https://landings360.s3.amazonaws.com/public/Alert/alert.css">
+    <script src="https://landings360.s3.amazonaws.com/public/Alert/alert.js"></script>
     <!-- endemicos -->
     <link rel="stylesheet" href="./pensionados.css">
     <title>pensionados</title>
@@ -142,7 +146,8 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="form-group">
                         <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-                        <input data-required="true" type="date" id="fecha_nacimiento" class="form-control" min="1900-01-01" max="3000-12-31">
+                        <input data-required="true" type="date" id="fecha_nacimiento" class="form-control"
+                            min="1900-01-01" max="3000-12-31">
                         <div class="invalid-feedback">
                             Debe llenar este campo
                         </div>
@@ -158,7 +163,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row border-top border-left border-right">
+            <div class="row border-top border-left border-right pb-3">
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group checks-radios h-50 align-middle">
                         <div class="form-check form-check-inline h-100 align-middle">
@@ -372,12 +377,12 @@
             </div>
         </form>
         <div class="botonera_pensionados">
-            <button class="btn btn-info genrar_pdf_pensionados" data-toggle="modal" data-target="#exampleModal">Tramitar
+            <button class="btn btn-info genrar_pdf_pensionados">Tramitar
                 en linea</button>
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -392,11 +397,10 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <!-- <button type="button" class="btn btn-primary">Descargar comprobante</button> -->
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- test mask -->
         <br>
 

@@ -189,6 +189,20 @@ const formato_pensionados = async (data) => {
                     recaudar_respuestas();
                     recaudar_respuetsas_BD();
                     fin_validacion();
+
+                    // revisar y hay algun no valido y hacer focus
+                    let primer_no_valido = document.querySelector("." + clase_invalido);
+                    if (primer_no_valido) {
+                        primer_no_valido.focus();
+                        let x = primer_no_valido.scrollHeight;
+                        let y = primer_no_valido.scrollLeft;
+                        window.scroll(x, y);
+                    } else {
+                        lanzar_modal();
+
+
+                    }
+
                     break;
 
                 default:
@@ -617,7 +631,7 @@ const formato_pensionados = async (data) => {
                             switch (id) {
                                 case 'tipo_identificacion1':
                                     d.mask[1] = 'ine';
-                                    breaskk;
+                                    break;
                                 case 'tipo_identificacion2':
                                     d.mask[1] = 'pasaporte';
                                     break;
@@ -792,6 +806,82 @@ const formato_pensionados = async (data) => {
         return fecha_actual;
     };
 
+    // modal
+
+    const lanzar_modal = () => {
+        let nodo_modal = document.createElement("div");
+        nodo_modal.className = "modal fade";
+        nodo_modal.setAttribute("id", "exampleModal");
+        nodo_modal.setAttribute("aria-labelledby", "exampleModalLabel");
+        nodo_modal.setAttribute("aria-hidden", "true");
+        nodo_modal.setAttribute("tabindex", "-1");
+        nodo_modal.innerHTML = `
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Solicitud de Supervivientes Ahome</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div> Su solicitud ha sido enviada con exito </div>
+                    <div>(bobotn de deacargar)</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary">Descargar comprobante</button> -->
+                </div>
+            </div>
+        </div>`;
+        document.body.insertAdjacentElement("beforeend", nodo_modal);
+        $('#exampleModal').modal('show');
+        $('#exampleModal').on('hidden.bs.modal', function () {
+            console.log("evento al cerrar modal lanzado");
+            $('#exampleModal').modal('dispose');
+            document.querySelector('#exampleModal').remove();
+        })
+    };
+
+    const limpiar_form = () => {
+        let nodo_vista = document.querySelector('#FormSolicitudPensionados');
+        console.log(nodo_vista);
+        if (nodo_vista) {
+            let array_nodos_input = nodo_vista.querySelectorAll('input');
+
+            for (const nodo of array_nodos_input) {
+                const tipo = nodo.getAttribute("type");
+
+                if (tipo) {
+
+                    switch (tipo) {
+                        case "text":
+                        case "number":
+                        case "date":
+                        case "email":
+                            nodo.value = "";
+                            break;
+                        case "radio":
+                        case "checkbox":
+                            nodo.checked = false;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            let nodos_textarea = nodo_vista.querySelectorAll('textarea');
+            if (nodos_textarea) {
+
+                for (const nodo of nodos_textarea) {
+                    nodo.value ="";
+                }
+
+            }
+        }
+    };
+
     const get_array_imask = () => {
         return array_imask;
     };
@@ -808,7 +898,9 @@ const formato_pensionados = async (data) => {
         fecha_actual,
         init_validaciones,
         get_array_imask,
-        recaudar_respuetsas_BD
+        recaudar_respuetsas_BD,
+        lanzar_modal,
+        limpiar_form
     };
 
 };
@@ -1039,7 +1131,7 @@ async function crear_boton_descargar_pdf() {
 
     console.log("peticion", peticion);
 
-    let base64= peticion.base64;
+    let base64 = peticion.base64;
 
     let div_boton = document.createElement('div');
     div_boton.innerHTML = `<a href="${base64}" download="Comprobante.pdf">Descargar Comprobante</a>`;

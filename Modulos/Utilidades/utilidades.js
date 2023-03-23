@@ -11,13 +11,8 @@ function buscar_nodos_padre(e, funcion_switch) {
             if (nombre_nodo.includes("html")) {
                 break;
             }
-            const def_clase_del_objeto_pulsado = element.getAttribute("class");
 
-            if (def_clase_del_objeto_pulsado !== null) {
-
-                bandera_control = funcion_switch(element);
-
-            }
+            bandera_control = funcion_switch(element);
 
             if (bandera_control) {
                 break;
@@ -38,7 +33,8 @@ async function construir_miniatura_canvas_pdf(d = {}) {
         let div_canvas_respuesta = await pdf_estado.pdf.getPage(pdf_estado.currentPage).then((page) => {
 
             let canvas_requisito = document.createElement('canvas');
-            canvas_requisito.className = d.claseName;
+            canvas_requisito.className = d.classnombre;
+            canvas_requisito.setAttribute("data-evento-heredado", "true");
 
             let contexto_canvas = canvas_requisito.getContext('2d');
 

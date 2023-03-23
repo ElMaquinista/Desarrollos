@@ -49,9 +49,16 @@ let detalles_solicitud = null;
                                 desencadenador = bnp_desencadenador;
                                 bandera_control = true;
                             }
+
+                            // console.log("bnp_evento", bnp_evento);
+                            // console.log("bnp_desencadenador", bnp_desencadenador);
                             return bandera_control;
                         });
                     }
+
+                    // console.log("evento", evento);
+                    // console.log("desencadenador", desencadenador);
+                    // console.log("heredado", heredado);
 
 
                     let d = {};
@@ -72,6 +79,10 @@ let detalles_solicitud = null;
 
                                         // destruir datos de detalles
 
+                                        break;
+                                    case 'ver_pdf_solicitud':
+                                        console.log("se ha  solicitado el modal para ver el pdf");
+                                        lanzar_modal_visualizar_pdf();
                                         break;
 
                                     default:
@@ -132,12 +143,15 @@ let detalles_solicitud = null;
                 case 'pdf':
                     d = {};
                     d.div_canvas = document.createElement('div');
+
+                    d.div_canvas.setAttribute("data-evento", "ver_pdf_solicitud");
+                    d.div_canvas.setAttribute("data-desencadenador", "data-evento");
                     div.innerHTML = `
                         <div class="font-weight-bold text-center">${data.label}</div>
                     `;
                     let datos_canvas = {
                         url_pdf: data.value,
-                        className: "canvas_pdf_solicitud"
+                        classnombre: "canvas_pdf_solicitud"
                     }
                     d.canvas = await construir_miniatura_canvas_pdf(datos_canvas);
                     d.div_canvas.insertAdjacentElement("beforeEnd", d.canvas);
@@ -233,6 +247,22 @@ let detalles_solicitud = null;
 
 
         };
+
+        const lanzar_modal_visualizar_pdf = () => {
+            let nodo_cuerpo = document.createElement("div");
+            nodo_cuerpo.innerHTML = `
+                <div> <iframe class="frame_pdf_solicitud" src="${registro_detalle.url_pdf}" frameborder="0"></iframe> </div>
+                `;
+
+            let data = {
+                id: "PDF_solicitud_supervivientes",
+                titulo: "PDF comprobante de solicitud",
+                nodo_cuerpo: nodo_cuerpo,
+                className: " modal-lg clase_div_modal",
+            };
+            modal_desechable_b4.crear_modal(data);
+        };
+
         // get 
         const get_registro_detalle = () => {
             return registro_detalle;

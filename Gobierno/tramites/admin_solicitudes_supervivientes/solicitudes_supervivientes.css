@@ -7,13 +7,13 @@
 /* ----------------------------------- */
 /* ----------------------------------- */
 /* ----------------------------------- */
-.botonera_funciones .traer_registro_intervalo{
+.botonera_funciones .traer_registro_intervalo {
   /* display: block;s */
   /* align-content: center; */
   /* align-items: center; */
   /* justify-content: center; */
 }
-.botonera_funciones .div_traer_registro_intervalo{
+.botonera_funciones .div_traer_registro_intervalo {
   /* display: block;s */
   /* align-content: center; */
   /* align-items: center; */
@@ -60,4 +60,15 @@
   grid-template-columns: repeat(3, 1fr);
   /* display: flex;
   justify-content: space-around; */
+}
+.pizzarra_detalles_solicitud .canvas_pdf_solicitud {
+  cursor: pointer;
+}
+.frame_pdf_solicitud{
+  width: 100%;
+  height: 400px;
+}
+/* fix modal */
+.modal > .modal-dialog {
+  margin: 0% auto;
 }

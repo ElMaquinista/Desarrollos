@@ -7,11 +7,21 @@
 /* ----------------------------------- */
 /* ----------------------------------- */
 /* ----------------------------------- */
-.traer_registro_intervalo{
-  display: flex;
-  align-content: center;
+.botonera_funciones .traer_registro_intervalo{
+  /* display: block;s */
+  /* align-content: center; */
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+.botonera_funciones .div_traer_registro_intervalo{
+  /* display: block;s */
+  /* align-content: center; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  align-content: center;
+  justify-content: center; */
 }
 /* ----------------------------------- */
 /* ----------------------------------- */

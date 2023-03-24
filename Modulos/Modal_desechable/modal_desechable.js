@@ -47,15 +47,37 @@ const modal_desechable_b4 = (() => {
         }
 
 
-        // autodestruccion
         document.body.insertAdjacentElement("beforeend", nodo_modal);
-        jQuery.noConflict();
-        $('#' + data.id).modal().show();
-        $('#' + data.id).on('hidden.bs.modal', function () {
-            console.log("evento al cerrar modal lanzado");
-            $('#' + data.id).modal('dispose');
-            document.querySelector('#' + data.id).remove();
-        })
+
+
+        // (function($){
+
+        // $('#' + data.id).modal().show();
+        //     // autodestruccion
+        //     $('#' + data.id).on('hidden.bs.modal', function () {
+        //         console.log("evento al cerrar modal lanzado");
+        //         $('#' + data.id).modal('dispose');
+        //         document.querySelector('#' + data.id).remove();
+        //     })
+
+        // })(jQuery);
+        // mostrar modal 
+
+        // try {
+        //     $('#' + data.id).modal().show();
+        // } catch (error) {
+        //     console.log(error);
+        //     try {
+        //         $('#' + data.id).modal('show');
+        //     } catch (error) {
+        //         console.log(error);
+
+        //     }
+        // }
+
+        // jQuery.noConflict();
+
+        return $('#' + data.id);
     }
 
 
@@ -72,6 +94,16 @@ const modal_desechable_b4 = (() => {
             className: "clase_div_modal",
         };
         crear_modal(data);
+
+        // jQuery.noConflict();
+
+        $('#' + data.id).modal().show();
+
+        $('#' + data.id).on('hidden.bs.modal', function () {
+            console.log("evento al cerrar modal lanzado");
+            $('#' + data.id).modal('dispose');
+            document.querySelector('#' + data.id).remove();
+        })
     }
 
     return {

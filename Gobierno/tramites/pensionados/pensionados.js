@@ -965,11 +965,11 @@ const formato_pensionados = async (data) => {
         switch (tipo_ayuda) {
             case 'clave':
                 data_ayuda.url = "./recibo_clave.jpg";
-                data_ayuda.titulo = "Aqui puede consultar donde encontrar la Clave en su recibo";
+                data_ayuda.titulo = "Aqui puede consultar la Clave en su recibo";
                 break;
             case 'usuario':
                 data_ayuda.url = "./recibo_usuario.jpg"
-                data_ayuda.titulo = "Aqui puede consultar donde encontrar el numerpo de Usuario en su recibo";
+                data_ayuda.titulo = "Aqui puede consultar el Numero de Usuario en su recibo";
                 break;
             default:
                 console.log("tipo de ayuda: ", tipo_ayuda, "  no encontrado");
@@ -990,6 +990,13 @@ const formato_pensionados = async (data) => {
             clase_modal_dialog: "modal-lg"
         };
         modal_desechable_b4.crear_modal(data);
+
+        $('#' + data.id).modal('show')
+        $('#' + data.id).on('hidden.bs.modal', function () {
+            console.log("evento al cerrar modal lanzado");
+            $('#' + data.id).modal('dispose');
+            document.querySelector('#' + data.id).remove();
+        })
     };
 
     const get_array_imask = () => {

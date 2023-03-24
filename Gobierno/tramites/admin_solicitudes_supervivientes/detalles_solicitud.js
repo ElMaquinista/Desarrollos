@@ -261,6 +261,13 @@ let detalles_solicitud = null;
                 className: "clase_div_modal",
             };
             modal_desechable_b4.crear_modal(data);
+            // jQuery.noConflict();s
+            $('#' + data.id).modal().show();
+            $('#' + data.id).on('hidden.bs.modal', function () {
+                console.log("evento al cerrar modal lanzado");
+                $('#' + data.id).modal('dispose');
+                document.querySelector('#' + data.id).remove();
+            })
         };
 
         // get 

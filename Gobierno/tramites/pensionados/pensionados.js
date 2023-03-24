@@ -298,6 +298,81 @@ const formato_pensionados = async (data) => {
 
             });
 
+            nodo_form.addEventListener("click", function ayuda(e) {
+                const target = e.target;
+                // console.log(target);
+
+                let evento = target.getAttribute('data-evento');
+                let desencadenador = target.getAttribute('data-desencadenador');
+                let heredado = target.getAttribute('data-evento-heredado');
+
+                let nodo = target;
+
+                if (heredado) {
+                    buscar_nodos_padre(e, (element) => {
+                        let bandera_control = false; // parar detener las iteraciones hacia nodos padre 
+
+                        const bnp_evento = element.getAttribute("data-evento");
+                        const bnp_desencadenador = element.getAttribute('data-desencadenador');
+
+                        if (bnp_evento && bnp_desencadenador) {
+                            evento = bnp_evento;
+                            desencadenador = bnp_desencadenador;
+                            bandera_control = true;
+                            nodo = element;
+                        }
+
+                        // console.log("bnp_evento", bnp_evento);
+                        // console.log("bnp_desencadenador", bnp_desencadenador);
+                        return bandera_control;
+                    });
+                }
+
+                // console.log("evento", evento);
+                // console.log("desencadenador", desencadenador);
+                // console.log("heredado", heredado);
+
+
+                let d = {};
+
+                if (desencadenador && evento) {
+
+                    switch (desencadenador) {
+                        case 'data-evento':
+
+                            switch (evento) {
+                                case 'mostrar_ayuda':
+                                    // mostar modal de ayuda de donde encontrar los datos requieridos
+                                    d = {};
+                                    d.tipo_ayuda = nodo.getAttribute("data-tipo_ayuda");
+                                    console.log("tipo_ayuda", d.tipo_ayuda);
+                                    if (d.tipo_ayuda) {
+
+                                        lanzar_modal_ayuda(d.tipo_ayuda);
+                                    }
+
+
+                                    break;
+
+                                default:
+                                    break;
+                            }
+
+                            break;
+                        case 'id':
+
+                            break;
+                        case 'clase':
+
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+
+            });
+
         }
 
     };
@@ -875,11 +950,46 @@ const formato_pensionados = async (data) => {
             if (nodos_textarea) {
 
                 for (const nodo of nodos_textarea) {
-                    nodo.value ="";
+                    nodo.value = "";
                 }
 
             }
         }
+    };
+
+    const lanzar_modal_ayuda = (tipo_ayuda) => {
+        let nodo_cuerpo = document.createElement("div");
+
+        let data_ayuda = {};
+
+        switch (tipo_ayuda) {
+            case 'clave':
+                data_ayuda.url = "./recibo_clave.jpg";
+                data_ayuda.titulo = "Aqui puede consultar donde encontrar la Clave en su recibo";
+                break;
+            case 'usuario':
+                data_ayuda.url = "./recibo_usuario.jpg"
+                data_ayuda.titulo = "Aqui puede consultar donde encontrar el numerpo de Usuario en su recibo";
+                break;
+            default:
+                console.log("tipo de ayuda: ", tipo_ayuda, "  no encontrado");
+                return;
+                break;
+        }
+        nodo_cuerpo.innerHTML = `
+            <div class="p-3 d-flex justify-content-center">
+                <img class="imagen_ayuda" src="${data_ayuda.url}" alt="" srcset="">
+            </div>
+            `;
+
+        let data = {
+            id: "PDF_solicitud_supervivientes_ayuda_datos",
+            titulo: data_ayuda.titulo,
+            nodo_cuerpo: nodo_cuerpo,
+            className: "clase_div_modal",
+            clase_modal_dialog: "modal-lg"
+        };
+        modal_desechable_b4.crear_modal(data);
     };
 
     const get_array_imask = () => {
@@ -900,7 +1010,8 @@ const formato_pensionados = async (data) => {
         get_array_imask,
         recaudar_respuetsas_BD,
         lanzar_modal,
-        limpiar_form
+        limpiar_form,
+        lanzar_modal_ayuda
     };
 
 };

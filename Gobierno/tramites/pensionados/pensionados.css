@@ -1,7 +1,14 @@
+:root {
+  --rojo-claro360: rgba(218, 41, 28);
+}
 .pizarra_formato_pensionados {
   width: 800px;
   margin: 0 auto;
   overflow: hidden;
+}
+.pizarra_formato_pensionados .ayuda_visual {
+  color: var(--rojo-claro360);
+  cursor: pointer;
 }
 /* ------------------------------------------ */
 /* bloque de notificaciones  */
@@ -18,4 +25,11 @@
 }
 .div_forma_notificacion .notif_datos {
 }
-
+/* para el modal de ayuda */
+.imagen_ayuda{
+  width: 400px;
+}
+/* fix modal */
+.modal > .modal-dialog {
+  margin: 0% auto;
+}

@@ -6,6 +6,7 @@ const modal_desechable_b4 = (() => {
         // nodo_cuerpo
         // titulo
         // clase
+        // clase_modal_dialog
 
         // validar elemento con el mismo id
         let presedente = document.querySelector('#' + data.id);
@@ -14,13 +15,13 @@ const modal_desechable_b4 = (() => {
         }
         // crear modal
         let nodo_modal = document.createElement("div");
-        nodo_modal.className = "modal fade" + data.className;
+        nodo_modal.className = "modal fade " + data.className;
         nodo_modal.setAttribute("id", data.id);
         nodo_modal.setAttribute("aria-labelledby", "ModalLabel");
         nodo_modal.setAttribute("aria-hidden", "true");
         nodo_modal.setAttribute("tabindex", "-1");
         nodo_modal.innerHTML = `
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered ${data.clase_modal_dialog}">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">${data.titulo}</h5>

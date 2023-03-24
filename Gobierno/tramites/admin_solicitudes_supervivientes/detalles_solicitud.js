@@ -258,7 +258,7 @@ let detalles_solicitud = null;
                 id: "PDF_solicitud_supervivientes",
                 titulo: "PDF comprobante de solicitud",
                 nodo_cuerpo: nodo_cuerpo,
-                className: " modal-lg clase_div_modal",
+                className: "clase_div_modal",
             };
             modal_desechable_b4.crear_modal(data);
         };

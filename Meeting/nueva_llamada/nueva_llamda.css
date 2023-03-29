@@ -1,0 +1,28 @@
+.contenedor {
+  width: 300px;
+}
+.contenedor_llamada_recurrente {
+}
+.contenedor_llamada_recurrente .cantidad_ocurrencias {
+  width: 80px;
+}
+.contenedor_llamada_recurrente .txt_fecha_finalizar_recurrencia{
+    width: 80px;
+}
+.contenedor_llamada_recurrente .div_label_repetir{
+    width: 80px;
+}
+.contenedor_llamada_recurrente .div_repetir_cada{
+    display: flex;
+    width: 80px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.contenedor_llamada_recurrente .div_repretir_unidad{
+    display: flex;
+    width: 80px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}

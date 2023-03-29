@@ -92,6 +92,10 @@ const formato_pensionados = async (data) => {
             respuestas[id_respuesta] = element.value.trim();
         }
 
+        // casos de sobreescribir tratamiendo diferente 
+        let especial_clave = document.querySelector('#clave').value;
+        respuestas["clave"] = especial_clave.replaceAll("_", "");
+
 
         // console.log("respuestas", respuestas);s
 
@@ -171,6 +175,11 @@ const formato_pensionados = async (data) => {
                 }
             }
         }
+
+
+        // casos de sobreescribir tratamiendo diferente 
+        let especial_clave = document.querySelector('#clave').value;
+        respuestas["clave"] = especial_clave.replaceAll("_", "");
 
 
         //-------------
@@ -448,8 +457,44 @@ const formato_pensionados = async (data) => {
                             };
                             break;
                         case 'clave':
+                            // nodo.setAttribute("maxlength", 13);
+                            // nodo.setAttribute("data-longitud_minima", 11);
                             maskOptions = {
-                                mask: '**/**/**/****',
+                                // mask: '**/**/**/****',
+                                // lazy: false,
+                                mask: '00/00/00/0000',
+                                // mask: 'DD/DD/DD/FFFF',
+                                lazy: false,  // make placeholder always visible
+                                placeholderChar: "_",
+                                // block:{
+                                //     YY:{
+                                //         mask:'00',
+                                //         // autofix: true,
+                                //     },
+                                //     FFFF:{
+                                //         mask: IMask.MaskedRange,
+                                //         from:0,
+                                //         to: 9999
+                                //     } 
+                                // }
+                                // mask: 'Ple\\ase fill ye\\ar 19YY, month MM \\and v\\alue VL',
+                                // lazy: false, // placeholder simpres
+                                // blocks: {
+                                //     YY: {
+                                //         mask: '00',
+                                //     },
+
+                                //     MM: {
+                                //         mask: IMask.MaskedRange,
+                                //         from: 1,
+                                //         to: 12
+                                //     },
+
+                                //     VL: {
+                                //         mask: IMask.MaskedEnum,
+                                //         enum: ['TV', 'HD', 'VR']
+                                //     }
+                                // }
                             };
                             break;
                         case 'curp':
@@ -561,17 +606,49 @@ const formato_pensionados = async (data) => {
                     if (tipo) {
                         switch (tipo) {
                             case "date":
-                            case "email":
                             case "text":
-                            case "number":
+                            case "email":
                                 // secuencia de validacion
                                 d = {};
                                 d.valor = nodo.value;
                                 d.valor = d.valor.trim();
+                                d.min = nodo.getAttribute("data-longitud_minima");
                                 if (d.valor !== "" && d.valor !== null) {
-                                    es_valido = true;
+                                    if (d.min) {
+                                        d.min = parseInt(d.min);
+
+                                        if (nodo.value.length >= d.min) {
+                                            es_valido = true;
+                                        }
+                                    } else {
+                                        es_valido = true;
+                                    }
                                 }
-                                // console.log("es valido", es_valido);
+                                // agregar clase de validacion
+                                if (es_valido) {
+                                    nodo.classList.remove(clase_invalido);
+                                } else {
+                                    nodo.classList.add(clase_invalido);
+                                }
+                                break;
+                            case "number":
+                                d = {};
+                                d.valor = nodo.value;
+                                d.valor = d.valor.trim();
+                                d.min = nodo.getAttribute("data-longitud_minima");
+                                if (d.valor !== "" && d.valor !== null) {
+
+                                    if (d.min) {
+                                        d.min = parseInt(d.min);
+
+                                        if (nodo.value.length >= d.min) {
+                                            es_valido = true;
+                                        }
+                                    } else {
+                                        es_valido = true;
+                                    }
+                                }
+
                                 // agregar clase de validacion
                                 if (es_valido) {
                                     nodo.classList.remove(clase_invalido);
@@ -633,6 +710,18 @@ const formato_pensionados = async (data) => {
             d = {};
 
             switch (true) {
+                case id.includes('clave'):
+                    d = {};
+                    d.clave = nodo.value;
+                    // tratar valor 
+                    d.valor = d.clave.replaceAll('_', "");
+
+                    if (d.valor.length > 10) {
+                        nodo.classList.remove(clase_invalido);
+                    } else {
+                        nodo.classList.add(clase_invalido);
+                    }
+                    break;
                 case id.includes('fecha_nacimiento'):
                     d = {};
                     d.nodo_edad = document.querySelector('#edad');
@@ -1258,3 +1347,90 @@ async function crear_boton_descargar_pdf() {
 
     return div_boton;
 }
+// clonar objetos 
+
+
+/** Clona un objeto (deep-copy)
+ * @param  {Any}    from: el objeto a clonar
+ * @param  {Object} dest: (opcional) objeto a extender
+ * @return {Any} retorna el nuevo objeto clonado
+ */
+var fnClone = (function () {
+    // @Private
+    var _toString = Object.prototype.toString;
+
+    // @Private
+    function _clone(from, dest, objectsCache) {
+        var prop;
+        // determina si @from es un valor primitivo o una funcion
+        if (from === null || typeof from !== "object") return from;
+        // revisa si @from es un objeto ya guardado en cache
+        if (_toString.call(from) === "[object Object]") {
+            if (objectsCache.filter(function (item) {
+                return item === from;
+            }).length) return from;
+            // guarda la referencia de los objetos creados
+            objectsCache.push(from);
+        }
+        // determina si @from es una instancia de alguno de los siguientes constructores
+        if (from.constructor === Date || from.constructor === RegExp || from.constructor === Function ||
+            from.constructor === String || from.constructor === Number || from.constructor === Boolean) {
+            return new from.constructor(from);
+        }
+        if (from.constructor !== Object && from.constructor !== Array) return from;
+        // crea un nuevo objeto y recursivamente itera sus propiedades
+        dest = dest || new from.constructor();
+        for (prop in from) {
+            // TODO: allow overwrite existing properties
+            dest[prop] = (typeof dest[prop] === "undefined" ?
+                _clone(from[prop], null, objectsCache) :
+                dest[prop]);
+        }
+        return dest;
+    }
+
+    // función retornada en el closure
+    return function (from, dest) {
+        var objectsCache = [];
+        return _clone(from, dest, objectsCache);
+    };
+
+}());
+
+var freeman, david;
+
+function Freeman() {
+    this.name = "Gordon Freeman";
+    this.character = "Freeman";
+    this.game = "Half-Life";
+    this.friends = [];
+}
+
+david = {
+    name: "David Rivera",
+    character: "jherax",
+    friends: [],
+    languages: new RegExp(/javascript|jquery|c#|sql|java|vb/i),
+    greeting: function () { return "Hi, I am " + this.name },
+    info: {
+        job: "programmer",
+        birth: new Date()
+    }
+};
+
+freeman = new Freeman();
+
+//creamos la referencia circular
+freeman.friends = [david, "Barney Calhoun"];
+david.friends = [freeman, "John Carmack"];
+
+//clonamos el objeto @david
+var cloned = fnClone(david);
+
+//modificamos propiedades del objeto original
+david.name = david.name + " (jherax)";
+david.friends.push("Jim Rynor");
+
+//vemos que @cloned no fue modificado
+console.log("original:", david.name, david.friends);
+console.log("clonado:", cloned.name, cloned.friends);

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="checkbox_personalizados.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="contenedor_llamada_recurrente" id="contenedor_llamada_recurrente">
+        <div class="row col-12 m-0 p-0 mt-3">
+            <div class="col-10 p-0">
+                <label class="form-check-label d-block w-100 text-left" for="gestionllamadarecurrente">Programar
+                    llamada recurrente</label>
+            </div>
+            <div class="col-2 p-0">
+                <div class="form-check form-switch d-flex justify-content-end">
+                    <input class="form-check-input" type="checkbox" id="gestionllamadarecurrente" 
+                    data-evento="ocult_mostar_panel_recurrente" data-desencadenador="data-evento">
+                </div>
+            </div>
+        </div>
+        <div class="row col-12 m-0 p-0 mt-3 detallesllamadarecurrente">
+            <div class="tutulo fw-bold">Personalizar reunión recurrente</div>
+            <div class="d-flex pt-3">
+                <div class="div_label_repetir">Repetir cada</div>
+                <div class="form-group div_repetir_cada_cantidad ps-3">
+                    <input type="number" class="form-control" id="repetir_cada_cantidad" value="1">
+                    <!-- <label for="repetir_cada_cantidad"></label> -->
+                </div>
+                <div class="form-group div_repretir_unidad ps-3">
+                    <!-- <label for="recurrente_unidad"></label> -->
+                    <select class="form-control" id="recurrente_unidad" data-evento="modo_recurrencia" data-desencadenador="data-evento">
+                        <option value="dia">Día</option>
+                        <option value="semanas">Semanas</option>
+                        <option value="meses">Meses</option>
+                        <option value="años">Años</option>
+                    </select>
+                </div>
+            </div>
+            <div class="opciones_unidadtiempo pt-2">
+                <div class="dias_semana">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="dias_semana" id="dia_domingo"
+                            data-evento="seleccionar_DLMMJVS" data-desencadenador="data-evento" date-num_DLMMJVS = "0">
+                        <label class="form-check-label" for="dia_domingo">
+                            Do
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="dias_semana" id="dia_lunes" data-evento="seleccionar_DLMMJVS"
+                            data-desencadenador="data-evento" date-num_DLMMJVS = "1">
+                        <label class="form-check-label" for="dia_lunes">
+                            Lu
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="dias_semana" id="dia_martes" data-evento="seleccionar_DLMMJVS"
+                            data-desencadenador="data-evento" date-num_DLMMJVS = "2">
+                        <label class="form-check-label" for="dia_martes">
+                            Ma
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="dias_semana" id="dia_miercoles"
+                            data-evento="seleccionar_DLMMJVS" data-desencadenador="data-evento" date-num_DLMMJVS = "3">
+                        <label class="form-check-label" for="dia_miercoles">
+                            Mi
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="dias_semana" id="dia_jueves" data-evento="seleccionar_DLMMJVS"
+                            data-desencadenador="data-evento" date-num_DLMMJVS = "4">
+                        <label class="form-check-label" for="dia_jueves">
+                            Ju
+                        </label>
+                        </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="dias_semana" id="dia_viernes"
+                            data-evento="seleccionar_DLMMJVS" data-desencadenador="data-evento" date-num_DLMMJVS = "5">
+                        <label class="form-check-label" for="dia_viernes">
+                            Vi
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="dias_semana" id="dia_sabado" data-evento="seleccionar_DLMMJVS"
+                            data-desencadenador="data-evento" date-num_DLMMJVS = "6">
+                        <label class="form-check-label" for="dia_sabado">
+                            Sa
+                        </label>
+                    </div>
+                    
+                </div>
+                <div class="cada_mes">
+                    <div class="form-group div_recurrente_mes">
+                        <!-- <label for="recurrente_unidad"></label> -->
+                        <select class="form-control" id="recurrente_mes">
+                            
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-3">
+                <div>Finaliza</div>
+                <div>
+                    <div class="form-check pt-2">
+                        <input class="form-check-input" type="radio" name="rdb_finalizarrecurrencia"
+                            id="finalizarrecurrencia_nunca" data-evento="seleccion_fin_recurrencia" data-desencadenador="data-evento">
+                        <label class="form-check-label" for="finalizarrecurrencia_nunca">
+                            Nunca
+                        </label>
+                    </div>
+                    <div class="d-flex pt-2">
+                        <div class="form-check">
+                            <input class="form-check-input " type="radio" name="rdb_finalizarrecurrencia"
+                                id="finalizarrecurrencia_ocurrencias" data-evento="seleccion_fin_recurrencia" data-desencadenador="data-evento">
+                            <label class="form-check-label" for="finalizarrecurrencia_ocurrencias">
+                                Después de
+                            </label>
+                        </div>
+                        <div class="form-group ps-3">
+                            <input type="text" class="form-control cantidad_ocurrencias"
+                                id="cantidad_ocurrencias" value="1">
+                            <!-- <label for="cantidad_ocurrencias">Ocurrencias</label> -->
+                        </div>
+                        <div class="ps-2">
+                            Ocurrencias
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

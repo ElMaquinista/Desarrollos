@@ -1,0 +1,45 @@
+:root{
+    --var_dia_semana: #67a2fc;
+    --var_dia_semana_seleccion: #0d6efd;
+}
+.contenedor_llamada_recurrente .dias_semana input[type="checkbox"]{
+    display: none;
+}
+.contenedor_llamada_recurrente .dias_semana label{
+    color: rgb(13, 98, 172);
+    /* display: inline-block; */
+    /* padding: 5px 5px 5px 5px; */
+    cursor: pointer;
+    background-color: var(--var_dia_semana);
+    border-radius: 50%;
+    transition: 0.3s;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contenedor_llamada_recurrente .dias_semana input[type="checkbox"]:hover,
+.contenedor_llamada_recurrente .dias_semana label:hover{
+    background-color: aliceblue;
+}
+.contenedor_llamada_recurrente .dias_semana label:before{
+    /* content: "";
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background: none;
+    border: 3px solid #6e907e;
+    border-radius: 50%;
+    position: absolute;
+    left: 17px; */
+}
+.contenedor_llamada_recurrente .dias_semana input[type="checkbox"]:checked + label{
+    /* padding: 5px 15px; */
+    background-color: var(--var_dia_semana_seleccion)
+    /* border-radius: 2px; */
+    /* color: azure; */
+}
+.contenedor_llamada_recurrente .dias_semana input[type="checkbox"]:checked + label::before{
+    /* display: none; */
+}

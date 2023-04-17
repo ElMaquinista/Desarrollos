@@ -1087,11 +1087,100 @@ const formato_pensionados = async (data) => {
             document.querySelector('#' + data.id).remove();
         })
     };
+    // ------------------------------------------------------------------
+    // ---------------------------------- agregar fucniones de subir archivos filepond
+    let objetos_dropzone = new Array();
+    function agregar_filepond_objetivos() {
+        let arra_pre_nodos = new Array();
+        arra_pre_nodos.push([".", "filepond_curp"]);
+        arra_pre_nodos.push([".", "filepond_tipo_identificacion"]);
+
+        for (const iterator of arra_pre_nodos) {
+            let nodo = document.querySelector(iterator[0] + iterator[1]);
+
+            if (nodo) {
+                let input = document.createElement("input");
+                input.type = "file";
+                nodo.insertAdjacentElement("beforeend", input);
+
+                let FilePond_objeto = FilePond.create(
+                    nodo.querySelector("input"), {
+                    labelIdle: `Subir/arrastrar sus documentos`,
+                    imagePreviewHeight: 200,
+                    imageResizeTargetWidth: 200,
+                    allowPdfPreview: true,
+                    pdfPreviewHeight: 200,
+                    pdfComponentExtraParams: 'toolbar=0&view=fit&page=1',
+                    imageResizeTargetHeight: 200,
+                    maxFiles: 1,
+                    onaddfile: async function cargar(error, file) {
+                        console.log("onaddfile", error, file);
+                        if (!error) {
+                            // agregar.push(file.file);
+                            let size = file.file.size;
+                            let nombre_ext = file.file.name.split(".");
+                            let name = nombre_ext[0];
+                            let ext = nombre_ext[1];
+
+                            // seleccionar tipos de extension 
+
+                            if (ext) {
+                                switch (ext.toLowerCase()) {
+                                    case "jpg":
+                                    case "png":
+
+                                        break;
+
+                                    default:
+                                        // falta lanzar alerta
+                                        alert("solo se pueden agregar archivos en formato de imagen png y jpg");
+                                        //
+                                        file.abortLoad();
+                                        break;
+                                }
+                            }
+
+
+
+                            console.log("nuevo docuemento subido", file)
+
+
+                        } else {
+                            console.log("otro else");
+                        }
+                    },
+                    onremovefile: function remover(error, file,) {
+                        console.log("onremovefile", error, file);
+                        if (!error) {
+                            // let index_archivo = funcion_buscar_index_array(get_array_digitales_por_subir(), "id_digital_adicional", itinerante.id_digital_adicional);
+                            // let array_nuevo = get_array_digitales_por_subir();
+                            // array_nuevo.splice(index_archivo, 1);
+
+                            // set_array_digitales_por_subir(array_nuevo);
+                            // console.log("array_digitales_por_subir", get_array_digitales_por_subir());
+                            console.log("se removio archivo ");
+
+                        }
+                    }
+                }
+                );
+
+                objetos_dropzone.push([nodo, FilePond_objeto]);
+            }
+        }
+    }
+    agregar_filepond_objetivos();
+
+    // ------------------------------------------------------------------
+    // ------------------------------------------------------------------
 
     const get_array_imask = () => {
         return array_imask;
     };
 
+    const get_array_fileponnd = () => {
+        return objetos_dropzone;
+    }
     window.addEventListener('load', function () {
         console.log('La página ha terminado de cargarse!!');
         init_validaciones();
@@ -1107,7 +1196,9 @@ const formato_pensionados = async (data) => {
         recaudar_respuetsas_BD,
         lanzar_modal,
         limpiar_form,
-        lanzar_modal_ayuda
+        lanzar_modal_ayuda,
+        agregar_filepond_objetivos,
+        get_array_fileponnd
     };
 
 };
@@ -1434,3 +1525,59 @@ david.friends.push("Jim Rynor");
 //vemos que @cloned no fue modificado
 console.log("original:", david.name, david.friends);
 console.log("clonado:", cloned.name, cloned.friends);
+
+
+// teste base64
+function getBase64(file) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = async function () {
+        console.log(reader.result);
+    };
+    reader.onerror = function (error) {
+        console.log('Error: ', error);
+    };
+}
+
+function get_base64_promesa(file) {
+    return new Promise((resolve, reject) => {
+        let reader = new FileReader();
+
+        reader.readAsDataURL(file);
+
+        reader.onload = async () => {
+
+            resolve(reader.result);
+        };
+
+        reader.onerror = (error) => {
+            reject(error);
+        };
+        
+
+    });
+}
+
+// const filePromises = files.map((file) => {
+//     // Return a promise per file
+//     return new Promise((resolve, reject) => {
+//         const reader = new FileReader();
+//         reader.onload = async () => {
+//             try {
+//                 const response = await this.submitFile(
+//                     reader.result,
+//                     file.name,
+//                     fileType
+//                 );
+//                 // Resolve the promise with the response value
+//                 resolve(response);
+//             } catch (err) {
+//                 reject(err);
+//             }
+//         };
+//         reader.onerror = (error) => {
+//             reject(error);
+//         };
+//         reader.readAsDataURL(file);
+//     });
+// });

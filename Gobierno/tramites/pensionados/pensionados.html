@@ -40,6 +40,9 @@
     <script src="https://landings360.s3.amazonaws.com/public/Alert/alert.js"></script>
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/d533bbc844.js" crossorigin="anonymous"></script>
+    <!-- filepond -->
+    <link rel="stylesheet" href="/Recursos/filepond/filepond-master/filepond.css">
+    <script src="/Recursos/filepond/filepond-master/filepond.js"></script>
     <!-- endemicos -->
     <link rel="stylesheet" href="./pensionados.css">
     <title>pensionados</title>
@@ -214,6 +217,11 @@
                         Debe seleccionar una opción
                     </div>
                 </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="filepond_tipo_identificacion d-none" data-digital="identificacion">
+
+                    </div>
+                </div>
 
             </div>
             <div class="row border-bottom border-right border-left">
@@ -288,12 +296,16 @@
                         <div class="form-group">
                             <label for="tipo_identificacion_beneficio6">Pensionado Otro</label>
                             <input data-required="true" type="text" id="tipo_identificacion_beneficio"
-                                class="form-control">
+                                class="form-control" aria-labelledby="" placeholder="">
                             <div class="invalid-feedback">
                                 Debe llenar este campo
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="filepond_identificacion_beneficio d-none" data-digital="identificacion_beneficio">
+                    
                 </div>
             </div>
 
@@ -305,6 +317,11 @@
                         <div class="invalid-feedback">
                             Debe llenar este campo
                         </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="filepond_curp" data-documento="curp">
+
                     </div>
                 </div>
             </div>

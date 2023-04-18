@@ -80,3 +80,19 @@ function buscar_nodos_padre(e, funcion_switch) {
     }
 }
 
+const fecha_actual = () => {
+    var fecha_hoy = new Date();
+    var ahora_anio = fecha_hoy.getFullYear();
+    var ahora_mes = fecha_hoy.getMonth() + 1;
+    var ahora_dia = fecha_hoy.getDate();
+
+    if (ahora_mes < 10) {
+        ahora_mes = '0' + ahora_mes;
+    }
+    if (ahora_dia < 10) {
+        ahora_dia = '0' + ahora_dia;
+    }
+
+    var fecha_actual = ahora_anio + '-' + ahora_mes + '-' + ahora_dia;
+    return fecha_actual;
+};

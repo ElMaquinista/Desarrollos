@@ -1,0 +1,38 @@
+:root {
+    --color_panelherramientas: #e9b8e2;
+    --color_tarjeta_llamada: #a9d18e;
+    --color_panel_vista: #9b9b9b;
+}
+/* pizarra de la vista completa */
+.pizarra_historial{
+    height: 100%;
+    display: flex;
+}
+/* paneles/secciones/bloques para la vista */
+
+/* panel lateral menu de la vista */
+.panel_lista_llamadas {
+    max-width: 300px;
+    min-width: 200px;
+    border-style: dashed;
+    border-width: 1px;
+}
+
+.panel_lista_llamadas {}
+
+/* panel de vista de detalles/vista principal*/
+.panel_vista {
+    border-style: dashed;
+    border-width: 1px;
+    background-color: var(--color_panel_vista);
+    width: 100%;
+
+}
+
+/* tarjeta de llamada, con pequeños detalles */
+.llamada-pre-item {
+    background-color: var(--color_tarjeta_llamada);
+    width: 100%;
+    min-width: 200px;
+    font-size: 10px;
+}

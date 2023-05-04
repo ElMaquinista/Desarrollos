@@ -1,0 +1,36 @@
+:root {
+  --fideson-color: rgb(134, 26, 26);
+}
+
+.contendor_tabs.titulos {
+  display: flex;
+  /* justify-content: space-between; */
+  justify-content: space-around;
+}
+.contendor_tabs .titulo_seccion {
+  border-radius: 13px;
+  height: 30px;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: auto;
+  stroke-width: 0cm;
+}
+.contendor_tabs .titulo_seccion .texto {
+padding-left: 5px;
+padding-right: 5px;
+}
+
+.contendor_tabs.titulos .active {
+  color: white;
+  background-color: var(--fideson-color);
+  /* width: 150px;s */
+}
+
+.contendor_tabs.contenido .contenedor {
+  display: none;
+}
+.contendor_tabs.contenido .contenedor.active {
+  display: block;
+}

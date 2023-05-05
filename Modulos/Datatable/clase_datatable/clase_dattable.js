@@ -61,6 +61,7 @@ class datatable_generico {
         [0, "desc"]
     ];
     habiliar_filtros_encabezado = false;
+    fn_rowCallback = function (row, data, index) {}
     crear_nodo_datatable() {
 
         let id_contenedor_datatable = this.id_contenedor_datatable;
@@ -83,7 +84,7 @@ class datatable_generico {
         }
 
         div_general.innerHTML = `
-                <table id="` + id_tabla + `" class=" ` + className_tabla + ` display"
+                <table id="` + id_tabla + `" class="` + className_tabla + ` display"
                     style="width:100%">
                     <thead>
                         <tr>
@@ -104,6 +105,8 @@ class datatable_generico {
         let columnas_def = this.columnDefs;
         let datos_tala = this.datos_tabla;
         let order = this.orden;
+        let funcion_rowCallback = this.fn_rowCallback;
+
         objeto_datatable = $(nodo_datable).children("#" + id_tabla).DataTable({
             "aProcessing": true,
             "aServerSide": true,
@@ -116,10 +119,11 @@ class datatable_generico {
             columns: columnas_tabla,
             columnDefs: columnas_def,
             order: order,
-            initComplete: ""
+            initComplete: "",
+            rowCallback: funcion_rowCallback
         }
         );
-        datatble = objeto_datatable;
+        // datatble = objeto_datatable;
         this.objeto_datatable = objeto_datatable;
         return true;
     }
@@ -244,6 +248,13 @@ class datatable_generico {
     set habiliar_filtros_encabezado(data) {
         this.habiliar_filtros_encabezado = data;
     }
+    get fn_rowCallback() {
+        return this.fn_rowCallback;
+    }
+    set fn_rowCallback(funcion) {
+        this.fn_rowCallback = funcion;
+    }
+
 
 }
 

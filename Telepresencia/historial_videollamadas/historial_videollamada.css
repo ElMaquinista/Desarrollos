@@ -18,7 +18,9 @@
     border-width: 1px;
 }
 
-.panel_lista_llamadas {}
+.panel_lista_llamadas .item-bloque-estante {
+    width: 100%;
+}
 
 /* panel de vista de detalles/vista principal*/
 .panel_vista {

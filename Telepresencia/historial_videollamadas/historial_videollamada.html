@@ -30,6 +30,29 @@
             <!-- aqui va la lista de filtros, (detalles, por fecha, etc) y de llamadas, lista de llamadas -->
 
             <div class="accordion" id="accordionEstante">
+
+                <div class="card">
+                    <div class="card-header" id="reporte_general">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                data-target="#collapseReporteGeneral" aria-expanded="true"
+                                aria-controls="collapseReporteGeneral">
+                                Reporte General
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="collapseReporteGeneral" class="collapse show" aria-labelledby="reporte_general"
+                        data-parent="#accordionEstante">
+                        <div class="card-body">
+                            <div class="llamadas_fecha">
+                                <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">hola</button>
+                                <button type="button" class="btn btn-primary item-bloque-estante btn_reporteGeneral">Reporte General</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card">
                     <div class="card-header" id="llamadas_por_fecha">
                         <h2 class="mb-0">

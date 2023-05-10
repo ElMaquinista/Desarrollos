@@ -61,7 +61,8 @@ class datatable_generico {
         [0, "desc"]
     ];
     habiliar_filtros_encabezado = false;
-    fn_rowCallback = function (row, data, index) {}
+    fn_rowCallback = function (row, data, index) { };
+    obj_constr_datatable_ext = {};
     crear_nodo_datatable() {
 
         let id_contenedor_datatable = this.id_contenedor_datatable;
@@ -106,8 +107,9 @@ class datatable_generico {
         let datos_tala = this.datos_tabla;
         let order = this.orden;
         let funcion_rowCallback = this.fn_rowCallback;
+        let obj_constr_ext = this.obj_constr_datatable_ext;
 
-        objeto_datatable = $(nodo_datable).children("#" + id_tabla).DataTable({
+        let obj_contructor = {
             "aProcessing": true,
             "aServerSide": true,
             "Destroy": true,
@@ -120,8 +122,15 @@ class datatable_generico {
             columnDefs: columnas_def,
             order: order,
             initComplete: "",
-            rowCallback: funcion_rowCallback
-        }
+            rowCallback: funcion_rowCallback,
+        };
+
+        let extendido = Object.assign(obj_contructor, obj_constr_ext);
+
+        console.log("obj_contructor", obj_contructor);
+
+        objeto_datatable = $(nodo_datable).children("#" + id_tabla).DataTable(
+            obj_contructor
         );
         // datatble = objeto_datatable;
         this.objeto_datatable = objeto_datatable;
@@ -152,7 +161,7 @@ class datatable_generico {
             if (row_data[columna].toString() === solicitud.toString()) {
 
                 indice = x;
-                break; s
+                break;
             }
             x++;
         }
@@ -255,6 +264,12 @@ class datatable_generico {
         this.fn_rowCallback = funcion;
     }
 
+    get obj_constr_datatable_ext() {
+        return this.obj_constr_datatable_ext;
+    }
+    set obj_constr_datatable_ext(data) {
+        this.obj_constr_datatable_ext = data;
+    }
 
 }
 
@@ -264,6 +279,117 @@ function test_crear_tabla() {
     data_test.id_contenedor_datatable = "hola";
     data_test.id_tabla = "tabla_creditos";
     data_test.className_tabla = "tabla_creditos";
+    data_test.datos_tabla = [//default test
+        {
+            id360: 1,
+            nombre: "nombre",
+            apellido_paterno: "garcia",
+            estado: "disponible",
+            ocupacion: "constructor",
+            velocidad: "20",
+            pendiente: "1",
+            tangente: "2",
+            radio: "3",
+        },
+        {
+            id360: 2,
+            nombre: "nombre 2",
+            apellido_paterno: "Flores",
+            estado: "disponible",
+            ocupacion: "lector",
+            velocidad: "10",
+            pendiente: "1",
+            tangente: "2",
+            radio: "3",
+        },
+        {
+            id360: 3,
+            nombre: "nombre 2",
+            apellido_paterno: "Flores",
+            estado: "disponible",
+            ocupacion: "lector",
+            velocidad: "10",
+            pendiente: "1",
+            tangente: "2",
+            radio: "3",
+        },
+        {
+            id360: 4,
+            nombre: "nombre 2",
+            apellido_paterno: "Flores",
+            estado: "disponible",
+            ocupacion: "lector",
+            velocidad: "10",
+            pendiente: "1",
+            tangente: "2",
+            radio: "3",
+        },
+        {
+            id360: 5,
+            nombre: "nombre 2",
+            apellido_paterno: "Flores",
+            estado: "disponible",
+            ocupacion: "lector",
+            velocidad: "10",
+            pendiente: "1",
+            tangente: "2",
+            radio: "3",
+        },
+        {
+            id360: 6,
+            nombre: "nombre 2",
+            apellido_paterno: "Flores",
+            estado: "disponible",
+            ocupacion: "lector",
+            velocidad: "10",
+            pendiente: "1",
+            tangente: "2",
+            radio: "3",
+        },
+        {
+            id360: 7,
+            nombre: "nombre 2",
+            apellido_paterno: "Flores",
+            estado: "disponible",
+            ocupacion: "lector",
+            velocidad: "10",
+            pendiente: "1",
+            tangente: "2",
+            radio: "3",
+        },
+        {
+            id360: 8,
+            nombre: "nombre 2",
+            apellido_paterno: "Flores",
+            estado: "disponible",
+            ocupacion: "lector",
+            velocidad: "10",
+            pendiente: "1",
+            tangente: "2",
+            radio: "3",
+        },
+    ];
+    data_test.columnas_tabla = [
+        { data: 'id360', title: 'id 360' },
+        { data: 'nombre', title: 'Nombre' },
+        { data: 'estado', title: 'estado' },
+        { data: 'ocupacion', title: 'ocupacion' },
+        { data: 'velocidad', title: 'velocidad' },
+        { data: 'pendiente', title: 'pendiente' },
+        { data: 'tangente', title: 'tangente' },
+        { data: 'radio', title: 'radio' },
+        { data: null, title: 'Estado', class: "controles" },
+    ];
+    data_test.obj_constr_datatable_ext = {
+        // scrollY: "300px",
+        scrollX: true,
+        scrollCollapse: true,
+        paging: false,
+        fixedColumns: {
+            left: 3,
+            right: 1
+        }
+    };
     data_test.crear_nodo_datatable();
     data_test.construir_tabla();
     let div_tabla = document.querySelector("#test_tabla");
@@ -289,7 +415,7 @@ function test_crear_tabla() {
         //             .every(function () {
         //                 var that = this;
 
-        //                 $('input', this.footer()).on('keyup change clear', function () {
+        //                 $('input', this.footer()).on('keyup change clear', functi on () {
         //                     if (that.search() !== this.value) {
         //                         that.search(this.value).draw();
         //                     }

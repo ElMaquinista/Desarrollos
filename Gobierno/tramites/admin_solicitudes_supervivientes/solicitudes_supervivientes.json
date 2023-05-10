@@ -24,7 +24,10 @@
       "tipo_identificacion_beneficio": "INAPAM",
       "curp": "QWEQ",
       "observacion": null,
-      "activo": "1"
+      "activo": "1",
+      "detalles": {
+        "alias": "alias 1"
+      }
     },
     {
       "clave": null,
@@ -47,7 +50,10 @@
       "tipo_identificacion_beneficio": "INAPAM",
       "curp": "QWEQ",
       "observacion": null,
-      "activo": "1"
+      "activo": "1",
+      "detalles": {
+        "alias": "alias 2"
+      }
     }
   ]
 }

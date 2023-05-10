@@ -197,6 +197,7 @@ const solicitudes_supervivientes = async () => {
                 { data: null, title: 'Fecha de solicitud', class: 'fecha_solicitud' },
                 // { data: 'time_updated', title: 'Hora de solicitud', class: 'hora de solicitud' },
                 { data: 'tipo_formato', title: 'Tipo de Solicitud', class: "tipo_solicitudes" },
+                { data: 'detalles.alias', title: 'test Detalles', class: "tipo_solicitudes" },
                 { data: null, title: 'Acciones', class: "acciones" },
             ];
             // obj_datatable.orden = [[3, "desc"], [4, "desc"], [1, "desc"]];

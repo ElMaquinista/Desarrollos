@@ -160,5 +160,112 @@ const historico_genral = (() => {
         }
     };
 
+    let obj_fullcalendar = null;
+    const crear_nodo_fullcalendar = () => {
+        let nodo_fullcalendar = document.createElement('div');
+        nodo_fullcalendar.id = "";
+        nodo_fullcalendar.className = "div_contenedor_fullcalendar_porfecha";
+        nodo_fullcalendar.innerHTML = `<div id='fullcalendar_llamadas_fecha'></div>`;
+
+        let calendarEl = nodo_fullcalendar.getElementById('fullcalendar_llamadas_fecha');
+
+        obj_fullcalendar = new FullCalendar.Calendar(calendarEl, {
+            initialDate: '2023-01-12',
+            editable: true,
+            selectable: true,
+            businessHours: true,
+            dayMaxEvents: true, // allow "more" link when too many events
+            events: [
+                {
+                    title: 'All Day Event',
+                    start: '2023-01-01'
+                },
+                {
+                    title: 'Long Event',
+                    start: '2023-01-07',
+                    end: '2023-01-10'
+                },
+                {
+                    groupId: 999,
+                    title: 'Repeating Event',
+                    start: '2023-01-09T16:00:00'
+                },
+                {
+                    groupId: 999,
+                    title: 'Repeating Event',
+                    start: '2023-01-16T16:00:00'
+                },
+                {
+                    title: 'Conference',
+                    start: '2023-01-11',
+                    end: '2023-01-13'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2023-01-12T10:30:00',
+                    end: '2023-01-12T12:30:00'
+                },
+                {
+                    title: 'Lunch',
+                    start: '2023-01-12T12:00:00'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2023-01-12T14:30:00'
+                },
+                {
+                    title: 'Happy Hour',
+                    start: '2023-01-12T17:30:00'
+                },
+                {
+                    title: 'Dinner',
+                    start: '2023-01-12T20:00:00'
+                },
+                {
+                    title: 'Birthday Party',
+                    start: '2023-01-13T07:00:00'
+                },
+                {
+                    title: 'Click for Google',
+                    url: 'http://google.com/',
+                    start: '2023-01-28'
+                }
+            ]
+        });
+
+    };
+
+    const aditamentos_controles_generales = () => {
+        $(document).ready(function () {
+            $('.js-example-basic-multiple').select2();
+        });
+    };
+
+    const test_encontrar_valor = ()=>{
+        let arr = [
+            { name: "string 1", value: "this", other: "that" },
+            { name: "string 2", value: "this", other: "that" }
+        ];
+
+        let obj = arr.find(o => o.name === 'string 3'); // en caso de no ser encontrado regresa undefined
+        console.log("encontrar: ", obj);
+    };
+    test_encontrar_valor();
+
+    const lanzador = () => {
+        let nodo_objetivo_fullcalendar = document.querySelector("#contenedor_fullcalendar_llamadas_fecha");
+
+
+        // nodo_objetivo_fullcalendar.insertAdjacentHTML
+        aditamentos_controles_generales();
+    };
+    lanzador();
+
+    return {
+        lanzador,
+        crear_nodo_fullcalendar,
+        test_encontrar_valor
+    };
+
 })();
 

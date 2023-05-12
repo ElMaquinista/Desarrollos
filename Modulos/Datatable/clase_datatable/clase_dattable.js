@@ -132,7 +132,9 @@ class datatable_generico {
         objeto_datatable = $(nodo_datable).children("#" + id_tabla).DataTable(
             obj_contructor
         );
+
         // datatble = objeto_datatable;
+        
         this.objeto_datatable = objeto_datatable;
         return true;
     }
@@ -191,6 +193,9 @@ class datatable_generico {
             this.eliminar_renglon_datatable(index);
             objeto_datatable.row.add(nuevo_row).draw(true);
         }
+    }
+    dibujar_tabla() {
+        this.objeto_datatable.draw();
     }
     destruir_tabla() {
         let objeto_datatable = this.objeto_datatable;
@@ -290,6 +295,9 @@ function test_crear_tabla() {
             pendiente: "1",
             tangente: "2",
             radio: "3",
+            extra:{
+                extra: "extra"
+            }
         },
         {
             id360: 2,
@@ -297,10 +305,13 @@ function test_crear_tabla() {
             apellido_paterno: "Flores",
             estado: "disponible",
             ocupacion: "lector",
-            velocidad: "10",
-            pendiente: "1",
+            velocidad: "20",
+            pendiente: "3",
             tangente: "2",
             radio: "3",
+            extra:{
+                extra: "extra"
+            }
         },
         {
             id360: 3,
@@ -308,10 +319,13 @@ function test_crear_tabla() {
             apellido_paterno: "Flores",
             estado: "disponible",
             ocupacion: "lector",
-            velocidad: "10",
-            pendiente: "1",
+            velocidad: "30",
+            pendiente: "2",
             tangente: "2",
             radio: "3",
+            extra:{
+                extra: "extra"
+            }
         },
         {
             id360: 4,
@@ -320,9 +334,12 @@ function test_crear_tabla() {
             estado: "disponible",
             ocupacion: "lector",
             velocidad: "10",
-            pendiente: "1",
+            pendiente: "3",
             tangente: "2",
             radio: "3",
+            extra:{
+                extra: "extra"
+            }
         },
         {
             id360: 5,
@@ -330,10 +347,13 @@ function test_crear_tabla() {
             apellido_paterno: "Flores",
             estado: "disponible",
             ocupacion: "lector",
-            velocidad: "10",
-            pendiente: "1",
+            velocidad: "20",
+            pendiente: "3",
             tangente: "2",
             radio: "3",
+            extra:{
+                extra: "extra"
+            }
         },
         {
             id360: 6,
@@ -342,9 +362,12 @@ function test_crear_tabla() {
             estado: "disponible",
             ocupacion: "lector",
             velocidad: "10",
-            pendiente: "1",
+            pendiente: "3",
             tangente: "2",
             radio: "3",
+            extra:{
+                extra: "extra"
+            }
         },
         {
             id360: 7,
@@ -356,6 +379,9 @@ function test_crear_tabla() {
             pendiente: "1",
             tangente: "2",
             radio: "3",
+            extra:{
+                extra: "extra"
+            }
         },
         {
             id360: 8,
@@ -367,6 +393,9 @@ function test_crear_tabla() {
             pendiente: "1",
             tangente: "2",
             radio: "3",
+            extra:{
+                extra: "extra"
+            }
         },
     ];
     data_test.columnas_tabla = [
@@ -375,7 +404,7 @@ function test_crear_tabla() {
         { data: 'estado', title: 'estado' },
         { data: 'ocupacion', title: 'ocupacion' },
         { data: 'velocidad', title: 'velocidad' },
-        { data: 'pendiente', title: 'pendiente' },
+        { data: 'pendiente', title: 'pendiente', class: "pendiente" },
         { data: 'tangente', title: 'tangente' },
         { data: 'radio', title: 'radio' },
         { data: null, title: 'Estado', class: "controles" },
@@ -386,10 +415,42 @@ function test_crear_tabla() {
         scrollCollapse: true,
         paging: false,
         fixedColumns: {
-            left: 3,
+            left: 1,
             right: 1
         }
     };
+    data_test.columnDefs = [
+        {
+            targets: "_all",
+            sortable: false
+        },
+        {
+            targets: 1,
+            render: function (data, type, row) {
+                let contenido = data;
+                if (row.apellido_paterno !== null && row.apellido_paterno !== "" && row.apellido_paterno !== undefined) {
+                    contenido += " " + row.apellido_paterno;
+                }
+                // if (row.apellido_materno !== null && row.apellido_materno !== "" && row.apellido_materno !== undefined) {
+                //     contenido += " " + row.apellido_materno;
+                // }
+                return contenido;
+            }
+        },
+        {
+            targets: -1,
+            data: null,
+            defaultContent: ``,
+            render: function (data, type, row) {
+                return `<button type="button" class =" btn btn-info btn-sm btn_acceder_sala" id-data-360 = "${row.id360}" id="id360_${row.id360}">Asignar</button>`;
+            }
+        },
+        {
+            target: "pendiente",
+            visible: true,
+            searchable: false,
+        }
+    ];
     data_test.crear_nodo_datatable();
     data_test.construir_tabla();
     let div_tabla = document.querySelector("#test_tabla");
@@ -424,6 +485,96 @@ function test_crear_tabla() {
         //     },
         // });
     });
+
+    // -----------------------------------------------filtros personalizados 
+
+    //--- agregar los eventos e identificar el objeto de datatable 
+    document.querySelector('#txt_velocidad').addEventListener("change", function temp(e) {
+        data_test.dibujar_tabla();
+    });
+    document.querySelector('#txt_Pendiente').addEventListener("change", function temp(e) {
+        data_test.dibujar_tabla();
+    });
+
+    // ----------------------
+    console.log("objeto_datatable", data_test.objeto_datatable)
+
+    $.fn.dataTable.ext.search.push(
+        function filtro_pendiente(settings, searchData, index, rowData, counter) {
+            if (settings.nTable.id !== 'tabla_creditos') {
+                return true;
+            }
+            if (index === 1) {
+                console.log("settings", settings);
+                console.log("searchData", searchData);
+                console.log("index", index);
+                console.log("rowData", rowData);
+                console.log("counter", counter);
+            }
+
+
+            // var min = parseInt($('#min').val(), 10);
+            // var max = parseInt($('#max').val(), 10);
+            // var age = parseFloat(rowData[""]) || 0; // using the data from the 4th column
+
+            // if ((isNaN(min) && isNaN(max)) ||
+            //     (isNaN(min) && age <= max) ||
+            //     (min <= age && isNaN(max)) ||
+            //     (min <= age && age <= max)) {
+            //     return true;
+            // }
+
+
+
+            var pendiente = parseInt($('#txt_Pendiente').val(), 10);
+            console.log("pendiente", pendiente);
+
+            if ((isNaN(pendiente)) ||
+                (pendiente == rowData.pendiente)
+            ) {
+                return true;
+            }
+            return false;
+        }
+    );
+    $.fn.dataTable.ext.search.push(
+        function filtro_velocidad(settings, searchData, index, rowData, counter) {
+            if (settings.nTable.id !== 'tabla_creditos') {
+                return true;
+            }
+            if (index === 0) {
+                console.log("settings", settings);
+                console.log("searchData", searchData);
+                console.log("index", index);
+                console.log("rowData", rowData);
+                console.log("counter", counter);
+            }
+
+
+            // var min = parseInt($('#min').val(), 10);
+            // var max = parseInt($('#max').val(), 10);
+            // var age = parseFloat(rowData[""]) || 0; // using the data from the 4th column
+
+            // if ((isNaN(min) && isNaN(max)) ||
+            //     (isNaN(min) && age <= max) ||
+            //     (min <= age && isNaN(max)) ||
+            //     (min <= age && age <= max)) {
+            //     return true;
+            // }
+
+
+
+            var velocidad = parseInt($('#txt_velocidad').val(), 10);
+            console.log("txt_velocidad", velocidad);
+
+            if ((isNaN(velocidad)) ||
+                (velocidad == rowData.velocidad)
+            ) {
+                return true;
+            }
+            return false;
+        }
+    );
 }
 
 var datatble = null;

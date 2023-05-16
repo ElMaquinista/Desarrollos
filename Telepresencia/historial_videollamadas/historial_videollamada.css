@@ -3,11 +3,13 @@
     --color_tarjeta_llamada: #a9d18e;
     --color_panel_vista: #9b9b9b;
 }
+
 /* pizarra de la vista completa */
-.pizarra_historial{
+.pizarra_historial {
     height: 100%;
     display: flex;
 }
+
 /* paneles/secciones/bloques para la vista */
 
 /* panel lateral menu de la vista */
@@ -36,5 +38,54 @@
     background-color: var(--color_tarjeta_llamada);
     width: 100%;
     min-width: 200px;
+    font-size: 10px;
+}
+
+/* contendor de chat y grabacion */
+.div_chat_grabacion {
+    display: flex;
+    border-width: 1px;
+    border-color: black;
+    border-style: double;
+}
+
+.div_chat_grabacion .contendor_chat {
+    width: 30%;
+}
+
+.div_chat_grabacion .contenedor_grabacion {
+    width: 70%;
+}
+
+/* para el contenido del chat */
+.contendor_chat {}
+.contendor_chat .titulo{
+    text-align: center;
+    font-size: 20px;
+    background-color: #ff6a00;
+    color: white;
+    font-weight: bold;
+}
+
+.contendor_chat .item_mensaje {
+    display: flex;
+}
+.contendor_chat .item_mensaje .miniatura{
+   margin: 10px;
+}
+.contendor_chat .item_mensaje .separacion{
+    border-color: red;
+    height: 1px;
+}
+.contendor_chat .item_mensaje .nombre{
+    font-size: 20px;
+}
+.contendor_chat .item_mensaje .mensaje{
+    background-color: aqua;
+    border-style: none;
+    border-radius: 10px;
+    font-size: 15px;
+}
+.contendor_chat .item_mensaje .hora{
     font-size: 10px;
 }

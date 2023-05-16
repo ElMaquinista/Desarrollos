@@ -133,8 +133,8 @@ class datatable_generico {
             obj_contructor
         );
 
-        // datatble = objeto_datatable;
-        
+        datatble = objeto_datatable;
+
         this.objeto_datatable = objeto_datatable;
         return true;
     }
@@ -295,9 +295,15 @@ function test_crear_tabla() {
             pendiente: "1",
             tangente: "2",
             radio: "3",
-            extra:{
+            extra: {
                 extra: "extra"
-            }
+            },
+            bitacora: [
+                {
+                    id_catalogo: "1",
+                    evento: "registro de llamada"
+                }
+            ]
         },
         {
             id360: 2,
@@ -309,9 +315,15 @@ function test_crear_tabla() {
             pendiente: "3",
             tangente: "2",
             radio: "3",
-            extra:{
+            extra: {
                 extra: "extra"
-            }
+            },
+            bitacora: [
+                {
+                    id_catalogo: "1",
+                    evento: "registro de llamada"
+                }
+            ]
         },
         {
             id360: 3,
@@ -323,9 +335,15 @@ function test_crear_tabla() {
             pendiente: "2",
             tangente: "2",
             radio: "3",
-            extra:{
+            extra: {
                 extra: "extra"
-            }
+            },
+            bitacora: [
+                {
+                    id_catalogo: "1",
+                    evento: "registro de llamada"
+                }
+            ]
         },
         {
             id360: 4,
@@ -337,9 +355,15 @@ function test_crear_tabla() {
             pendiente: "3",
             tangente: "2",
             radio: "3",
-            extra:{
+            extra: {
                 extra: "extra"
-            }
+            },
+            bitacora: [
+                {
+                    id_catalogo: "1",
+                    evento: "registro de llamada"
+                }
+            ]
         },
         {
             id360: 5,
@@ -351,9 +375,15 @@ function test_crear_tabla() {
             pendiente: "3",
             tangente: "2",
             radio: "3",
-            extra:{
+            extra: {
                 extra: "extra"
-            }
+            },
+            bitacora: [
+                {
+                    id_catalogo: "1",
+                    evento: "registro de llamada"
+                }
+            ]
         },
         {
             id360: 6,
@@ -365,9 +395,15 @@ function test_crear_tabla() {
             pendiente: "3",
             tangente: "2",
             radio: "3",
-            extra:{
+            extra: {
                 extra: "extra"
-            }
+            },
+            bitacora: [
+                {
+                    id_catalogo: "1",
+                    evento: "registro de llamada"
+                }
+            ]
         },
         {
             id360: 7,
@@ -379,9 +415,15 @@ function test_crear_tabla() {
             pendiente: "1",
             tangente: "2",
             radio: "3",
-            extra:{
+            extra: {
                 extra: "extra"
-            }
+            },
+            bitacora: [
+                {
+                    id_catalogo: "1",
+                    evento: "registro de llamada"
+                }
+            ]
         },
         {
             id360: 8,
@@ -393,21 +435,29 @@ function test_crear_tabla() {
             pendiente: "1",
             tangente: "2",
             radio: "3",
-            extra:{
+            extra: {
                 extra: "extra"
-            }
+            },
+            bitacora: [
+                {
+                    id_catalogo: "1",
+                    evento: "registro de llamada"
+                }
+            ]
         },
     ];
     data_test.columnas_tabla = [
+        { data: null, title: 'id 360', class: 'detalles_renglon', defaultContent: `<button type="button" class =" btn btn-success btn-sm btn_acceder_sala"" data-evento="detalles_renglon">ver detalles</button>` },
         { data: 'id360', title: 'id 360' },
-        { data: 'nombre', title: 'Nombre' },
+        { data: 'nombre', title: 'Nombre', class: "nombre" },
         { data: 'estado', title: 'estado' },
         { data: 'ocupacion', title: 'ocupacion' },
         { data: 'velocidad', title: 'velocidad' },
         { data: 'pendiente', title: 'pendiente', class: "pendiente" },
         { data: 'tangente', title: 'tangente' },
         { data: 'radio', title: 'radio' },
-        { data: null, title: 'Estado', class: "controles" },
+        { data: null, title: 'Estado', class: "controles extra" },
+        { data: null, title: 'Estado', class: "controles extra" },
     ];
     data_test.obj_constr_datatable_ext = {
         // scrollY: "300px",
@@ -417,15 +467,132 @@ function test_crear_tabla() {
         fixedColumns: {
             left: 1,
             right: 1
-        }
+        },
+        "bFilter": true,
+        "bInfo": true,
+        "bAutoWidth": true,
+        dom: 'Bfrtip',
+        // buttons: [
+        //     'copyHtml5',
+        //     'excelHtml5',
+        //     'csvHtml5',
+        //     'pdfHtml5'
+        // ]
+        buttons: [
+            {
+                text: 'PDF',
+                extend: 'pdf',
+                footer: true,
+                header: true,
+                exportOptions: {
+                    stripHtml: true,
+                    stripNewlines: false
+                },
+                // pageSize: 'LEGAL',
+                customize: function (doc) {
+
+                    // Get the row data in in table order and search applied
+                    var table = $('#tabla_creditos').DataTable();
+                    var rowData = table.rows({ order: 'applied', search: 'applied' }).data();
+                    var headerLines = 0;  // Offset for accessing rowData array
+
+                    var newBody = []; // this will become our new body (an array of arrays(lines))
+                    // testeo de objetos 
+                    console.log("doc", doc);
+                    console.log(" doc.content[1]", doc.content[1]);
+                    console.log(" doc.content[0]", doc.content[0]);
+                    console.log(" doc.content", doc.content);
+
+                    console.log("doc.content[1].table.body", doc.content[1].table.body);
+
+
+                    //Loop over all lines in the table
+                    doc.content[1].table.body.forEach(function (line, i) {
+
+                        // Remove detail-control column
+                        newBody.push(
+                            // las columnas 
+                            [line[1], line[2], line[3], line[4], line[9]]
+                        );
+
+                        if (line[0].style !== 'tableHeader' && line[0].style !== 'tableFooter') {
+
+                            var data = rowData[i - headerLines];
+
+                            console.log("data renglon", data)
+
+                            // Append child data, matching number of columns in table
+                            // las celdas deben de ser las mismas que los encabezados, deben ser la misma cantidad
+                            newBody.push(
+                                [
+                                    { text: '** Child data:', style: 'defaultStyle' },
+                                    { text: data.nombre, style: 'defaultStyle' },
+                                    { text: data.ocupacion, style: 'defaultStyle' },
+                                    { text: '<div>hola</div>', style: 'defaultStyle' },
+                                    { text: '', style: 'defaultStyle' },
+                                ]
+                            );
+
+                        } else {
+                            headerLines++;
+                        }
+
+                    });
+
+                    //Overwrite the old table body with the new one.
+                    doc.content[1].table.headerRows = 1;
+                    //doc.content[1].table.widths = [50, 50, 50, 50, 50, 50];
+                    doc.content[1].table.body = newBody;
+                    doc.content[1].layout = 'lightHorizontalLines';
+
+                    //.---------
+                    // console.log("newBody.slice();", newBody.slice());
+                    // doc.content[2] = {...doc.content[1]};
+                    // doc.content[2].table.headerRows = 1;
+                    // doc.content[2].table.body = newBody.slice();s
+                    // doc.content[2].table.body = [[
+                    //     { text: '** Child data:', style: 'defaultStyle' },
+                    //     { text: "", style: 'defaultStyle' },
+                    //     { text: "", style: 'defaultStyle' },
+                    //     { text: '<div>hola</div>', style: 'defaultStyle' },
+                    //     { text: '', style: 'defaultStyle' },
+                    // ]];
+                    //.............
+
+                    doc.styles = {
+                        subheader: {
+                            fontSize: 10,
+                            bold: true,
+                            color: 'black'
+                        },
+                        tableHeader: {
+                            bold: true,
+                            fontSize: 10.5,
+                            color: 'black'
+                        },
+                        lastLine: {
+                            bold: true,
+                            fontSize: 11,
+                            color: 'blue'
+                        },
+                        defaultStyle: {
+                            fontSize: 5,
+                            color: 'black',
+                            text: 'center',
+                            // background: "red"
+                        }
+                    };
+                }
+            }
+        ],
     };
     data_test.columnDefs = [
         {
             targets: "_all",
-            sortable: false
+            sortable: true
         },
         {
-            targets: 1,
+            targets: 'nombre',
             render: function (data, type, row) {
                 let contenido = data;
                 if (row.apellido_paterno !== null && row.apellido_paterno !== "" && row.apellido_paterno !== undefined) {
@@ -438,7 +605,7 @@ function test_crear_tabla() {
             }
         },
         {
-            targets: -1,
+            targets: 'controles extra',
             data: null,
             defaultContent: ``,
             render: function (data, type, row) {
@@ -504,44 +671,6 @@ function test_crear_tabla() {
             if (settings.nTable.id !== 'tabla_creditos') {
                 return true;
             }
-            if (index === 1) {
-                console.log("settings", settings);
-                console.log("searchData", searchData);
-                console.log("index", index);
-                console.log("rowData", rowData);
-                console.log("counter", counter);
-            }
-
-
-            // var min = parseInt($('#min').val(), 10);
-            // var max = parseInt($('#max').val(), 10);
-            // var age = parseFloat(rowData[""]) || 0; // using the data from the 4th column
-
-            // if ((isNaN(min) && isNaN(max)) ||
-            //     (isNaN(min) && age <= max) ||
-            //     (min <= age && isNaN(max)) ||
-            //     (min <= age && age <= max)) {
-            //     return true;
-            // }
-
-
-
-            var pendiente = parseInt($('#txt_Pendiente').val(), 10);
-            console.log("pendiente", pendiente);
-
-            if ((isNaN(pendiente)) ||
-                (pendiente == rowData.pendiente)
-            ) {
-                return true;
-            }
-            return false;
-        }
-    );
-    $.fn.dataTable.ext.search.push(
-        function filtro_velocidad(settings, searchData, index, rowData, counter) {
-            if (settings.nTable.id !== 'tabla_creditos') {
-                return true;
-            }
             if (index === 0) {
                 console.log("settings", settings);
                 console.log("searchData", searchData);
@@ -564,8 +693,46 @@ function test_crear_tabla() {
 
 
 
+            var pendiente = parseInt($('#txt_Pendiente').val(), 10);
+            // console.log("pendiente", pendiente);
+
+            if ((isNaN(pendiente)) ||
+                (pendiente == rowData.pendiente)
+            ) {
+                return true;
+            }
+            return false;
+        }
+    );
+    $.fn.dataTable.ext.search.push(
+        function filtro_velocidad(settings, searchData, index, rowData, counter) {
+            if (settings.nTable.id !== 'tabla_creditos') {
+                return true;
+            }
+            // if (index === 0) {
+            //     console.log("settings", settings);
+            //     console.log("searchData", searchData);
+            //     console.log("index", index);
+            //     console.log("rowData", rowData);
+            //     console.log("counter", counter);
+            // }
+
+
+            // var min = parseInt($('#min').val(), 10);
+            // var max = parseInt($('#max').val(), 10);
+            // var age = parseFloat(rowData[""]) || 0; // using the data from the 4th column
+
+            // if ((isNaN(min) && isNaN(max)) ||
+            //     (isNaN(min) && age <= max) ||
+            //     (min <= age && isNaN(max)) ||
+            //     (min <= age && age <= max)) {
+            //     return true;
+            // }
+
+
+
             var velocidad = parseInt($('#txt_velocidad').val(), 10);
-            console.log("txt_velocidad", velocidad);
+            // console.log("txt_velocidad", velocidad);s
 
             if ((isNaN(velocidad)) ||
                 (velocidad == rowData.velocidad)
@@ -575,6 +742,129 @@ function test_crear_tabla() {
             return false;
         }
     );
+
+
+    // detalles del renglin homologo
+    ME_dattagble(document.querySelector('#tabla_creditos'));
+
+
+    //---------------------------------------------------------
+    // obtener data de datatable pero es toda la data contenida dentro del datatable
+    var data_extraida = data_test.objeto_datatable.rows().data();
+
+    console.log("data_extraida", data_extraida);
+
+    // obtener data con los filtros aplicados
+    var data_extraida_filtros = data_test.objeto_datatable.rows({ "search": "applied" });
+
+    console.log("data_extraida_filtros", data_extraida_filtros);
+
+    // -------------------------------------------------------
+    data_test.objeto_datatable.on('draw', function () {
+        var data_extraida = data_test.objeto_datatable.rows().data();
+
+        console.log("data_extraida", data_extraida);
+
+        // obtener data con los filtros aplicados
+        var data_extraida_filtros = data_test.objeto_datatable.rows({ "search": "applied" }).data();
+
+        console.log("data_extraida_filtros", data_extraida_filtros);
+    });
 }
 
 var datatble = null;
+
+function data_filtrada() {
+    var data_extraida_filtros = datatble.rows({ "search": "applied" });
+
+    console.log("data_extraida_filtros", data_extraida_filtros);
+}
+
+// --------------
+var detailRows = null;
+
+//--------------- agregar manager de eveentos 
+
+const ME_dattagble = (nodo_objetivo) => {
+    if (nodo_objetivo) {
+        nodo_objetivo.addEventListener("click", async function ME_reporte_general_click(e) {
+            const target = e.target;
+
+
+            let evento = target.getAttribute('data-evento');
+            let heredado = target.getAttribute('data-evento-heredado');
+            let nodo = target;
+
+            // if (heredado) {
+            //     buscar_nodos_padre(e, (element) => {
+            //         let bandera_control = false; // parar detener las iteraciones hacia nodos padre 
+
+            //         const bnp_evento = element.getAttribute("data-evento");
+
+            //         if (bnp_evento) {
+            //             evento = bnp_evento;
+            //             bandera_control = true;
+            //             nodo = element;
+            //         }
+
+            //         // console.log("bnp_evento", bnp_evento);
+            //         return bandera_control;
+            //     });
+            // }
+
+            // console.log("evento", evento);
+            // console.log("heredado", heredado);
+
+
+            let d = {};
+            if (evento) {
+                switch (evento) {
+                    case 'detalles_renglon':
+                        d.tr = nodo.closest('tr');
+                        console.log("d.tr", d.tr);
+                        console.log("d.tr class", d.tr.className);
+
+                        // seleccionar
+                        d.row = datatble.row(d.tr);
+                        console.log("d.row", d.row);
+
+                        function format(d) {
+                            return (
+                                'Full name: ' +
+                                d.nombre +
+                                ' ' +
+                                d.apellido_paterno +
+                                '<br>' +
+                                'Salary: ' +
+                                d.estado +
+                                '<br>' +
+                                'The child row can contain any data you wish, including links, images, inner tables etc.'
+                            );
+                        }
+
+                        if (d.row.child.isShown()) {
+                            d.tr.classList.remove('details');
+                            d.row.child.hide();
+
+                            // Remove from the 'open' array
+                            // detailRows.splice(idx, 1);
+                        } else {
+                            d.tr.classList.add('details');
+                            d.row.child(format(d.row.data())).show();
+
+                            // // Add to the 'open' array
+                            // if (idx === -1) {
+                            //     detailRows.push(d.tr.attr('id'));
+                            // }
+                        }
+
+                        break;
+
+                    default:
+                        break
+                }
+            }
+        });
+    }
+}
+test_crear_tabla()

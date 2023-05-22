@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.js"></script>
+    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet"
+        type="text/css" />
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+    <link rel="stylesheet" href="./botones_exportar.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <table id="example" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Index</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Index</th>
+                </tr>
+            </tfoot>
+        </table>
+
+
+    </div>
+    <div class="test">
+        <row r="1">
+            <c t="inlineStr" r="A1" s="2">
+                <is>
+                    <t>Name</t>
+                </is>
+            </c>
+            <c t="inlineStr" r="B1" s="2">
+                <is>
+                    <t>Date</t>
+                </is>
+            </c>
+            <c t="inlineStr" r="C1" s="2">
+                <is>
+                    <t>Description</t>
+                </is>
+            </c>
+            <c t="inlineStr" r="D1" s="2">
+                <is>
+                    <t>Index</t>
+                </is>
+            </c>
+        </row>
+    </div>
+    <div>
+        <row r="4">
+            <c t="inlineStr" r="A4">
+                <is>
+                    <t>Test 3</t>
+                </is>
+            </c>
+            <c t="inlineStr" r="B4">
+                <is>
+                    <t>03/05/2018</t>
+                </is>
+            </c>
+            <c t="inlineStr" r="C4">
+                <is>
+                    <t>This is test 3</t>
+                </is>
+            </c>
+            <c t="n" r="D4"></c>
+        </row>
+    </div>
+
+    <script src="./botones_exportar.js"></script>
+</body>
+
+</html>

@@ -460,6 +460,8 @@ function test_crear_tabla() {
         { data: null, title: 'Estado', class: "controles extra" },
     ];
     data_test.obj_constr_datatable_ext = {
+        colReorder: true,
+        responsive: true,
         // scrollY: "300px",
         scrollX: true,
         scrollCollapse: true,
@@ -476,17 +478,22 @@ function test_crear_tabla() {
         //     'copyHtml5',
         //     'excelHtml5',
         //     'csvHtml5',
-        //     'pdfHtml5'
-        // ]
+        //     'pdfHtml5',
+        //     'colvis',
+        // ],
         buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
             {
                 text: 'PDF',
-                extend: 'pdf',
+                extend: 'pdfHtml5',
                 footer: true,
                 header: true,
                 exportOptions: {
                     stripHtml: true,
-                    stripNewlines: false
+                    stripNewlines: false,
+                    // columns: ':visible'
                 },
                 // pageSize: 'LEGAL',
                 customize: function (doc) {
@@ -583,7 +590,20 @@ function test_crear_tabla() {
                         }
                     };
                 }
-            }
+            },
+            {
+                extend: 'excelHtml5',
+                text: '<i class="fa fa-file-excel-o"></i>',
+                titleAttr: 'Excel',
+                "oSelectorOpts": { filter: 'applied', order: 'current' },
+                "sFileName": "report.xls",
+                action: function (e, dt, button, config) {
+                    exportTableToCSV.apply(this, [$('#myTable'), 'export.xls']);
+
+                }
+
+            },
+            'colvis'
         ],
     };
     data_test.columnDefs = [

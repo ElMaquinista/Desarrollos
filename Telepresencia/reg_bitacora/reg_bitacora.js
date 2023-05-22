@@ -868,8 +868,10 @@ const extraer_labels = () => {
             let color = "";
 
             arr_labels.push(tipo_evento);
+            // el tercer elemento del arreglo es una bandera para lamodificacion del label
+            arr_data.push([fecha + " " + hora, sumando(fecha + " " + hora), "0"]);
 
-            arr_data.push([fecha + " " + hora, sumando(fecha + " " + hora)]);
+
 
             switch (id_catalogo) {
                 case "1":
@@ -912,9 +914,13 @@ const extraer_labels = () => {
                 default:
                     break;
             }
-            console.log(id_catalogo , " ", color);
+            // console.log(id_catalogo, " ", color);
             arr_color.push(color);
         }
+        // agregar la duracion de la llamada como una barra extra
+        arr_labels.push("duracion de llamada");
+        arr_data.push(["2023-05-05 09:07:49", sumando("2023-05-05 09:12:10"), "1"]);
+        arr_color.push("rgb(151, 94, 109)");
     }
     return {
         arr_labels,
@@ -924,12 +930,34 @@ const extraer_labels = () => {
 };
 
 extraer_labels();
-function sumando(str_fecha) {
+function sumando(str_fecha, sumando =30, operacion="seg") {
     var fecha = new Date(str_fecha);
-    var sumarsesion = 1;
-    var minutes = fecha.getMinutes();
+    // ------------------------------------
+    // var sumarsesion = 1;
+    // var minutes = fecha.getMinutes();
 
-    fecha.setMinutes(minutes + sumarsesion);
+    // fecha.setMinutes(minutes + sumarsesion);
+
+    if(operacion){
+        switch (operacion) {
+            case "seg":
+                fecha.setSeconds(fecha.getSeconds() + sumando);
+                break;
+            case "min":
+                fecha.setMinutes(fecha.getMinsetMinutes() + sumando);
+                break;
+            case "min":
+                fecha.setHours(fecha.getMinsetHours() + sumando);
+                break;
+        
+            default:
+                break;
+        }
+    }
+
+
+
+    // ------------------------------------
 
     var ahora_anio = fecha.getFullYear();
     var ahora_mes = fecha.getMonth() + 1;
@@ -1119,13 +1147,13 @@ const config = {
                 // max: "2023-05-05 09:30:25",
                 type: 'time',
                 time: {
-                    unit: 'second'
+                    unit: 'minute'
                 },
                 // stacked: true,
 
             },
             y: {
-                // beginAtZero: true,s
+                // beginAtZero: true,
                 // stacked: true,
             }
         },
@@ -1157,7 +1185,7 @@ const crear_char_bitacora = () => {
 
     if (datos_char) {
 
-        console.log("data ", datos_char);
+        // console.log("data ", datos_char);s
 
         const data = {
             labels: datos_char.arr_labels,
@@ -1176,7 +1204,7 @@ const crear_char_bitacora = () => {
                     // ],
                     backgroundColor: datos_char.arr_color,
                     data: datos_char.arr_data,
-                }
+                },
             ],
 
         };
@@ -1185,16 +1213,34 @@ const crear_char_bitacora = () => {
             type: 'bar',
             data,
             options: {
-                indexAxis: 'y',
+                indexAxis: 'y', // permite poner la grafica en horizontal
                 scales: {
                     x: {
                         min: "2023-05-05 09:06:40",
                         type: 'time',
                         time: {
-                            unit: 'minute'
+                            unit: 'minute',
+                            // tooltipFormat: 'MM/DD/YYYY', // <- HERE
+                            // displayFormats: {
+                            //     'millisecond': 'HH:mm:ss',
+                            //     'second': 'HH:mm:ss',
+                            //     'minute': 'HH:mm:ss',
+                            //     'hour': 'HH:mm:ss',
+                            //     'day': 'HH:mm:ss',
+                            //     'week': 'HH:mm:ss',
+                            //     'month': 'HH:mm:ss',
+                            //     'quarter': 'HH:mm:ss',
+                            //     'year': 'HH:mm:ss',
+                            // }
+                            // tooltipFormat: 'DD T'
                         },
                         // stacked: true,
-
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        },
+                        parsing: false,
+                        offset: false
                     },
                     y: {
                         beginAtZero: true,
@@ -1210,11 +1256,43 @@ const crear_char_bitacora = () => {
                 responsive: true,
                 plugins: {
                     tooltip: {
-                        enabled: true // <-- this option disables tooltips
+                        enabled: true, // <-- this option disables tooltips
+                        filter: (tolltipItem) => {
+                            // console.log("tolltipItem ", tolltipItem);s
+                            return tolltipItem;
+                        },
+                        yAlign: 'bottom',
+                        callbacks: {
+                            label: (context) => {
+                                console.log("context", context);
+                                // coneole.log(context);
+                                let fecha_inicio = context.raw[0];
+                                let fecha_fin = context.raw[1];
+                                let bandera = context.raw[2];
+                                let contenido = "";
+                                if (bandera === "1") {
+                                    contenido = fecha_inicio + "------" + fecha_fin;
+                                }else{
+                                    contenido = fecha_inicio;
+                                }
+                                return contenido;
+                            },
+
+                        }
                     },
+                    datalabels: {
+                        formatter: (value, context) => {
+                            // console.log("formatter value: ", value);
+                            // console.log("formatter context: ", context);
+                            return `${value[0]}`;
+                        }
+                    }
+
                 },
-                // barThickness: 50,s
-            }
+                // barThickness: 50,
+
+            },
+            plugins: [ChartDataLabels]
         };
 
         const myChart = new Chart(

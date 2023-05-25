@@ -1,0 +1,126 @@
+:root {
+    --steper_color_circulo: #ff6a00;
+    --steper_color_linea: #ff6a00;
+    --steper_color_completo: #ff6a00;
+}
+
+.panel_steper_eventos {
+    width: auto;
+}
+
+
+.panel_steper_eventos .item_evento {
+    list-style: square;
+    list-style-type: circle;
+    list-style-position: inside;
+}
+
+/* -------------------------------------------- */
+/* -------------------------------------------- */
+/* -------------------------------------------- */
+/* -------------------------------------------- */
+
+.contendor_steper {
+    width: 400px;
+    font-size: 12px;
+}
+
+.contendor_steper .step {
+
+    /* padding: 10px; */
+    padding-top: 5px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    background-color: cream;
+}
+
+.contendor_steper .v-stepper {
+    position: relative;
+    /* display: flex;*/
+    
+    /*   visibility: visible; */
+    padding-left: 5px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+
+/* regular step */
+.contendor_steper .step .circle {
+    background-color: white;
+    border: 3px solid gray;
+    border-radius: 100%;
+    width: 5px;
+    /* +6 for border */
+    height: 5px;
+    display: inline-block;
+    /* padding-left: 5px; */
+    margin-left: 3px;
+}
+
+.contendor_steper .step .line {
+    /* antes 23*/
+    top: 14px;
+    left: 12px;
+    /*   height: 120px; */
+    height: 100%;
+
+    position: absolute;
+    border-left: 3px solid gray;
+}
+
+.contendor_steper .step.completed .circle {
+    visibility: visible;
+    /* background-color: rgb(6, 150, 215);
+    border-color: rgb(6, 150, 215); */
+    background-color: var(--steper_color_completo);
+    border-color: var(--steper_color_completo);
+}
+
+.contendor_steper .step.completed .line {
+    /* border-left: 3px solid rgb(6, 150, 215); */
+    border-left: 3px solid var(--steper_color_linea);
+}
+
+.contendor_steper .step.active .circle {
+    visibility: visible;
+    border-color: var(--steper_color_linea);
+}
+
+.contendor_steper .step.empty .circle {
+    visibility: hidden;
+}
+
+.contendor_steper .step.empty .line {
+    /*     visibility: hidden; */
+    /*   height: 150%; */
+    top: 0;
+    height: 150%;
+}
+
+
+.contendor_steper .step:last-child .line {
+    border-left: 3px solid white;
+    z-index: -1;
+    /* behind the circle to completely hide */
+}
+
+.contendor_steper .content {
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.contendor_steper *,
+::after,
+::before {
+    box-sizing: unset;
+}
+
+.contendor_steper .detalles_evento{
+    font-size: 12px;
+    padding: 0px;
+}

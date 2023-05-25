@@ -69,7 +69,7 @@ class datatable_generico {
         let className_contenedor_datatable = this.className_contenedor_datatable;
         let div_general = document.createElement("div");
         div_general.id = id_contenedor_datatable;
-        div_general.className = className_contenedor_datatable + "table-hover";
+        div_general.className = className_contenedor_datatable + " table-hover";
         let columnas = this.columnas_tabla;
         let html_columnas = "";
         let id_tabla = this.id_tabla;
@@ -448,8 +448,8 @@ function test_crear_tabla() {
     ];
     data_test.columnas_tabla = [
         { data: null, title: 'id 360', class: 'detalles_renglon', defaultContent: `<button type="button" class =" btn btn-success btn-sm btn_acceder_sala"" data-evento="detalles_renglon">ver detalles</button>` },
-        { data: 'id360', title: 'id 360' },
-        { data: 'nombre', title: 'Nombre', class: "nombre" },
+        { data: 'id360', title: 'id 360'},
+        { data: 'nombre', title: 'Nombre', class: "nombre"},
         { data: 'estado', title: 'estado' },
         { data: 'ocupacion', title: 'ocupacion' },
         { data: 'velocidad', title: 'velocidad' },
@@ -460,8 +460,9 @@ function test_crear_tabla() {
         { data: null, title: 'Estado', class: "controles extra" },
     ];
     data_test.obj_constr_datatable_ext = {
+        autoWidth: true,
         colReorder: true,
-        responsive: true,
+        // responsive: true,
         // scrollY: "300px",
         scrollX: true,
         scrollCollapse: true,
@@ -472,15 +473,7 @@ function test_crear_tabla() {
         },
         "bFilter": true,
         "bInfo": true,
-        "bAutoWidth": true,
         dom: 'Bfrtip',
-        // buttons: [
-        //     'copyHtml5',
-        //     'excelHtml5',
-        //     'csvHtml5',
-        //     'pdfHtml5',
-        //     'colvis',
-        // ],
         buttons: [
                 'copyHtml5',
                 'excelHtml5',
@@ -505,12 +498,12 @@ function test_crear_tabla() {
 
                     var newBody = []; // this will become our new body (an array of arrays(lines))
                     // testeo de objetos 
-                    console.log("doc", doc);
-                    console.log(" doc.content[1]", doc.content[1]);
-                    console.log(" doc.content[0]", doc.content[0]);
-                    console.log(" doc.content", doc.content);
+                    // console.log("doc", doc);
+                    // console.log(" doc.content[1]", doc.content[1]);
+                    // console.log(" doc.content[0]", doc.content[0]);
+                    // console.log(" doc.content", doc.content);
 
-                    console.log("doc.content[1].table.body", doc.content[1].table.body);
+                    // console.log("doc.content[1].table.body", doc.content[1].table.body);
 
 
                     //Loop over all lines in the table
@@ -609,10 +602,12 @@ function test_crear_tabla() {
     data_test.columnDefs = [
         {
             targets: "_all",
-            sortable: true
+            sortable: true,
+            width: "50"
         },
         {
             targets: 'nombre',
+            // width: "500",
             render: function (data, type, row) {
                 let contenido = data;
                 if (row.apellido_paterno !== null && row.apellido_paterno !== "" && row.apellido_paterno !== undefined) {
@@ -641,11 +636,11 @@ function test_crear_tabla() {
     data_test.crear_nodo_datatable();
     data_test.construir_tabla();
     let div_tabla = document.querySelector("#test_tabla");
-    console.log(div_tabla);
+    // console.log(div_tabla);
     data_test.incrustar_tabla(div_tabla);
-    console.log("objeto_tabla", data_test.objeto_datatable);
+    // console.log("objeto_tabla", data_test.objeto_datatable);
     let children = data_test.nodo_datatable.querySelector("#deafult");
-    console.log("children", children);
+    // console.log("children", children);
 
     $(document).ready(function () {
         // Setup - add a text input to each footer cell
@@ -691,13 +686,13 @@ function test_crear_tabla() {
             if (settings.nTable.id !== 'tabla_creditos') {
                 return true;
             }
-            if (index === 0) {
-                console.log("settings", settings);
-                console.log("searchData", searchData);
-                console.log("index", index);
-                console.log("rowData", rowData);
-                console.log("counter", counter);
-            }
+            // if (index === 0) {
+            //     console.log("settings", settings);
+            //     console.log("searchData", searchData);
+            //     console.log("index", index);
+            //     console.log("rowData", rowData);
+            //     console.log("counter", counter);
+            // }
 
 
             // var min = parseInt($('#min').val(), 10);
@@ -772,23 +767,23 @@ function test_crear_tabla() {
     // obtener data de datatable pero es toda la data contenida dentro del datatable
     var data_extraida = data_test.objeto_datatable.rows().data();
 
-    console.log("data_extraida", data_extraida);
+    // console.log("data_extraida", data_extraida);
 
     // obtener data con los filtros aplicados
     var data_extraida_filtros = data_test.objeto_datatable.rows({ "search": "applied" });
 
-    console.log("data_extraida_filtros", data_extraida_filtros);
+    // console.log("data_extraida_filtros", data_extraida_filtros);
 
     // -------------------------------------------------------
     data_test.objeto_datatable.on('draw', function () {
         var data_extraida = data_test.objeto_datatable.rows().data();
 
-        console.log("data_extraida", data_extraida);
+        // console.log("data_extraida", data_extraida);
 
         // obtener data con los filtros aplicados
         var data_extraida_filtros = data_test.objeto_datatable.rows({ "search": "applied" }).data();
 
-        console.log("data_extraida_filtros", data_extraida_filtros);
+        // console.log("data_extraida_filtros", data_extraida_filtros);
     });
 }
 
@@ -797,7 +792,7 @@ var datatble = null;
 function data_filtrada() {
     var data_extraida_filtros = datatble.rows({ "search": "applied" });
 
-    console.log("data_extraida_filtros", data_extraida_filtros);
+    // console.log("data_extraida_filtros", data_extraida_filtros);
 }
 
 // --------------

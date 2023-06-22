@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- video  -->
+    <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
+
+    <!-- fontasome  -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" /> -->
+
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/d533bbc844.js" crossorigin="anonymous"></script>
+
+    <!-- endemico -->
+    <link rel="stylesheet" href="./reproductor_video.css">
+    <title>reproductor_video</title>
+</head>
+
+<body>
+    <div class="contendor_reproductor">
+        <div class="pantalla">
+            <video class="video"
+                src="https://emergenciadesarrollo.s3.amazonaws.com/47564041/3c5891c1-1f74-44f4-b864-5e4e82cdaa31/archive.mp4" controls controlsList="nodownload"></video>
+        </div>
+        <div class="controles_reporductor">
+            <nav class="controls">
+                <button class="button download">
+                    <!-- <i class="fas fa-arrow-down"></i> -->
+                   
+                </button>
+                <button class="button play">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="button stop">
+                    <i class="fas fa-stop"></i>
+                </button>
+                <input type="range" min="0" max="100" step="0.1" value="0" class="progress">
+                <small class="timestamp">
+                    00:00
+                </small>
+            </nav>
+        </div>
+    </div>
+    <div>
+        <button class="btn" onclick="descargarblob()">Descargar blob</button>
+        <button class="btn" onclick="descargar_blob_video()">Descargar video</button>
+        <button class="btn" onclick="blob_url()">Descargar blob url video</button>
+        <a download="video_nombre.mp4" href="https://emergenciadesarrollo.s3.amazonaws.com/47564041/3c5891c1-1f74-44f4-b864-5e4e82cdaa31/archive.mp4">Enlace para descargar video.</a>
+        <button class="btn" onclick="video_a_blob()">Descarga fecth</button>
+
+
+    </div>
+    <script src="./reproductor_video.js"></script>
+</body>
+
+</html>

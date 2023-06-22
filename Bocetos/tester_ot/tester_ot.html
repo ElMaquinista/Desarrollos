@@ -1,0 +1,387 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <!-- bootstrap@4.6.2 -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script> -->
+
+    <!-- fontawesome -->
+    <!-- <script src="https://kit.fontawesome.com/d533bbc844.js" crossorigin="anonymous"></script> -->
+
+    <!-- <link rel="icon" href="https://tokbox.com/developer/tools/precall/images/favicon.ico" type="image/x-icon" /> -->
+    <title>Resultados del test</title>
+    <meta charset="utf-8">
+    <script nonce="14e66bc55c5e51cde49f4271a47f772c">
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+    <script src="https://tokbox.com/developer/tools/precall/js/vendor/highcharts-6.0.2.js"></script>
+    <!-- <script src="./vendor/highcharts-6.0.3.js"></script> -->
+    <script nonce="14e66bc55c5e51cde49f4271a47f772c">
+        if (window.module) {
+            module = window.module;
+        }
+    </script>
+    <link href="https://tokbox.com/developer/tools/precall/css/results.css" rel="stylesheet">
+    <link rel="stylesheet" href="./tester_ot.css">
+</head>
+
+<body>
+    <div id="precall_container contenedo_pre">
+        <div class="modal_background">
+            <div class="precall_modal">
+                <h4 class="Vlt-center">Se esta corriendo el test de video llamada</h4>
+                <div class="modal_body">
+                    <div class="modal_status">
+                        <text>Revisando el hardware...</text>
+                        <text>Revisando conexión...</text>
+                    </div>
+                    <div id="precall_progress_container">
+                        <progress id="precall_progress_bar" value="0" max="100"></progress>
+                        <small class="Vlt-margin--A-top2">Verificando calidad audio/video...</small>
+                    </div>
+                </div>
+                <div class="modal_footer">
+                    <p>
+                        <b>Basado en los resultados, se podrtian hacer recomenaciones </b>
+                    </p>
+                </div>
+                <div id="bitrate_graphs" class="row">
+                    <div>
+                        <div id="video_bitrate_graph"></div>
+                    </div>
+                    <div>
+                        <div id="audio_bitrate_graph"></div>
+                    </div>
+                </div>
+                <div class="Vlt-center">
+                    <button type="button" id="cancel_button"
+                        class="Vlt-btn Vlt-btn--secondary Vlt-btn--app Vlt-center btn_cancelar">Cancelar test</button>
+                </div>
+            </div>
+        </div>
+        <div class="coversheet"></div>
+        <div class="main_container contenedo_resultados ">
+            <div class="Vlt-grid">
+                <div class="Vlt-col"></div>
+                <div class="Vlt-col Vlt-col--2of4">
+                    <div>
+                        <div class="Vlt-card Vlt-card--plain Vlt-gradient--pink-to-blue main_header">
+                            <div class="Vlt-card__header">
+                                <h2 class="Vlt-white">EL test de video llamada completado</h2>
+                                <p class="Vlt-white Vlt-margin--A-top1">Seleccione una categoria para ver.</p>
+                            </div>
+                            <div class="Vlt-card__content precall-navigation-container Vlt-white">
+                                <div class="precall_summary_navigation">
+                                    <div>
+                                        <svg class="Vlt-icon Vlt-icon--largest navigation-icon">
+                                            <use
+                                                xlink:href="https://tokbox.com/developer/tools/precall/images/volta-icons.svg#Vlt-icon-video-conference">
+                                            </use>
+                                        </svg>
+                                        <small>Hardware y Software</small>
+                                    </div>
+                                </div>
+                                <div class="precall_summary_navigation">
+                                    <div>
+                                        <svg class="Vlt-icon Vlt-icon--largest navigation-icon">
+                                            <use
+                                                xlink:href="https://tokbox.com/developer/tools/precall/images/volta-icons.svg#Vlt-icon-plug">
+                                            </use>
+                                        </svg>
+                                        <small>Conectividad con los servdores servidores</small>
+                                    </div>
+                                </div>
+                                <div class="precall_summary_navigation">
+                                    <div>
+                                        <svg class="Vlt-icon Vlt-icon--largest navigation-icon">
+                                            <use
+                                                xlink:href="https://tokbox.com/developer/tools/precall/images/volta-icons.svg#Vlt-icon-wifi">
+                                            </use>
+                                        </svg>
+                                        <small>Calidad de llamada esperada</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Vlt-card hardware_software_setup precall-panel">
+                        <div class="Vlt-card__header precall-panel-header">
+                            <h4>Hardware y Software</h4>
+                        </div>
+                        <div class="Vlt-card__content precall-panel-content">
+                            <div id="video_check">
+                                <div id="camera_preview"></div>
+                                <div class="section_details">
+                                    <p class="section_name p-large">
+                                        <b>Video</b>
+                                    </p>
+                                    <p class="subtext">Puede seleccionar otra camara para el test
+                                    </p>
+                                    <div class="Vlt-select">
+                                        <select id="cam_dropdown"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="audio_check">
+                                <div id="mic_preview">
+                                    <svg class="Vlt-icon">
+                                        <use
+                                            xlink:href="https://tokbox.com/developer/tools/precall/images/volta-icons.svg#Vlt-icon-microphone-mute">
+                                        </use>
+                                    </svg>
+                                    <span class="audio-indicator">
+                                        <meter id="volume_level_meter" min="0" max="1" value="0">
+                                            <div id="volume_level_meter-ie">
+                                                <span></span>
+                                            </div>
+                                        </meter>
+                                    </span>
+                                </div>
+                                <div class="section_details">
+                                    <p class="section_name p-large">
+                                        <b>Audio</b>
+                                    </p>
+                                    <p class="subtext">Puede decir algo para verificar que el micrófono esta
+                                        funcionando.</p>
+                                    <div class="Vlt-select">
+                                        <select id="mic_dropdown"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="browser_check" class="">
+                                <div id="browser_preview"></div>
+                                <div class="section_details">
+                                    <p class="section_name p-large">
+                                        <b>Compativilidad de navegador</b>
+                                    </p>
+                                    <p id="browser_test_results">El resultado del test del navegador esta cragando...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Vlt-card connectivity_tests precall-panel">
+                        <div class="Vlt-card__header precall-panel-header">
+                            <h4>Conectividad con los servidores</h4>
+                        </div>
+                        <div class="Vlt-card__content precall-panel-content precall-panel-content-connectivity">
+                            <div id="api_server_test" class="precall-panel-connectivity">
+                                <div class="connectivity_test_stopped" id="api_server_status">
+                                    <svg class="Vlt-icon Vlt-icon--large Vlt-white">
+                                        <use
+                                            xlink:href="https://tokbox.com/developer/tools/precall/images/volta-icons.svg#Vlt-icon-remove-full">
+                                        </use>
+                                    </svg>
+                                </div>
+                                <div class="section_details">
+                                    <p class="section_name p-large p-bold">
+                                        Servidor API - <span id="api_test_status">Test fallido</span>
+                                    </p>
+                                    <p class="subtext">Se conecta con el API para la incializacion de sesiones</p>
+                                    <p id="api_results">Cargando resultado del test...</p>
+                                </div>
+                            </div>
+                            <div id="messaging_socket_test" class="precall-panel-connectivity">
+                                <div class="connectivity_test_stopped" id="messaging_socket_status">
+                                    <svg class="Vlt-icon Vlt-icon--large Vlt-white">
+                                        <use
+                                            xlink:href="https://tokbox.com/developer/tools/precall/images/volta-icons.svg#Vlt-icon-remove-full">
+                                        </use>
+                                    </svg>
+                                </div>
+                                <div class="section_details">
+                                    <p class="section_name p-large p-bold">
+                                        Mensajeo punto a punto - <span id="media_test_status">Test Fallido</span>
+                                    </p>
+                                    <p class="subtext">Los cleintes envian y reciben mensajes en tiempo real usando
+                                        conexión de punto a punto</p>
+                                    <p id="messaging_results"></p>
+                                </div>
+                            </div>
+                            <div id="media_server_test" class="precall-panel-connectivity">
+                                <div class="connectivity_test_stopped" id="media_server_status">
+                                    <svg class="Vlt-icon Vlt-icon--large Vlt-white">
+                                        <use
+                                            xlink:href="https://tokbox.com/developer/tools/precall/images/volta-icons.svg#Vlt-icon-remove-full">
+                                        </use>
+                                    </svg>
+                                </div>
+                                <div class="section_details">
+                                    <p class="section_name p-large p-bold">
+                                        Servidor de medios - <span id="media_test_status">Test Fallido</span>
+                                    </p>
+                                    <p class="subtext">Los clientes envian audio y video los servidores multimedia.</p>
+                                    <p id="routed_results">Cargando resultados del test...</p>
+                                </div>
+                            </div>
+                            <div id="logging_server_test" class="precall-panel-connectivity">
+                                <div class="connectivity_test_stopped" id="logging_server_status">
+                                    <svg class="Vlt-icon Vlt-icon--large Vlt-white">
+                                        <use
+                                            xlink:href="https://tokbox.com/developer/tools/precall/images/volta-icons.svg#Vlt-icon-remove-full">
+                                        </use>
+                                    </svg>
+                                </div>
+                                <div class="section_details">
+                                    <p class="section_name p-large p-bold">
+                                        Server login - <span id="logging_test_status">Test Fallido</span>
+                                    </p>
+                                    <p class="subtext">Nuestro servidor de registro recopila datos anónimos sobre la
+                                        calidad y
+                                        posibles errores.</p>
+                                    <p id="logging_results">Cargando resultados del test...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Vlt-card qos_results precall-panel">
+                        <div class="Vlt-card__header precall-panel-header">
+                            <h4>Expectativa de calidad multimedia</h4>
+                        </div>
+                        <div class="Vlt-card__content precall-panel-content">
+                            <div class="quality_error">
+                                <div>
+                                    Error al correr el test<div class="qos_error_message">MOS</div>
+                                </div>
+                            </div>
+                            <div id="qos_video" class="qos_results_row">
+                                <div class="section_details">
+                                    <div class="results_name_container">
+                                        <p class="section_name p-large p-bold">Determianndo calidad de video...</p>
+                                        <div id="video_mos_tooltip"
+                                            class="results_tooltip Vlt-tooltip Vlt-tooltip--right Vlt-tooltip--large">
+                                            <svg class="Vlt-icon Vlt-icon--smaller Vlt-purple">
+                                                <use
+                                                    xlink:href="https://tokbox.com/developer/tools/precall/images/volta-icons.svg#Vlt-icon-help" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <text id="video_resolution">Resolución soportada: Cargando</text>
+                                        </li>
+                                        <li>
+                                            <text id="video_plr">Paquetes de video perdidos: Cargando</text>
+                                        </li>
+                                        <li>
+                                            <text id="video_bitrate">Video Bitrate: Cargando</text>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="section_details graph_results_container"></div>
+                            </div>
+                            <div id="qos_audio" class="qos_results_row">
+                                <div class="section_details">
+                                    <div class="results_name_container">
+                                        <p class="section_name p-large p-bold">Determinando calidad de audio...</p>
+                                        <div id="audio_mos_tooltip"
+                                            class="results_tooltip Vlt-tooltip Vlt-tooltip--right Vlt-tooltip--large">
+                                            <svg class="Vlt-icon Vlt-icon--smaller Vlt-purple">
+                                                <use
+                                                    xlink:href="https://tokbox.com/developer/tools/precall/images/volta-icons.svg#Vlt-icon-help" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <text id="audio_plr">Paquetes perdidos de audio: Cargando</text>
+                                        </li>
+                                        <li>
+                                            <text id="audio_bitrate">Audio Bitrate: Cargando</text>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="section_details graph_results_container"></div>
+                            </div>
+                            <div class="quality_unsupported">
+                                <div>
+                                    <div class="section_details">
+                                        <div class="results_name_container">
+                                            <div class="section_name">No soportado</div>
+                                        </div>
+                                        <div>El test de calidad no es soportado en esta versión.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Vlt-col"></div>
+            </div>
+            <div class="Vlt-center Vlt-margin--A-top3">
+                <a class="Vlt-text-link Vlt-black Vlt-modal-trigger" data-modal="resultsModal">Guardar la data como
+                    texto</a>
+            </div>
+            <div class="Vlt-center Vlt-margin--A-top3">
+                <button type="button" id="start_new_test" class="Vlt-btn Vlt-btn--secondary Vlt-btn--app">Lanzar un
+                    nuevo test</button>
+            </div>
+            <div class="Vlt-center edge_note">
+                <span>Si tratas de correr otro test sera mejor cerrar esta pagina primero</span>
+            </div>
+        </div>
+        <div id="resultsModal" class="Vlt-modal Vlt-modal--large">
+            <div class="Vlt-modal__panel">
+                <div class="Vlt-modal__header">
+                    <h4>Resumen del test</h4>
+                    <div class="Vlt-modal__dismiss"></div>
+                </div>
+                <div class="Vlt-modal__content modal-result-list">
+                    <ul id="resultsHardware">
+                        Resultados Hardware:<ul id="results_hardware_cam"></ul>
+                        <ul id="results_hardware_mic"></ul>
+                        <ul id="results_hardware_browser"></ul>
+                    </ul>
+                    <ul id="results_connectivity">
+                        Resultados de conectividad:<ul id="results_connectivity_api"></ul>
+                        <ul id="results_connectivity_media"></ul>
+                        <ul id="results_connectivity_mesh"></ul>
+                        <ul id="results_connectivity_logging"></ul>
+                    </ul>
+                    <ul id="results_qos">
+                        Resultados del teste de calidad:<ul id="results_qos_video_quality"></ul>
+                        <ul id="results_qos_video_resolution"></ul>
+                        <ul id="results_qos_video_plr"></ul>
+                        <ul id="results_qos_video_bitrate"></ul>
+                        <ul id="results_qos_audio_quality"></ul>
+                        <ul id="results_qos_audio_plr"></ul>
+                        <ul id="results_qos_audio_bitrate"></ul>
+                    </ul>
+                    <ul id="results_general">
+                        General Statistics:<ul id="results_sessionid"></ul>
+                    </ul>
+                </div>
+                <div class="Vlt-modal__footer">
+                    <button class="Vlt-btn Vlt-btn--app Vlt-btn--secondary Vlt-modal__confirm">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script nonce="14e66bc55c5e51cde49f4271a47f772c">
+        var baseUrl = 'https://tokbox.com/developer/tools/precall';
+    </script>
+    <script src="https://tokbox.com/developer/tools/precall/js/vendor/volta.min.js"></script>
+    <!-- <script src="./vendor/volta.min.js"></script> -->
+    <script src="https://tokbox.com/developer/tools/precall/js/vendor/popper.min.js"></script>
+    <!-- <script src="./vendor/popper.min.js"></script> -->
+    <script src="https://tokbox.com/developer/tools/precall/js/vendor/tooltip.min.js"></script>
+    <!-- <script src="./vendor/tooltip.min.js"></script> -->
+    <script nonce="14e66bc55c5e51cde49f4271a47f772c">
+        Volta.init(['modal', 'tooltip']);
+    </script>
+    <script src="https://tokbox.com/developer/tools/precall/js/results.bundle.js"></script>
+    <!-- <script src="./results.bundle.js"></script> -->
+</body>
+
+</html>

@@ -1,18 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>usuarios</title>
 
+    <!-- bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/d533bbc844.js" crossorigin="anonymous"></script>
     <!-- endemico  -->
     <link rel="stylesheet" href="./usuarios.css">
 </head>
+
 <body>
+    hola desde usuarios
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- inicio pizarra -->
     <div class="pizarra_usuarios">
-        
+        <!-- ---------------------------------------------------------------- -->
+        <!-- ---------------------------------------------------------------- -->
+        <!-- titulo -->
+        <div class="barra_titulo w-100 ">
+            <h1>Usuarios </h1>
+            <hr>
+        </div>
+        <!-- ---------------------------------------------------------------- -->
+        <!-- ---------------------------------------------------------------- -->
+        <!-- controle -->
+        <div class="panel_controles_superiores">
+            Aqui puede ir filtros
+        </div>
+        <!-- ---------------------------------------------------------------- -->
+        <!-- ---------------------------------------------------------------- -->
+        <!-- tabla usuarios  -->
+        <div class="panel_usuarios">
+            <div class="div_tabla_usuarios overflow-scroll">
+
+
+            </div>
+
+
+        </div>
+        <!-- ---------------------------------------------------------------- -->
+        <!-- ---------------------------------------------------------------- -->
+        <!-- controle inferiores -->
+        <div class="panel_controles_inferiores p-2 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary m-1"
+                onclick="usuarios.agregar_renglon_tabla()">Agregar</button>
+            <button type="button" class="btn btn-secondary m-1" onclick="usuarios.guardar()">Guardar</button>
+        </div>
+    </div>
+    <!-- fin  pizarra -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+
+    <div class="div_tabla_usuarios_test overflow-scroll d-none">
+        <table class="table table-bordered " style="width: max-content;">
+            <thead>
+                <tr>
+                    <th scope="col" class="celda_titulo" data-ancho="50px">#</th>
+                    <th scope="col" class="celda_titulo" data-ancho="300px">First</th>
+                    <th scope="col" class="celda_titulo" data-ancho="300px">Last</th>
+                    <th scope="col" class="celda_titulo" data-ancho="300px">Cliente</th>
+                    <th scope="col" class="celda_titulo" data-ancho="300px">Operador</th>
+                    <th scope="col" class="celda_titulo" data-ancho="300px">administrador</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <!-- ------------------------ -->
+                    <!-- columnas para el cliente -->
+                    <td>
+
+                        <div class="w-100 overflow-hidden p-3">
+                            <div class="form-check d-flex d-flex justify-content-center">
+                                <input class="form-check-input" type="checkbox" value="" id="chb_cliente">
+                                <label class="form-check-label ps-2" for="chb_cliente">
+                                    Cliente
+                                </label>
+                            </div>
+                            <div class="row pt-2">
+                                <div class="col form-check">
+                                    <input class="form-control form-control-sm" type="text" placeholder="CAC"
+                                        aria-label=".form-control-sm" id="chb_cliente_cac">
+                                    <!-- <label class="form-check-label" for="chb_cliente">
+                                        Cliente
+                                    </label> -->
+                                </div>
+                                <div class="col form-check">
+                                    <input class="form-control form-control-sm" type="text" placeholder="Modulo"
+                                        aria-label=".form-control-sm" id="chb_cliente_modulo">
+                                    <!-- <label class="form-check-label" for="chb_cliente">
+                                        Cliente
+                                    </label> -->
+                                </div>
+                                <div class="col form-check">
+                                    <input class="form-control form-control-sm" type="text" placeholder="Modulo"
+                                        aria-label=".form-control-sm" id="chb_cliente_region">
+                                    <!-- <label class="form-check-label" for="chb_cliente">
+                                        Cliente
+                                    </label> -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+
+                    <!-- ------------------------ -->
+                    <!-- columnas para el operador -->
+
+                    <td>
+                        <div class="w-100 overflow-hidden p-3">
+                            <div class="form-check d-flex d-flex justify-content-center">
+                                <input class="form-check-input" type="checkbox" value="" id="chb_operador">
+                                <label class="form-check-label ps-2" for="chb_operador">
+                                    Operador
+                                </label>
+                            </div>
+
+                            <div class="pt-2">
+                                <div class="col form-check">
+                                    <input class="form-control form-control-sm" type="text" placeholder="Documento"
+                                        aria-label=".form-control-sm" id="chb_operador_documento">
+                                    <!-- <label class="form-check-label" for="chb_cliente">
+                                    Cliente
+                                </label> -->
+                                </div>
+                                <div class="row pt-2">
+                                    <div class="col form-check">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="chb_operador_señas">
+                                        <label class="form-check-label ps-2" for="chb_operador_señas">
+                                            Señas
+                                        </label>
+                                    </div>
+                                    <div class="col form-check">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="chb_operador_hogar">
+                                        <label class="form-check-label ps-2" for="chb_operador_hogar">
+                                            Hogar
+                                        </label>
+                                    </div>
+                                    <div class="col form-check">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="chb_operador_hogar">
+                                        <label class="form-check-label ps-2" for="chb_operador_hogar">
+                                            Móviles
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- ------------------------ -->
+                    <!-- columnas para el supervsor  -->
+                    <td>
+                        <div class="w-100 overflow-hidden p-2">
+                            <div class="form-check d-flex d-flex justify-content-center">
+                                <input class="form-check-input" type="checkbox" value="" id="chb_administrador">
+                                <label class="form-check-label ps-2" for="chb_administrador">
+                                    administrador
+                                </label>
+                                <hr>
+                            </div>
+                            <div class="row row-cols-auto p-1">
+                                <div class="col form-check">
+                                    <input class="form-check-input" type="checkbox" value=""
+                                        id="chb_administrador_historico">
+                                    <label class="form-check-label " for="chb_administrador_historico">
+                                        historico
+                                    </label>
+                                </div>
+                                <div class="col form-check">
+                                    <input class="form-check-input" type="checkbox" value=""
+                                        id="chb_administrador_dashboard">
+                                    <label class="form-check-label " for="chb_administrador_dashboard">
+                                        dashboard
+                                    </label>
+                                </div>
+                                <div class="col form-check">
+                                    <input class="form-check-input" type="checkbox" value=""
+                                        id="chb_administrador_dashboard">
+                                    <label class="form-check-label " for="chb_administrador_dashboard">
+                                        Usuarios
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+            </tbody>
+        </table>
+    </div>
+    <div class="usuarios_test listado d-none">
+
+        <div class="row titulos border">
+            <div class="col id360" style="width: 100px;">
+                id360
+            </div>
+            <div class="col nombre">
+                Nombre
+            </div>
+            <div class="col apellido">
+                Apellido paterno
+            </div>
+            <div class="col apellido materno">
+                Apellido materno
+            </div>
+            <div class="col ">
+                Cliente
+            </div>
+            <div class="col " style="width: 300px;">
+                Operador
+            </div>
+        </div>
+        <!--  -->
+        <div class="row border">
+            <div class="col id360">
+                2983467
+            </div>
+            <div class="col nombre">
+                ricardo
+            </div>
+            <div class="col apellido">
+                garcia
+            </div>
+            <div class="col apellido materno">
+                de la cruz
+            </div>
+            <!-- para el cliente -->
+            <div class="col cliente">
+                <div class="form-check d-flex d-flex justify-content-center">
+                    <input class="form-check-input" type="checkbox" value="" id="chb_cliente">
+                    <label class="form-check-label ps-2" for="chb_cliente">
+                        Cliente
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col form-check">
+                        <input class="form-control form-control-sm" type="text" placeholder="CAC"
+                            aria-label=".form-control-sm" id="chb_cliente_cac">
+                        <!-- <label class="form-check-label" for="chb_cliente">
+                                Cliente
+                            </label> -->
+                    </div>
+                    <div class="col form-check">
+                        <input class="form-control form-control-sm" type="text" placeholder="Modulo"
+                            aria-label=".form-control-sm" id="chb_cliente_modulo">
+                        <!-- <label class="form-check-label" for="chb_cliente">
+                                Cliente
+                            </label> -->
+                    </div>
+                    <div class="col form-check">
+                        <input class="form-control form-control-sm" type="text" placeholder="Modulo"
+                            aria-label=".form-control-sm" id="chb_cliente_region">
+                        <!-- <label class="form-check-label" for="chb_cliente">
+                                Cliente
+                            </label> -->
+                    </div>
+                </div>
+            </div>
+            <!-- parea el operador -->
+            <div class="col operador">
+                <div class="form-check d-flex d-flex justify-content-center">
+                    <input class="form-check-input" type="checkbox" value="" id="chb_operador">
+                    <label class="form-check-label ps-2" for="chb_operador">
+                        Operador
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col form-check">
+                        <input class="form-control form-control-sm" type="text" placeholder="Documento"
+                            aria-label=".form-control-sm" id="chb_operador_documento">
+                        <!-- <label class="form-check-label" for="chb_cliente">
+                            Cliente
+                        </label> -->
+                    </div>
+
+                    <div class="col form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="chb_operador_señas">
+                        <label class="form-check-label ps-2" for="chb_operador_señas">
+                            Señas
+                        </label>
+                    </div>
+
+                    <div class="col form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="chb_operador_hogar">
+                        <label class="form-check-label ps-2" for="chb_operador_hogar">
+                            Hogar
+                        </label>
+                    </div>
+
+                    <div class="col form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="chb_operador_hogar">
+                        <label class="form-check-label ps-2" for="chb_operador_hogar">
+                            Móviles
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
+    <script src="./clase_tabla_personalizada.js"></script>
     <script src="./usuarios.js"></script>
+
+    <script>
+        let usuarios = null;
+
+        (async function () {
+            usuarios = funciones_usuarios();
+            await usuarios.lanzador()
+        })();
+    </script>
 </body>
+
 </html>

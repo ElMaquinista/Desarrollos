@@ -1,0 +1,22 @@
+.div_tabla_usuarios_test .celda_titulo {
+    /* width: attr(data-ancho) ; */
+    width: 100px;
+}
+
+
+/* ------------------------------------------- */
+/* ------------------------------------------- */
+.div_tabla_usuarios .table {
+    font-size: 12px;
+}
+.div_tabla_usuarios .table input {
+    font-size: 12px;
+}
+
+.div_tabla_usuarios .permisos_cliente,
+.div_tabla_usuarios .permisos_operador,
+.div_tabla_usuarios .permisos_admninistrador {
+    /* display: table-cell;
+    display: block; */
+
+}

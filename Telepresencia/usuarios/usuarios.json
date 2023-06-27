@@ -1,0 +1,23 @@
+[
+    {
+        "id": "9991347359",
+        "usuario": "cliente31cacayacucho@claro360.com.pe",
+        "contrasenia": "Lpi6lx8KQQRcIMZqYTSacQ==", 
+        "correo": "cliente31cacayacucho@claro360.com.pe",
+        "nombre": "cliente31",
+        "apellido_paterno": "CAC Ayacucho", 
+        "apellido_materno": "-",
+        "permisos": [
+            
+        ]
+    },
+    {
+        "id": "9991347360",
+        "usuario": "cliente32cacayacucho@claro360.com.pe",
+        "contrasenia": "bUnjLa6PqitcIMZqYTSacQ==", 
+        "correo": "cliente32cacayacucho@claro360.com.pe",
+        "nombre": "cliente32",
+        "apellido_paterno": "CAC Ayacucho", 
+        "apellido_materno": "-"
+    }
+]

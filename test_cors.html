@@ -1,0 +1,117 @@
+
+ 
+
+<!doctype html>
+<html>
+<head>
+
+  <!-- those are demonstrated cases  -->    
+    <!-- <script async type="module" src="https://cors-server.netlify.app/js-whitelist/module.js" crossorigin="use-credentials" ></script>
+    <script async type="module" src="https://cors-server.netlify.app/js-whitelist/module.js" crossorigin="anonymous" ></script>
+    <script async type="module" src="https://cors-server.netlify.app/js-whitelist/module.js" crossorigin="" ></script>
+    <script async type="module" src="https://cors-server.netlify.app/js-whitelist/module.js" ></script>
+    <script async src="https://cors-server.netlify.app/js-whitelist/main.js" crossorigin="anonymous" ></script>
+    <script async src="https://cors-server.netlify.app/js-whitelist/main.js" ></script> -->
+
+    <script async type="module" src="https://landings360.s3.amazonaws.com/public/GestionUsuarios/ejemplo.js" crossorigin="anonymous" ></script>
+    <script async type="module" src="https://landings360.s3.amazonaws.com/public/GestionUsuarios/ejemplo.js" ></script>
+
+    <!-- <script async src="https://cors-server.netlify.app/js-public/main.js" crossorigin="anonymous" ></script>    
+    <script async src="https://cors-server.netlify.app/js-public/main.js" ></script>
+
+    <script async type="module" src="https://cors-server.netlify.app/js/module.js" crossorigin="anonymous" ></script>
+    <script async type="module" src="https://cors-server.netlify.app/js/module.js" ></script>
+    <script async src="https://cors-server.netlify.app/js/main.js" crossorigin="anonymous" ></script> -->
+    <!-- <script async src="https://cors-server.netlify.app/js/main.js" ></script> -->
+
+    <!-- <script async type="module" src="./js/module.js" ></script>
+    <script async src="./js/main.js" ></script> -->
+  <!-- // -->
+
+  <style>
+    .script::before { content: "\21BB"; padding:0 6px 0 0; }
+    .error::before  { content: "\2715"; color: red; }
+    .load::before   { content: "\2713"; color: green; }
+    li { list-style-type: none; }
+    pre>p { margin: auto; }
+  </style>
+
+  <!-- utilities -- yes, it is polluting the global namespace... -->
+  <script>
+    // input can be an element or a string
+    const toHtml = input => ( input.outerHTML || input )
+                               .replace(/&/g, "&amp;")
+                               .replace(/</g, "&lt;")
+                               .replace(/>/g, "&gt;")
+                               .replace(/"/g, "&quot;")
+                               .replace(/'/g, "&#039;");
+
+    function log() {
+      document.querySelector("#logs")
+      .appendChild( document.createElement("p") )
+      .innerHTML = toHtml( [...arguments].map( arg => arg.outerHTML || arg ).join(" ") );
+    }
+  </script>
+  
+</head>
+<body>
+
+  <h1>This is a page demonstrating CORS</h1>
+  
+  <p>
+  The cross domain server configuration can be found <a href="https://github.com/swiing/cors-server/blob/68905f12c4af533929cf2ac9fdae3ac0e4461bb2/netlify.toml#L5">here</a>.
+  </p>
+  <p>
+  The source code can be found on <a href="https://github.com/swiing/cors-example">github</a>.
+  </p>
+  
+  <hr>
+  
+  <section id="test">
+    <h2>Test cases</h2>
+    <ul></ul>
+  </section>
+  
+  <hr>
+  
+  <pre id="logs">
+    <h2>Logs</h2>
+  </pre>
+  
+  <!-- end of displayed document -->
+  
+  <template id="scriptTest">
+    <li><span class="script"></span></li>
+  </template>
+  
+  <script>
+    (function() {
+      const scripts = new WeakMap();
+      const template = document.querySelector("#scriptTest");
+
+      function result() {
+        const evtType   = arguments[0].type;
+        const scriptElt = arguments[0].target;
+
+        scripts.get( scriptElt ).classList.add( evtType );
+        log( scriptElt, "got", evtType );
+      }
+
+      for( let scriptElt of document.getElementsByTagName("script") )
+        if( scriptElt.src ) {
+          let elt = document.importNode( template.content, true );
+          let scriptDiv = elt.querySelector(".script");
+
+          scripts.set( scriptElt, scriptDiv );
+
+          scriptElt.addEventListener( "load",  result );
+          scriptElt.addEventListener( "error", result );
+
+          scriptDiv.innerHTML = toHtml( scriptElt );
+          document.querySelector("ul").appendChild( elt );
+        }
+    }());
+  </script>
+  
+</body>
+</html>

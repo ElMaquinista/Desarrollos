@@ -6,12 +6,21 @@
 
 /* ------------------------------------------- */
 /* ------------------------------------------- */
+:root {
+    --color-check_permisos: "#771818";
+}
+
 .div_tabla_usuarios .table {
     font-size: 12px;
 }
+
 .div_tabla_usuarios .table input {
     font-size: 12px;
 }
+
+.div_tabla_usuarios .table .permisos label:hover {}
+
+
 
 .div_tabla_usuarios .permisos_cliente,
 .div_tabla_usuarios .permisos_operador,

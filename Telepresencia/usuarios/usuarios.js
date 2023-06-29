@@ -2,6 +2,7 @@ const funciones_usuarios = () => {
     // ocultarLoaderMain();
 
     let peticion_usuarios_data = null;
+    let peticion_entorno = null;
 
     let nodo_tabla_usuarios = null;
     let renders_tabla_usuarios = null;
@@ -14,35 +15,64 @@ const funciones_usuarios = () => {
         nombre: "cliente31",
         apellido_paterno: "CAC Ayacucho",
         apellido_materno: "-",
-        permisos_cliente:[
+        permisos_cliente: [
             {
                 identificador: "categoria",
-                id:"",
+                id: "",
                 tipo_dato: "bool",
-                valor:"1"
+                valor: "1"
             },
             {
                 identificador: "cac",
-                id: "", 
+                id: "",
                 tipo_dato: "bool",
                 valor: "1",
             }
         ],
-        permisos_operador:[
+        permisos_operador: [
             {
                 identificador: "categoria",
-                id: "", 
+                id: "",
                 tipo_dato: "bool",
                 valor: "1",
             },
             {
                 identificador: "documento",
-                id: "", 
+                id: "",
+                tipo_dato: "text",
+                valor: "123456789",
+            }
+        ],
+        permisos_admninistrador: [
+            {
+                identificador: "categoria",
+                id: "",
+                tipo_dato: "bool",
+                valor: "1",
+            },
+            {
+                identificador: "historico",
+                id: "",
                 tipo_dato: "bool",
                 valor: "1",
             }
-        ],
-        permisos_admninistrador:{}
+        ]
+    };
+
+    const peticion_detalles_entorno = async () => {
+        // peticion que trae los datos miscelaneos como tipos de consulta, regiones, etc...
+        mostrarLoaderMain();
+        let peticion = await RequestPOST("/API/V1/Videollamadas/entorno/info", {}).then((response) => {
+            return response;
+        });
+
+        peticion_entorno = null;
+
+        if (peticion.success) {
+            peticion_entorno = peticion;
+        }
+        ocultarLoaderMain();
+        return peticion;
     };
 
 
@@ -55,22 +85,190 @@ const funciones_usuarios = () => {
             failure: false,
             usuarios: [
                 {
-                    "id": "9991347359",
-                    "usuario": "cliente31cacayacucho@claro360.com.pe",
-                    "contrasenia": "Lpi6lx8KQQRcIMZqYTSacQ==",
-                    "correo": "cliente31cacayacucho@claro360.com.pe",
-                    "nombre": "cliente31",
-                    "apellido_paterno": "CAC Ayacucho",
-                    "apellido_materno": "-"
+                    id: "9991347359",
+                    usuario: "cliente31cacayacucho@claro360.com.pe",
+                    contrasenia: "Lpi6lx8KQQRcIMZqYTSacQ==",
+                    correo: "cliente31cacayacucho@claro360.com.pe",
+                    nombre: "cliente31",
+                    apellido_paterno: "CAC Ayacucho",
+                    apellido_materno: "-",
+                    permisos_cliente: [
+                        {
+                            identificador: "categoria",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "1"
+                        },
+                        {
+                            identificador: "cac",
+                            id: "",
+                            tipo_dato: "text",
+                            valor: "1",
+                        },
+                        {
+                            identificador: "modulo",
+                            id: "",
+                            tipo_dato: "text",
+                            valor: "1",
+                        },
+                        {
+                            identificador: "region",
+                            id: "",
+                            tipo_dato: "text",
+                            valor: "1",
+                        }
+                    ],
+                    permisos_operador: [
+                        {
+                            identificador: "categoria",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "1",
+                        },
+                        {
+                            identificador: "documento",
+                            id: "",
+                            tipo_dato: "text",
+                            valor: "123456789",
+                        },
+                        {
+                            identificador: "senias",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "1",
+                        },
+                        {
+                            identificador: "hogar",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "1",
+                        },
+                        {
+                            identificador: "moviles",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "1",
+                        }
+                    ],
+                    permisos_admninistrador: [
+                        {
+                            identificador: "categoria",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "1",
+                        },
+                        {
+                            identificador: "historico",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "1",
+                        },
+                        {
+                            identificador: "dashboard",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "1",
+                        },
+                        {
+                            identificador: "usuarios",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "1",
+                        }
+                    ]
                 },
                 {
-                    "id": "9991347360",
-                    "usuario": "cliente32cacayacucho@claro360.com.pe",
-                    "contrasenia": "bUnjLa6PqitcIMZqYTSacQ==",
-                    "correo": "cliente32cacayacucho@claro360.com.pe",
-                    "nombre": "cliente32",
-                    "apellido_paterno": "CAC Ayacucho",
-                    "apellido_materno": "-"
+                    id: "9991347360",
+                    usuario: "cliente32cacayacucho@claro360.com.pe",
+                    contrasenia: "bUnjLa6PqitcIMZqYTSacQ==",
+                    correo: "cliente32cacayacucho@claro360.com.pe",
+                    nombre: "cliente32",
+                    apellido_paterno: "CAC Ayacucho",
+                    apellido_materno: "-",
+                    permisos_cliente: [
+                        {
+                            identificador: "categoria",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "1"
+                        },
+                        {
+                            identificador: "cac",
+                            id: "",
+                            tipo_dato: "text",
+                            valor: "0",
+                        },
+                        {
+                            identificador: "modulo",
+                            id: "",
+                            tipo_dato: "text",
+                            valor: "1",
+                        },
+                        {
+                            identificador: "region",
+                            id: "",
+                            tipo_dato: "text",
+                            valor: "0",
+                        }
+                    ],
+                    permisos_operador: [
+                        {
+                            identificador: "categoria",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "0",
+                        },
+                        {
+                            identificador: "documento",
+                            id: "",
+                            tipo_dato: "text",
+                            valor: "123456789",
+                        },
+                        {
+                            identificador: "senias",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "0",
+                        },
+                        {
+                            identificador: "hogar",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "1",
+                        },
+                        {
+                            identificador: "moviles",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "1",
+                        }
+                    ],
+                    permisos_admninistrador: [
+                        {
+                            identificador: "categoria",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "1",
+                        },
+                        {
+                            identificador: "historico",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "0",
+                        },
+                        {
+                            identificador: "dashboard",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "0",
+                        },
+                        {
+                            identificador: "usuarios",
+                            id: "",
+                            tipo_dato: "bool",
+                            valor: "1",
+                        }
+                    ]
                 }
             ]
         };
@@ -170,7 +368,7 @@ const funciones_usuarios = () => {
 
                 render_concidencias = arr_render.filter(item => (nodo_columna_td.classList.contains(item.target)));
 
-                render_all = arr_render.filter(item => (item.target ==="_all"));
+                render_all = arr_render.filter(item => (item.target === "_all"));
 
                 // aplicar los render 
                 if (render_concidencias) {
@@ -219,130 +417,322 @@ const funciones_usuarios = () => {
 
     };
 
+    const verificar_data_para_pintar = (pajar, llave_busqueda, valor_busqueda, llave_retorno) => {
+        // pajar es un arreglo en el que va a buscar y validar la llave para regresar una respuesta para html
+        let respuesta = "";
+        if (pajar) {
+            let item_busqueda = pajar.find(item => {
+                let actual = item[llave_busqueda];
+                if (actual === valor_busqueda) {
+                    return item;
+                }
+            });
+
+            if (item_busqueda) {
+                switch (item_busqueda.tipo_dato) {
+                    case "bool":
+                        if (item_busqueda[llave_retorno] === "1") {
+                            respuesta = "checked";
+                        }
+                        break;
+                    case "text":
+                        respuesta = item_busqueda[llave_retorno];
+                        break;
+                    default:
+                        console.log("tipo de dato no esta definido en el switch", item_busqueda.tipo_dato);
+                        break;
+                }
+            }
+
+        }
+        return respuesta;
+    };
+
+
     const crear_nodo_per_cliente = (data) => {
 
         let nodo_div_contendor = document.createElement("div");
-        nodo_div_contendor.className = "w-100 overflow-hidden p-3";
+        nodo_div_contendor.className = "w-100 h-100 overflow-visible";
+
+        let arr_permisos = data.permisos_cliente;
+
+        let id360 = data.id;
+        // console.log("crear_nodo_per_operador id360", id360);
 
         nodo_div_contendor.innerHTML = `
-        <div class="form-check d-flex justify-content-center">
-            <input class="form-check-input" type="checkbox" value="" id="chb_cliente" json-etiqueta="permisos_cliente">
-            <label class="form-check-label ps-2">
-                Cliente
-            </label>
+        <div class=" form-switch d-flex justify-content-center btn-group-toggle" data-toggle="buttons">
+            
+            <label for="chb_cliente_${id360}" class="btn btn-outline-primary active" >
+                <input type="checkbox" class=""  json-etiqueta="permisos_cliente" 
+                id="chb_cliente_${id360}"
+                data-permiso="chb_cliente"
+                data-control-bloque="true"
+                ${verificar_data_para_pintar(arr_permisos, "identificador", "categoria", "valor")}
+                >
+            Cliente</label>
         </div>
-        <div class="row pt-2">
-            <div class="col form-check">
-                <input class="form-control form-control-sm" type="text" placeholder="CAC"
-                    aria-label=".form-control-sm" id="cliente_cac" json-etiqueta="cac">
-                <!-- <label class="form-check-label">
-                    Cliente
-                </label> -->
+        <div class="row w-100 pt-1 permisos">
+            <div class="col p-1 " >
+                <label for="cliente_cac_${id360}" class="form-check-label">
+                    CAC
+                </label> 
+                <select class="form-control form-control-sm" type="text" placeholder="CAC"
+                    data-permiso="cliente_cac"
+                    aria-label=".form-control-sm" id="cliente_cac_${id360}">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>    
             </div>
-            <div class="col form-check">
+            <div class="col p-1 " >
+                <label for="cliente_modulo_${id360}" class="form-check-label">
+                    Módulo
+                </label>
                 <input class="form-control form-control-sm" type="text" placeholder="Modulo"
-                    aria-label=".form-control-sm" id="cliente_modulo" json-etiqueta="modulo">
-                <!-- <label class="form-check-label">
-                    Cliente
-                </label> -->
+                    aria-label=".form-control-sm" id="cliente_modulo_${id360}"}
+                    data-permiso="cliente_modulo" >
             </div>
-            <div class="col form-check">
+            <div class="col p-1 " >
+                <label for="cliente_region_${id360}" class="form-check-label">
+                    region
+                </label>
                 <input class="form-control form-control-sm" type="text" placeholder="Región"
-                    aria-label=".form-control-sm" id="cliente_region" json-etiqueta="region">
-                <!-- <label class="form-check-label">
-                    Cliente
-                </label> -->
+                    aria-label=".form-control-sm" id="cliente_region_${id360}" 
+                    data-permiso="cliente_region">
             </div>
         </div>
         `;
 
+        // agregar valores 
+        nodo_div_contendor.querySelector('[data-permiso="cliente_cac"]').value = verificar_data_para_pintar(arr_permisos, "identificador", "cac", "valor");
+        nodo_div_contendor.querySelector('[data-permiso="cliente_modulo"]').value = verificar_data_para_pintar(arr_permisos, "identificador", "modulo", "valor");
+        nodo_div_contendor.querySelector('[data-permiso="cliente_region"]').value = verificar_data_para_pintar(arr_permisos, "identificador", "region", "valor");
+
         return nodo_div_contendor;
     };
+    // const crear_nodo_per_cliente_old = (data) => {
 
-    const crear_nodo_per_operador = () => {
+    //     let nodo_div_contendor = document.createElement("div");
+    //     nodo_div_contendor.className = "w-100 overflow-hidden";
+
+    //     let arr_permisos = data.permisos_cliente;
+
+    //     nodo_div_contendor.innerHTML = `
+    //     <div class="input-group form-switch d-flex justify-content-center">
+    //         <input class="form-check-input" type="checkbox" value="" id="chb_cliente" json-etiqueta="permisos_cliente" 
+    //         ${verificar_data_para_pintar(arr_permisos, "identificador", "categoria", "valor")}
+    //         data-control-bloque="true"
+    //         >
+    //         <label class="form-check-label ps-2">
+    //             Cliente
+    //         </label>
+    //     </div>
+    //     <div class="row pt-2 permisos">
+    //         <div class="col input-group">
+    //             <input class="form-control form-control-sm" type="text" placeholder="CAC"
+    //                 aria-label=".form-control-sm" id="cliente_cac" >
+    //             <!-- <label class="form-check-label">
+    //                 Cliente
+    //             </label> -->
+    //         </div>
+    //         <div class="col input-group">
+    //             <input class="form-control form-control-sm" type="text" placeholder="Modulo"
+    //                 aria-label=".form-control-sm" id="cliente_modulo" >
+    //             <!-- <label class="form-check-label">
+    //                 Cliente
+    //             </label> -->
+    //         </div>
+    //         <div class="col input-group">
+    //             <input class="form-control form-control-sm" type="text" placeholder="Región"
+    //                 aria-label=".form-control-sm" id="cliente_region" >
+    //             <!-- <label class="form-check-label">
+    //                 Cliente
+    //             </label> -->
+    //         </div>
+    //     </div>
+    //     `;
+
+    //     // agregar valores 
+    //     nodo_div_contendor.querySelector("#cliente_cac").value = verificar_data_para_pintar(arr_permisos, "identificador", "cac", "valor");
+    //     nodo_div_contendor.querySelector("#cliente_modulo").value = verificar_data_para_pintar(arr_permisos, "identificador", "modulo", "valor");
+    //     nodo_div_contendor.querySelector("#cliente_region").value = verificar_data_para_pintar(arr_permisos, "identificador", "region", "valor");
+
+    //     return nodo_div_contendor;
+    // };
+
+    const crear_nodo_per_operador = (data) => {
         let nodo_div_contendor = document.createElement("div");
-        nodo_div_contendor.className = "w-100 overflow-hidden p-3";
+        nodo_div_contendor.className = "w-100 overflow-hidden ";
+
+        let arr_permisos = data.permisos_operador;
+        let id360 = data.id;
+
 
         nodo_div_contendor.innerHTML = `
-            <div class="form-check d-flex justify-content-center">
-                <input class="form-check-input" type="checkbox" value="" id="chb_operador">
-                <label class="form-check-label ps-2">
+            <div class="form-switch d-flex justify-content-center" >
+            <input class="btn-check " type="checkbox" 
+                ${verificar_data_para_pintar(arr_permisos, "identificador", "categoria", "valor")}
+                data-control-bloque="true"
+                id="chb_operador${id360}"
+            data-permiso="chb_operador">
+                <label for="chb_operador${id360}" >
                     Operador
                 </label>
             </div>
 
-            <div class="pt-2">
-                <div class="col form-check">
+            <div class="pt-2 permisos">
+                <div class="">
+                    <label for="operador_documento_${id360}" class="form-check-label" >
+                        Documento
+                    </label> 
                     <input class="form-control form-control-sm" type="text"
                         placeholder="Documento" aria-label=".form-control-sm"
-                        id="operador_documento">
-                    <!-- <label class="form-check-label" >
-                    Cliente
-                </label> -->
+                        id="operador_documento_${id360}" data-permiso="operador_documento">
                 </div>
-                <div class="row pt-2">
-                    <div class="col form-check">
-                        <input class="form-check-input" type="checkbox" value=""
-                            id="operador_señas">
-                        <label class="form-check-label ps-2" >
+                <div class="row pt-2" >
+                    <div class="col p-1 form-switch" >
+                        <input class="btn-check" type="checkbox"
+                            id="operador_señas_${id360}"
+                            data-permiso="operador_señas"
+                            ${verificar_data_para_pintar(arr_permisos, "identificador", "senias", "valor")}>
+                        <label for="operador_señas_${id360}" >
                             Señas
                         </label>
                     </div>
-                    <div class="col form-check">
-                        <input class="form-check-input" type="checkbox" value=""
-                            id="operador_hogar">
-                        <label class="form-check-label ps-2" >
+                    <div class="col p-1 form-switch" >
+                        <input class="btn-check" type="checkbox"
+                            id="operador_hogar_${id360}"
+                            data-permiso="operador_hogar"
+                            ${verificar_data_para_pintar(arr_permisos, "identificador", "hogar", "valor")}>
+                        <label for="operador_hogar_${id360}" >
                             Hogar
+
                         </label>
                     </div>
-                    <div class="col form-check">
-                        <input class="form-check-input" type="checkbox" value=""
-                            id="operador_moviles">
-                        <label class="form-check-label ps-2" >
+                    <div class="col p-1 form-switch" >
+                        <input class="btn-check" type="checkbox"
+                            id="operador_moviles_${id360}"
+                            data-permiso="operador_moviles"
+                            ${verificar_data_para_pintar(arr_permisos, "identificador", "moviles", "valor")}>
+                        <label for="operador_moviles_${id360}" >
                             Móviles
                         </label>
                     </div>
                 </div>
             </div>
         `;
+        // agregar valores 
+        nodo_div_contendor.querySelector('[data-permiso="operador_documento"]').value = verificar_data_para_pintar(arr_permisos, "identificador", "documento", "valor");
 
         return nodo_div_contendor;
     }
+    // const crear_nodo_per_operador_old = (data) => {
+    //     let nodo_div_contendor = document.createElement("div");
+    //     nodo_div_contendor.className = "w-100 overflow-hidden ";
+
+    //     let arr_permisos = data.permisos_operador;
 
 
-    const crear_nodo_per_administrador = () => {
+    //     nodo_div_contendor.innerHTML = `
+    //         <div class="input-group d-flex justify-content-center">
+    //             <input class="form-check-input" type="checkbox" value="" id="chb_operador"
+    //             ${verificar_data_para_pintar(arr_permisos, "identificador", "categoria", "valor")}
+    //             data-control-bloque="true">
+    //             <label class="form-check-label ps-2">
+    //                 Operador
+    //             </label>
+    //         </div>
+
+    //         <div class="pt-2 permisos">
+    //             <div class="input-group">
+    //                 <input class="form-control form-control-sm" type="text"
+    //                     placeholder="Documento" aria-label=".form-control-sm"
+    //                     id="operador_documento" data-permiso="operador_documento">
+    //                 <!-- <label class="form-check-label" >
+    //                 Cliente
+    //             </label> -->
+    //             </div>
+    //             <div class="row pt-1">
+    //                 <div class="col p-1 input-group">
+    //                     <input class="form-check-input" type="checkbox" value=""
+    //                         id="operador_señas"
+    //                         ${verificar_data_para_pintar(arr_permisos, "identificador", "senias", "valor")}>
+    //                     <label class="form-check-label ps-2" >
+    //                         Señas
+    //                     </label>
+    //                 </div>
+    //                 <div class="col p-1 input-group">
+    //                     <input class="form-check-input" type="checkbox" value=""
+    //                         id="operador_hogar"
+    //                         ${verificar_data_para_pintar(arr_permisos, "identificador", "hogar", "valor")}>
+    //                     <label class="form-check-label ps-2" >
+    //                         Hogar
+    //                     </label>
+    //                 </div>
+    //                 <div class="col p-1 input-group">
+    //                     <input class="form-check-input" type="checkbox" value=""
+    //                         id="operador_moviles"
+    //                         ${verificar_data_para_pintar(arr_permisos, "identificador", "moviles", "valor")}>
+    //                     <label class="form-check-label ps-2" >
+    //                         Móviles
+    //                     </label>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     `;
+    //     // agregar valores 
+    //     nodo_div_contendor.querySelector("#operador_documento").value = verificar_data_para_pintar(arr_permisos, "identificador", "documento", "valor");
+
+    //     return nodo_div_contendor;
+    // }
+
+    const crear_nodo_per_administrador = (data) => {
 
         let nodo_div_contendor = document.createElement("div");
-        nodo_div_contendor.className = "w-100 overflow-hidden p-3";
+        nodo_div_contendor.className = "w-100 overflow-hidden";
+
+        let arr_permisos = data.permisos_admninistrador;
+        let id360 = data.id;
 
         nodo_div_contendor.innerHTML = `
-            <div class="form-check d-flex justify-content-center">
-                <input class="form-check-input" type="checkbox" value=""
-                    id="chb_administrador">
-                <label class="form-check-label ps-2" >
+            <div class="form-switch d-flex justify-content-center" >
+                <input class="btn-check" type="checkbox"
+                    id="chb_administrador_${id360}"
+                    data-permiso="chb_administrador"
+                    ${verificar_data_para_pintar(arr_permisos, "identificador", "categoria", "valor")}
+                    data-control-bloque="true">
+                <label for="chb_administrador_${id360}" >
                     Administrador
                 </label>
                 <hr>
             </div>
-            <div class="row row-cols-auto p-1">
-                <div class="col form-check">
-                    <input class="form-check-input" type="checkbox" value=""
-                        id="administrador_historico">
-                    <label class="form-check-label " >
+            <div class="row pt-2 permisos " >
+                <div class="col p-1 form-switch" >
+                    <input class="btn-check" type="checkbox"
+                                    id="administrador_historico_${id360}"
+                                    data-permiso="administrador_historico"
+                                    ${verificar_data_para_pintar(arr_permisos, "identificador", "historico", "valor")}>
+                    <label for="administrador_historico_${id360}" >
                         historico
                     </label>
                 </div>
-                <div class="col form-check">
-                    <input class="form-check-input" type="checkbox" value=""
-                        id="administrador_dashboard">
-                    <label class="form-check-label ">
-                        dashboard
+                <div class="col p-1  form-switch">
+                    <input class="btn-check" type="checkbox"
+                        id="administrador_dashboard_${id360}"
+                        data-permiso="administrador_dashboard"
+                        ${verificar_data_para_pintar(arr_permisos, "identificador", "dashboard", "valor")}>
+                    <label for="administrador_dashboard_${id360}">
+                        dashboard 
                     </label>
                 </div>
-                <div class="col form-check">
-                    <input class="form-check-input" type="checkbox" value=""
-                        id="administrador_usuarios">
-                    <label class="form-check-label ">
+                <div class="col p-1 form-switch">
+                    <input class="btn-check" type="checkbox"
+                                id="administrador_usuarios_${id360}"
+                                data-permiso="administrador_usuarios"
+                                ${verificar_data_para_pintar(arr_permisos, "identificador", "usuarios", "valor")} >
+                    <label for="administrador_usuarios_${id360}">
                         Usuarios
                     </label>
                 </div>
@@ -351,6 +741,56 @@ const funciones_usuarios = () => {
 
         return nodo_div_contendor;
     }
+
+    // const crear_nodo_per_administrador_old = (data) => {
+
+    //     let nodo_div_contendor = document.createElement("div");
+    //     nodo_div_contendor.className = "w-100 overflow-hidden";
+
+    //     let arr_permisos = data.permisos_admninistrador;
+
+    //     nodo_div_contendor.innerHTML = `
+    //         <div class="input-group d-flex justify-content-center">
+    //             <input class="form-check-input" type="checkbox" value=""
+    //                 id="chb_administrador"
+    //                 ${verificar_data_para_pintar(arr_permisos, "identificador", "categoria", "valor")}
+    //                 data-control-bloque="true">
+    //             <label class="form-check-label ps-2" >
+    //                 Administrador
+    //             </label>
+    //             <hr>
+    //         </div>
+    //         <div class="row pt-2 permisos">
+    //             <div class="col input-group">
+    //                 <input class="form-check-input" type="checkbox" value=""
+    //                     id="administrador_historico"
+    //                     ${verificar_data_para_pintar(arr_permisos, "identificador", "historico", "valor")}>
+    //                 <label class="form-check-label ps-2" >
+    //                     historico
+    //                 </label>
+    //             </div>
+    //             <div class="col  input-group">
+    //                 <input class="form-check-input" type="checkbox" value=""
+    //                     id="administrador_dashboard"
+    //                     ${verificar_data_para_pintar(arr_permisos, "identificador", "dashboard", "valor")}>
+    //                 <label class="form-check-label ps-2">
+    //                     dashboard
+    //                 </label>
+    //             </div>
+    //             <div class="col input-group">
+    //                 <input class="form-check-input" type="checkbox" value=""
+    //                     id="administrador_usuarios"
+    //                     ${verificar_data_para_pintar(arr_permisos, "identificador", "usuarios", "valor")} >
+    //                 <label class="form-check-label ps-2">
+    //                     Usuarios
+    //                 </label>
+    //             </div>
+    //         </div>
+    //     `;
+
+    //     return nodo_div_contendor;
+    // }
+
 
 
     const lanzador = async () => {
@@ -379,19 +819,19 @@ const funciones_usuarios = () => {
             {
                 target: "permisos_cliente",
                 render: function (data, row, nodo_row, nodo_cell) {
-                    nodo_cell.insertAdjacentElement("beforeEnd", crear_nodo_per_cliente());
+                    nodo_cell.insertAdjacentElement("beforeEnd", crear_nodo_per_cliente(row));
                 }
             },
             {
                 target: "permisos_operador",
                 render: function (data, row, nodo_row, nodo_cell) {
-                    nodo_cell.insertAdjacentElement("beforeEnd", crear_nodo_per_operador());
+                    nodo_cell.insertAdjacentElement("beforeEnd", crear_nodo_per_operador(row));
                 }
             },
             {
                 target: "permisos_admninistrador",
                 render: function (data, row, nodo_row, nodo_cell) {
-                    nodo_cell.insertAdjacentElement("beforeEnd", crear_nodo_per_administrador());
+                    nodo_cell.insertAdjacentElement("beforeEnd", crear_nodo_per_administrador(row));
                 }
             }
         ];
@@ -523,6 +963,17 @@ const funciones_usuarios = () => {
 
 
         let renglon = crear_renglon_tabla(data_renglon, columnas_usuarios, peticion_usuarios_data, renders);
+
+        // deshabilitar los input
+        let nodos_permisos = renglon.querySelectorAll(".permisos input");
+        console.log("nodos_permisos", nodos_permisos);
+        if (nodos_permisos) {
+            for (nodo of nodos_permisos) {
+                nodo.disabled = true;
+            }
+        }
+
+        //  incurstar en la vista 
         nodo_tabla_usuarios.querySelector(".tbody")
             .insertAdjacentElement("beforeEnd", renglon);
     };
@@ -576,17 +1027,62 @@ const funciones_usuarios = () => {
             nodo_me.addEventListener("change", function fn_tabla_usuarios_cambio(e) {
                 const target = e.target;
                 console.log(target);
-                let nodo = target;
+
+                // busqueda de la celda td 
+                let bandera_control = target.getAttribute("data-control-bloque");
+                if (bandera_control === "true") {
+                    let busqueda_td = target.closest('td');
+                    let input_permisos = busqueda_td.querySelectorAll(".permisos input");
+                    if (input_permisos) {
+                        for (input_p of input_permisos) {
+                            // if (target.checked) {
+                            //     input_p.disabled = false;
+                            // } else {
+                            //     input_p.disabled = true;
+                            // }
+                            let tipo = input_p.type;
+
+
+                            if (tipo) {
+                                switch (tipo) {
+                                    case "text":
+                                        if (target.checked) {
+                                            input_p.disabled = false;
+                                        } else {
+                                            input_p.disabled = true;
+                                        }
+                                        break;
+                                    case "checkbox":
+                                        // console.log("checkbox", input_p.parentNode);s
+                                        // if (target.checked) {
+                                        //     input_p.parentNode.classList.remove("disabled");
+                                        // } else {
+                                        //     input_p.parentNode.classList.add("disabled");
+                                        // }
+                                        if (target.checked) {
+                                            input_p.disabled = false;
+                                        } else {
+                                            input_p.disabled = true;
+                                        }
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+                            }
+
+                        }
+                    }
+                }
 
                 // busqueda asceedente hacia el nodo de renglon 
-                let busqueda = target.closest('tr');
+                let busqueda_tr = target.closest('tr');
 
-                if (busqueda) {
-                    nodo = busqueda;
+                if (busqueda_tr) {
 
                     // verificar si es un nuevo usuarios
 
-                    let es_nuevo = nodo.getAttribute("data-r-sin_guardar");
+                    let es_nuevo = busqueda_tr.getAttribute("data-r-sin_guardar");
 
 
                     if (es_nuevo) {
@@ -594,7 +1090,7 @@ const funciones_usuarios = () => {
                         return;
                     }
 
-                    nodo.setAttribute("data-modificado", true);
+                    busqueda_tr.setAttribute("data-modificado", true);
                 }
             });
         }
@@ -627,14 +1123,14 @@ const funciones_usuarios = () => {
                         switch (columna.class) {
                             case "permisos_cliente":
                                 let obj_per_cliente = {};
-                                nodo_categoria = nodo_td.querySelector("#chb_cliente");
+                                nodo_categoria = nodo_td.querySelector('[data-permiso="chb_cliente"]');
                                 obj_per_cliente["categoria"] = (nodo_categoria.checked) ? "1" : "0";
                                 obj_per_cliente["descripcion"] = "permisos_cliente";
 
                                 if (nodo_categoria.checked) {
-                                    obj_per_cliente["cac"] = nodo_td.querySelector("#cliente_cac").value;
-                                    obj_per_cliente["modulo"] = nodo_td.querySelector("#cliente_modulo").value;
-                                    obj_per_cliente["region"] = nodo_td.querySelector("#cliente_region").value;
+                                    obj_per_cliente["cac"] = nodo_td.querySelector('[data-permiso="cliente_cac"').value;
+                                    obj_per_cliente["modulo"] = nodo_td.querySelector('[data-permiso="cliente_modulo"').value;
+                                    obj_per_cliente["region"] = nodo_td.querySelector('[data-permiso="cliente_region"').value;
                                 } else {
                                     obj_per_cliente["cac"] = null;
                                     obj_per_cliente["modulo"] = null;
@@ -646,15 +1142,15 @@ const funciones_usuarios = () => {
                                 break;
                             case "permisos_operador":
                                 let obj_pe_operador = {};
-                                nodo_categoria = nodo_td.querySelector("#chb_operador");
+                                nodo_categoria = nodo_td.querySelector('[data-permiso="chb_operador"]');
                                 obj_pe_operador["categoria"] = (nodo_categoria.checked) ? "1" : "0";
                                 obj_pe_operador["descripcion"] = "permisos_operador";
 
                                 if (nodo_categoria.checked) {
-                                    obj_pe_operador["documento"] = nodo_td.querySelector("#operador_señas").value;
-                                    obj_pe_operador["señas"] = (nodo_td.querySelector("#operador_señas").checked) ? "1" : "0";
-                                    obj_pe_operador["hogar"] = (nodo_td.querySelector("#operador_señas").checked) ? "1" : "0";
-                                    obj_pe_operador["moviles"] = (nodo_td.querySelector("#operador_señas").checked) ? "1" : "0";
+                                    obj_pe_operador["documento"] = nodo_td.querySelector('[data-permiso="operador_señas"').value;
+                                    obj_pe_operador["señas"] = (nodo_td.querySelector('[data-permiso="operador_señas"').checked) ? "1" : "0";
+                                    obj_pe_operador["hogar"] = (nodo_td.querySelector('[data-permiso="operador_señas"').checked) ? "1" : "0";
+                                    obj_pe_operador["moviles"] = (nodo_td.querySelector('[data-permiso="operador_señas"').checked) ? "1" : "0";
 
                                 } else {
                                     obj_pe_operador["documento"] = "";
@@ -667,14 +1163,14 @@ const funciones_usuarios = () => {
                                 break;
                             case "permisos_admninistrador":
                                 let obj_pe_administrador = {};
-                                nodo_categoria = nodo_td.querySelector("#chb_administrador");
+                                nodo_categoria = nodo_td.querySelector('[data-permiso="chb_administrador"');
                                 obj_pe_administrador["categoria"] = (nodo_categoria.checked) ? "1" : "0";
                                 obj_pe_administrador["descripcion"] = "permisos_admninistrador";
 
                                 if (nodo_categoria.checked) {
-                                    obj_pe_administrador["historico"] = (nodo_td.querySelector("#administrador_historico").value) ? "1" : "0";
-                                    obj_pe_administrador["dashboard"] = (nodo_td.querySelector("#administrador_dashboard").value) ? "1" : "0";
-                                    obj_pe_administrador["usuarios"] = (nodo_td.querySelector("#administrador_usuarios").value) ? "1" : "0";
+                                    obj_pe_administrador["historico"] = (nodo_td.querySelector('[data-permiso="administrador_historico"').value) ? "1" : "0";
+                                    obj_pe_administrador["dashboard"] = (nodo_td.querySelector('[data-permiso="administrador_dashboard"').value) ? "1" : "0";
+                                    obj_pe_administrador["usuarios"] = (nodo_td.querySelector('[data-permiso="administrador_usuarios"').value) ? "1" : "0";
 
                                 } else {
                                     obj_pe_administrador["historico"] = "";
@@ -748,6 +1244,16 @@ const funciones_usuarios = () => {
         return Math.floor(Math.random() * max);
     }
 
+    const get_variables = () => {
+        return {
+            peticion_usuarios_data,
+            nodo_tabla_usuarios,
+            renders_tabla_usuarios,
+            columnas_usuarios,
+            peticion_entorno,
+        }
+    };
+
 
     return {
         peticion_usuarios,
@@ -758,6 +1264,9 @@ const funciones_usuarios = () => {
         recaudar_nuevos_usuarios,
         extraer_info_renglon,
         recaudar_usuarios_modificados,
-        guardar
+        guardar,
+        verificar_data_para_pintar,
+        get_variables,
+        peticion_detalles_entorno
     }
 };

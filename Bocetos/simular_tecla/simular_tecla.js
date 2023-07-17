@@ -65,7 +65,7 @@ nodo_panel.addEventListener("keyup", function (e) {
                     nodo_siguiente.focus();
                     try {
                         nodo_siguiente.select();
-                    }catch (error) {
+                    } catch (error) {
 
                     }
                 } else {
@@ -98,4 +98,116 @@ almacenar_nodos_tab();
 
 function lanzar_algo() {
     console.warn("se continua el proceso");
+}
+
+//---------------------------------------------
+// verificar que el nodo este vivible para el usuario
+
+function verificar_dentro_marco_visible(nodo) {
+    let nodo_topView = window.scrollIntoView();
+    let posButView = nodo_topView + window.height;
+
+    let position_element = nodo.getBoundingClientRect();
+    let elemTop
+
+}
+
+function altura_visible_pagina() {
+    var body = document.body,
+        html = document.documentElement;
+
+    console.log("body.scrollHeight ", body.scrollHeight);
+    console.log("body.offsetHeight", body.offsetHeight);
+    console.log("html.clientHeight", html.clientHeight);
+    console.log("html.scrollHeight", html.scrollHeight);
+    console.log("html.offsetHeight", html.offsetHeight);
+
+
+    // var height = Math.max(body.scrollHeight, body.offsetHeight,
+    //     html.clientHeight, html.scrollHeight, html.offsetHeight);
+    var height = Math.max(body.offsetHeight,
+        html.clientHeight, html.scrollHeight, html.offsetHeight);
+
+    return height;
+}
+
+nodo_panel.addEventListener("select", function (e) {
+    const target = e.target;
+
+    console.log("evento select", target);
+
+});
+
+
+nodo_panel.addEventListener("focus", (e) => {
+    const target = e.target;
+
+    console.log("evento focus", target);
+
+}, true);
+nodo_panel.addEventListener("blur", (e) => {
+    const target = e.target;
+
+    console.log("evento blur", target);
+
+}, true);
+
+//evento que no burbujea que nos se propaga
+nodo_panel.addEventListener("focus", (event) => {
+    console.log("desde el focus");
+    event.target.style.background = "pink";
+},
+    true
+);
+
+nodo_panel.addEventListener("blur",
+    (event) => {
+        event.target.style.background = "";
+    },
+    true
+);
+// evento que se propaga
+// nodo_panel.addEventListener("focusin", (event) => {
+//     event.target.style.background = "blue";
+// });
+
+// nodo_panel.addEventListener("focusout", (event) => {
+//     event.target.style.background = "";
+// });
+
+// --------------------------------------------
+// evento demo focus 
+const form = document.getElementById("form");
+
+
+// evento que no burbujea que nos se propaga
+// form.addEventListener( "focus",(event) => {
+//     event.target.style.background = "pink";
+//   },
+//   true
+// );
+
+// form.addEventListener(
+//   "blur",
+//   (event) => {
+//     event.target.style.background = "";
+//   },
+//   true
+// );
+
+// evento que si buirbujea , se propaga 
+form.addEventListener("focusin", (event) => {
+    event.target.style.background = "blue";
+});
+
+form.addEventListener("focusout", (event) => {
+    event.target.style.background = "";
+});
+
+var vent_simulacion = null;
+function nueva_ventana() {
+    // vent_simulacion = window.open("", "hello", "width=500,height=500");ssssss
+    // vent_simulacion = window.open("", "_blank");
+    // vent_simulacion = window.open("https://www.google.com", "_blank");
+    vent_simulacion = window.open("https://peru.claro360.com/dev_telepresencia/VideoLlamada", "_blank");
 }

@@ -1,5 +1,5 @@
 // import * as temp_modal from "./modal_desechable.js";
-import moduloA from "./funcionesA.js";
+import * as hola from "./funcionesA.js";
 
 // temp_modal.lanzar_modal_demo();
 

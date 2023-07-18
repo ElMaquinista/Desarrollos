@@ -1,0 +1,5 @@
+sudo keytool -import -trustcacerts -alias kaspersky_01 -file /home/ubuntu/cert/aws/2_Kaspersky.crt -keystore /opt/payara5/glassfish/domains/production/config/keystore.jks
+
+sudo keytool -import -trustcacerts -alias kaspersky_01 -file /home/ubuntu/cert/aws/2_Kaspersky.crt -keystore /opt/payara5/glassfish/domains/production/config/cacert.jks
+
+

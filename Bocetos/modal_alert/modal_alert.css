@@ -1,0 +1,124 @@
+:root {
+    --rojo-claro360: rgba(218, 41, 28);
+    --shadow-rgb: 0, 0, 0;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-light-rgb: 0, 0, 0;
+}
+
+/* ---------------------------------- */
+/* estilos para las alertas  */
+/* ---------------------------------- */
+
+.alert_360 .content_alert_360 {
+    color: #000000;
+}
+
+.alert_360 .btn_alert_360 {
+    /*     text-align:center;
+        display:flex;
+        align-content: center;
+        justify-content:center;
+        align-items:center; */
+}
+
+/* ---------------------------------- */
+/* estilos para el catalogo de imagenes  */
+/* ---------------------------------- */
+.contendor_catalogo_fondos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 3fr));
+    grid-gap: 10px;
+    width: 400px;
+    padding: 10px;
+    grid-auto-columns: minmax(10px, auto);
+    ;
+}
+
+.contendor_catalogo_fondos .item_imagen {
+    width: 100px;
+    border: #000000;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+}
+.cancelar_imagen´{
+    display: flex;
+    position: relative;
+    top: -10px;
+    background-color: red;
+    width: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ---------------------------------- */
+/* estilos para el boton de input  */
+/* ---------------------------------- */
+
+/**********File Inputs**********/
+.container-input {
+    display: flex;
+    position: relative;
+    text-align: center;
+    /* background: #282828; */
+    /* border-top: 5px solid #c39f77; */
+    /* padding: 50px 0; */
+    /* border-radius: 6px; */
+    /* width: 50%; */
+    /* margin: 0 auto; */
+    /* margin-bottom: 20px; */
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile+label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+}
+
+.inputfile+label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+
+.iborrainputfile {
+    font-size: 16px;
+    font-weight: normal;
+    font-family: 'Lato';
+}
+
+/* ------------------ */
+
+.inputfile-1+label {
+    color: #fff;
+    background-color: #c39f77;
+}
+
+.inputfile-1:focus+label,
+.inputfile-1.has-focus+label,
+.inputfile-1+label:hover {
+    background-color: #9f8465;
+}

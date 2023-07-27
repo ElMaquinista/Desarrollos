@@ -24,10 +24,23 @@ const nameInput = document.querySelector("#name");
 
 window.onbeforeunload = preguntarAntesDeSalir;
 
-function preguntarAntesDeSalir() {
+function preguntarAntesDeSalir(e) {
+    console.log(e);
+
     console.log("entro el 3");
     alert("hola");
     // return "¿Seguro que quieres salir?";
 
-    event.returnValue = '';
+
+    event.returnValue = 'hola';
 }
+
+window.onpagehide = (event) => {
+    event.preventDefault();
+    console.log("onpagehide", event);
+    if (event.persisted) {
+      /* the page isn't being discarded, so it can be reused later */
+      console.log("no se que hace ");
+    }
+    event.novedades = "juas juas ";
+  };

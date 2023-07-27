@@ -1,5 +1,5 @@
 
- function crear_modal_desechable(data) {
+export function crear_modal(data) {
     // usando bootstrap 4
     // ----data
     // id
@@ -81,7 +81,7 @@
 }
 
 
- function lanzar_modal_demo() {
+export function lanzar_modal_demo() {
     let nodo_cuerpo = document.createElement("div");
     nodo_cuerpo.innerHTML = `
     <div> Su solicitud ha sido enviada con exito </div>

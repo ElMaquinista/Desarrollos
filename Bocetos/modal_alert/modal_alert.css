@@ -43,13 +43,15 @@
 }
 .cancelar_imagen´{
     display: flex;
-    position: relative;
+    position: absolute;
     top: -10px;
     background-color: red;
     width: 20px;
     text-align: center;
     align-items: center;
     justify-content: center;
+    right: 10px;
+    cursor: pointer;
 }
 
 /* ---------------------------------- */
@@ -121,4 +123,13 @@
 .inputfile-1.has-focus+label,
 .inputfile-1+label:hover {
     background-color: #9f8465;
+}
+
+/* ---------------------------------- */
+/* para el contenido del modal de filtros */
+/* ---------------------------------- */
+.contendor_catalogo_fondos .item_imagen.active{
+    border-color: red;
+    border-style: groove;
+    border-width: 2px;
 }

@@ -26,10 +26,17 @@
 
 <body>
     <div class="test modal"></div>
-    <script src="./modal_desechable.js"></script>
+    <!-- <script type="module" src="./modal_desechable.js"></script> -->
     <!-- <script type="module" src="./main.js"></script> -->
     <!-- <script src="./main.js"></script> -->
     <!-- <script type="module" src="./funcionesA.js"></script> -->
+    <script>
+        let entorno = null;
+
+        (async function () {
+            entorno =await import("./main.js");
+        })();
+    </script>
 </body>
 
 </html>

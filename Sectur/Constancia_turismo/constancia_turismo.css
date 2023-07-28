@@ -21,7 +21,8 @@
 /* -------------------------------------- */
 /* formato de hoja  */
 .formato_hoja {
-    height: 700px;
+    /* height: 700px; */
+    height: 100%;
     width: 100%;
     /* width: 1010px; */
     /* border-style: dashed; */
@@ -106,9 +107,10 @@
     padding: 30px 0 0 0;
     font-size: 15px;
     margin: 0 auto;
-    width: 800px;
+    width: 500px;
     text-align: center;
     text-align: center;
+    background-color:red ;
 }
 .texto_razon_doc{
     width: 600px;

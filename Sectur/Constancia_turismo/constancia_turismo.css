@@ -1,0 +1,125 @@
+/* .formato_hoja {
+    background-image: url("http://127.0.0.1:5500/Sectur/Constancia_turismo/img/escudo_mexico.png");
+    background-repeat: no-repeat;
+} */
+.contendor_imagen_fondo {
+    opacity: 0.6;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+
+    height: 500;
+    width: 100%;
+
+    background-image: url("http://127.0.0.1:5500/Sectur/Constancia_turismo/img/escudo_mexico.png");
+    background-repeat: no-repeat;
+    display: none;
+}
+
+/* -------------------------------------- */
+/* -------------------------------------- */
+/* formato de hoja  */
+.formato_hoja {
+    height: 700px;
+    width: 100%;
+    /* width: 1010px; */
+    /* border-style: dashed; */
+    font-size: 8px;
+    overflow: hidden;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+.barra_logos {
+    font-size: 20px;
+    width: 100%;
+    overflow: hidden;
+    height: 130px;
+}
+
+.tabla_logos {
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+}
+
+.tabla_logos td img {
+    margin: 0 auto;
+    width: 300px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    display: flex;
+}
+
+.texto_etiquetas {
+    font-size: 15px;
+    padding: 0 0 0 50px;
+    font-size: 20px;
+    color: #818181;
+}
+
+.texto_clave_numero {
+    color: #202f74;
+    font-weight: bold;
+}
+
+.texto_datos_persona {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.no_fecha {
+    padding: 0 30px 0 0;
+    font-size: 13px;
+    text-align: right;
+}
+
+
+.plantilla_tabla {
+    font-size: 20px;
+    width: 100%;
+    overflow: hidden;
+    height: 130px;
+}
+
+.texto_vertical {
+    writing-mode: vertical-rl;
+}
+
+.cuerpo_datos {
+    padding: 10px 0 10px 0;
+}
+
+.firma {
+    font-size: 20px;
+    padding: 30px 0 0 0;
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.letras_pequeñas {
+    padding: 30px 0 0 0;
+    font-size: 15px;
+    margin: 0 auto;
+    width: 800px;
+    text-align: center;
+    text-align: center;
+}
+.texto_razon_doc{
+    width: 600px;
+    overflow: hidden;
+    margin: 0 auto;
+    font-size: 30px;
+}
+
+/* -------------------------------------- */
+/* -------------------------------------- */
+/* Formatos desde bootstrap 5 */
+.fw-bold {
+    font-weight: 700;
+}

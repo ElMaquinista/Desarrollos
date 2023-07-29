@@ -227,6 +227,7 @@ const aplicar_filtros = () => {
 
     if (nodo_radio_tipo_filtro_publicador) {
         let tipo_filtro = nodo_radio_tipo_filtro_publicador.value;
+        let d = {};
         switch (tipo_filtro) {
             case "filtro_blur":
                 let nodo_blur_seleccion = document.querySelector('input[name="filtro_blur"]:checked');
@@ -395,69 +396,33 @@ async function lanzar_modal_filtro() {
         nodo_cuerpo: nodo_cuerpo,
         className: "modal_filtro_publicador",
     };
-    let nodo_modal = crear_modal_desechable(data);
-
-//     let nodo_modal = document.createElement("div");
-//     nodo_modal.innerHTML = `<div class="modal-dialog modal-dialog-centered ${data.clase_modal_dialog}">
-//     <div class="modal-content">
-//         <div class="modal-header">
-//             <h5 class="modal-title" id="exampleModalLabel">${data.titulo}</h5>
-//             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-//                 <span aria-hidden="true">&times;</span>
-//             </button>
-//         </div>
-//         <div class="modal-body">
-            
-//         </div>
-//         <div class="modal-footer">
-//             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-//             <!-- <button type="button" class="btn btn-primary">Descargar comprobante</button> -->
-//         </div>
-//     </div>
-// </div>`;
-
-//     let obj_nodo_modal = new bootstrap.Modal(nodo_modal);
-
-
-    let nodo_footer = nodo_modal[0].querySelector(".modal-footer");
-    nodo_footer.insertAdjacentElement("beforeEnd", nodo_boton_aceptar);
-
-
-    console.log("id  modal", nodo_modal);
-
 
     ME_filtros_publisher(nodo_cuerpo);
-    // ME_filtros_publisher(nodo_footer);
 
-    nodo_boton_aceptar.addEventListener("click", function me_acepatar(e) {
-        const target = e.target;
-        // se tiene que aplicar las validaciones 
+    //-----------------------
+    let obj_modal = crear_modal_desechable_bs5(data);
+
+    let nodo_modal = obj_modal._element;
+
+    let nodo_footer = nodo_modal.querySelector(".modal-footer");
+
+    nodo_footer.insertAdjacentElement("beforeEnd", nodo_boton_aceptar);
+
+    nodo_boton_aceptar.addEventListener("click", function acaptar(e) {
+        console.log(" aceptó las codiciones");
 
         if (validar_modal_filtro()) {
             console.log("Aplicando filtros");
             aplicar_filtros();
 
-            $('#' + data.id).modal('hide');
+            obj_modal.hide()
         }
-
 
     });
 
 
-    // jQuery.noConflict();
-
-    $('#' + data.id).modal().show();
-
-    $('#' + data.id).on('hidden.bs.modal', function () {
-        console.log("evento al cerrar modal lanzado");
-        $('#' + data.id).modal('dispose');
-        document.querySelector('#' + data.id).remove();
-    })
 }
 
-function lanzar_modal_filtro_v2(){
-    // fucnion para usar el modal de bs5
-}
 
 
 function validar_modal_filtro() {
@@ -536,12 +501,8 @@ async function lanzar_modal_audio_salida() {
         nodo_cuerpo: nodo_contenedor,
         className: "modal_filtro_publicador",
     };
-    let nodo_modal = crear_modal_desechable(data);
-    let nodo_footer = nodo_modal[0].querySelector(".modal-footer");
-    nodo_footer.insertAdjacentElement("beforeEnd", nodo_boton_aceptar);
 
 
-    console.log("id  modal", nodo_modal);
 
 
     ME_filtros_publisher(nodo_contenedor);
@@ -549,6 +510,21 @@ async function lanzar_modal_audio_salida() {
 
     nodo_boton_aceptar.addEventListener("click", function me_acepatar(e) {
         const target = e.target;
+
+    });
+
+    //-----------------------------
+
+    let obj_modal = crear_modal_desechable_bs5(data);
+
+    let nodo_modal = obj_modal._element;
+
+    let nodo_footer = nodo_modal.querySelector(".modal-footer");
+
+    nodo_footer.insertAdjacentElement("beforeEnd", nodo_boton_aceptar);
+
+    nodo_boton_aceptar.addEventListener("click", function acaptar(e) {
+        console.log(" aceptó las codiciones");
         let nodo_select = document.querySelector(".seleccion_audio_salida ");
         let iddevice = nodo_select.value;
 
@@ -557,20 +533,12 @@ async function lanzar_modal_audio_salida() {
 
             console.log("aplicando salida de audio");
 
-            $('#' + data.id).modal('hide');
+            obj_modal.hide();
+
         }
 
     });
 
-    // jQuery.noConflict();
-
-    $('#' + data.id).modal().show();
-
-    $('#' + data.id).on('hidden.bs.modal', function () {
-        console.log("evento al cerrar modal lanzado");
-        $('#' + data.id).modal('dispose');
-        document.querySelector('#' + data.id).remove();
-    })
 
 
 }
@@ -622,3 +590,48 @@ function obtenerIdNavegador() {
     return nIdx;
 }
 
+function crear_modal_desechable_bs5(data) {
+    // lanzar un modal que desaparece al cerrarse, 
+    // basado en bs5 
+    // se lanza automaticamente
+    // retorna el objeto mnodal
+
+    let nodo_modal = document.createElement("div");
+    nodo_modal.className = "modal " + data.className;
+    nodo_modal.setAttribute("id", data.id);
+    nodo_modal.setAttribute("tabindex", "-1");
+    nodo_modal.innerHTML = `
+  <div class="modal-dialog ${data.clase_modal_dialog}">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+        <h5 class="modal-title" id="exampleModalLabel">${data.titulo}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+  `;
+
+    let div_cuerpo = nodo_modal.querySelector(".modal-body");
+    if (data.nodo_cuerpo) {
+        div_cuerpo.insertAdjacentElement("beforeend", data.nodo_cuerpo);
+    }
+
+    document.querySelector("body").insertAdjacentElement("beforeEnd", nodo_modal);
+
+    const myModal = new bootstrap.Modal(nodo_modal);
+
+    myModal.show();
+
+    nodo_modal.addEventListener('hidden.bs.modal', event => {
+        myModal.dispose();
+        nodo_modal.remove();
+    })
+    return myModal;
+}

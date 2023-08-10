@@ -47,10 +47,23 @@
                 <input type="checkbox" name="check" checked disabled value="opcion" />
                 <button name="intent" value="save">Save</button>
                 <button name="intent" value="saveAsCopy">Save As Copy</button>
-              </form>
-              
-              <output id="output"></output>
+            </form>
 
+            <output id="output"></output>
+
+        </div>
+        <div>
+            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+            <label class="btn btn-secondary" for="option1">Checked</label>
+
+            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+            <label class="btn btn-secondary" for="option2">Radio</label>
+
+            <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" disabled>
+            <label class="btn btn-secondary" for="option3">Disabled</label>
+
+            <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
+            <label class="btn btn-secondary" for="option4">Radio</label>
         </div>
 
         <div id="Mymodal">
@@ -62,9 +75,11 @@
     <div>
         <button class="btn btn-danger d-none" onclick="lanzar_modal_filtro()"> lanzar modal seleccionar
             filtro</button>
-        <button class="btn btn-success" onclick="lanzar_modal_filtro()"> lanzar modal desechable seleccionar
+        <button class="btn btn-success" onclick="habitat_modal_filtro_publisher.lanzar_modal_filtro()"> lanzar modal
+            desechable seleccionar
             filtro</button>
-        <button class="btn btn-dark" onclick="lanzar_modal_audio_salida()"> lanzar modal para seleccionar audio salida</button>
+        <button class="btn btn-dark" onclick="habitah_modal_audio_salida.lanzar_modal_audio_salida()"> lanzar modal para
+            seleccionar audio salida</button>
 
         <button class="btn btn-warning" onclick="validar_navegador()"> traer dispositivos de salida</button>
     </div>

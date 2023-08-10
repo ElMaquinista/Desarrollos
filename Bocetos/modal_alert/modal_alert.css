@@ -36,22 +36,26 @@
 
 .contendor_catalogo_fondos .item_imagen {
     width: 100px;
-    border: #000000;
+    /* border: #000000;
     border-width: 1px;
-    border-style: solid;
+    border-style: solid; */
     cursor: pointer;
 }
-.cancelar_imagen´{
+
+.cancelar_imagen´ {
     display: flex;
     position: absolute;
     top: -10px;
     background-color: red;
     width: 20px;
+    height: 20px;
     text-align: center;
     align-items: center;
     justify-content: center;
     right: 10px;
     cursor: pointer;
+    border-radius: 50%;
+    color: #fff;
 }
 
 /* ---------------------------------- */
@@ -98,8 +102,8 @@
 }
 
 .inputfile+label svg {
-    width: 1em;
-    height: 1em;
+    /* width: 1em; */
+    /* height: 1em; */
     vertical-align: middle;
     fill: currentColor;
     margin-top: -0.25em;
@@ -116,20 +120,87 @@
 
 .inputfile-1+label {
     color: #fff;
-    background-color: #c39f77;
+    background-color: var(--rojo-claro360);
 }
 
 .inputfile-1:focus+label,
 .inputfile-1.has-focus+label,
 .inputfile-1+label:hover {
-    background-color: #9f8465;
+    background-color: var(--rojo-claro360);
 }
 
 /* ---------------------------------- */
 /* para el contenido del modal de filtros */
 /* ---------------------------------- */
-.contendor_catalogo_fondos .item_imagen.active{
+.contendor_catalogo_fondos .item_imagen.active {
     border-color: red;
     border-style: groove;
     border-width: 2px;
+
+}
+
+.seleccion_filtro_publicador {
+    display: flex;
+}
+
+.seleccion_filtro_publicador .item_tipo_filtro label {
+    background: var(--rojo-claro360);
+    border-color: #961d14;
+    height: 25px;
+}
+
+.seleccion_filtro_publicador .item_tipo_filtro .btn-check:active {
+    color: #fff;
+    background-color: #961d14;
+    border-color: #961d14;
+    box-shadow: none;
+}
+
+
+.modal_efimero_bs5 .modal-content {
+    color: #fff;
+    background: #1a1a1a !important;
+}
+
+.modal_efimero_bs5 .btn_aceptar {
+    background-color: var(--rojo-claro360);
+    border-color: var(--rojo-claro360);
+    color: #fff;
+}
+
+.modal_efimero_bs5 .btn {
+    border-radius: 30px;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+    display: flex;
+}
+
+.contenedor_subir_imagen{
+
+}
+
+/* se debe buscar algun para colocar los estilos  */
+/* para componentes de funciones extendidas */
+.extended_functions_preview{
+    display:flex;
+    justify-content: space-between;
+    font-size:13px;
+    padding: 10px 0 0 0;
+
+}
+.extended_functions_preview .name_option{
+    padding-left: 15px
+}
+.extended_functions_preview .open_options{
+    border: none;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: normal;
+    box-sizing: border-box;
+    border-radius: 6px;
+    background: #da291d;
+    border-radius: 20px;
+
 }

@@ -9,7 +9,7 @@ function crear_modal_desechable_bs5(data) {
     nodo_modal.setAttribute("id", data.id);
     nodo_modal.setAttribute("tabindex", "-1");
     nodo_modal.innerHTML = `
-    <div class="modal-dialog ${data.clase_modal_dialog}">
+    <div class="modal-dialog modal-dialog-centered ${data.clase_modal_dialog}">
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">
@@ -48,10 +48,10 @@ function crear_modal_desechable_bs5(data) {
 function obtenerIdNavegador(arr_navegadores) {
     // usado para validar que esté soportado
     let aKeys = ["MSIE", "Firefox", "Safari", "Chrome", "Opera"];
-    if(arr_navegadores){
+    if (arr_navegadores) {
         aKeys = arr_navegadores;
     }
-    
+
     let sUsrAg = navigator.userAgent;
     let nIdx = aKeys.length - 1;
 

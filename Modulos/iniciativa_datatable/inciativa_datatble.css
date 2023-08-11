@@ -1,0 +1,6 @@
+.pizarra_usuarios [data-modificado="true"]{
+    background: #F9FF33;
+}
+.pizarra_usuarios [data-r-sin_guardar="true"]{
+    background: #ffbc33;
+}

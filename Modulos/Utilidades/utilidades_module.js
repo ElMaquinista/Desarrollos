@@ -1,6 +1,6 @@
 // requirido => 
 
-function buscar_nodos_padre(e, funcion_switch) {
+export function buscar_nodos_padre(e, funcion_switch) {
     let path = e.path || (e.composedPath && e.composedPath());
 
     if (path) {
@@ -22,7 +22,7 @@ function buscar_nodos_padre(e, funcion_switch) {
     }
 }
 
-async function construir_miniatura_canvas_pdf(d = {}) {
+export async function construir_miniatura_canvas_pdf(d = {}) {
     // requiere PDF js 2.0.9
     let retorno = await pdfjsLib.getDocument(d.url_pdf).then(async (pdf) => {
         let pdf_estado = {
@@ -55,7 +55,7 @@ async function construir_miniatura_canvas_pdf(d = {}) {
     return retorno;
 }
 
-async function leer_archivo_json(ruta) {
+export async function leer_archivo_json(ruta) {
     let peticion = await fetch(ruta)
         .then((response) => response.json())
         .then((json) => json);

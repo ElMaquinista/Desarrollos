@@ -244,7 +244,6 @@ export class inicDataTable {
         let data_renglon = data;
         let renders = this.init.render.slice();
         // estos render son temporales y solo sirven mientras este metodo esté en ejecución
-        let nodo_input = null;
         renders.concat(renders_temporales);
 
 
@@ -254,6 +253,7 @@ export class inicDataTable {
         //  incurstar en la vista 
         this.nodo_DataTable.querySelector(".tbody")
             .insertAdjacentElement("beforeEnd", renglon);
+        return renglon;
     }
     get_renglon(_index) {
         let index = parseInt(_index);

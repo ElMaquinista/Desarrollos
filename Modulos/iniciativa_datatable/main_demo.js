@@ -125,10 +125,13 @@ export async function lanzazor() {
 }
 
 export function agregar_renglon_tabla() {
+    //renglon para editable que debe desplegar del detalle en el renglon hijo
 
     let id360 = "temp" + getRandomInt(1000000);
+    let nodo_input = null;
 
     let data_renglon = {
+        index: id360,
         id: id360,
         id360,
         usuario: "",
@@ -139,74 +142,114 @@ export function agregar_renglon_tabla() {
         apellido_materno: ""
     };
 
-    let render = [{
-        target: "usuario_llave",
-        render: function (data, row, nodo_row, nodo_cell) {
-            nodo_row.classList.add("pendiente_guardar");
-            nodo_row.setAttribute('data-r-sin_guardar', "true");
-            nodo_cell.innerHTML = "";
-            nodo_input = crear_nodo_input("", "", "Usuario");
-            nodo_cell.insertAdjacentElement("beforeEnd", nodo_input);
-        }
-    },
-    {
-        target: "correo",
-        render: function (data, row, nodo_row, nodo_cell) {
-            nodo_row.classList.add("pendiente_guardar");
-            nodo_cell.innerHTML = "";
-            nodo_input = crear_nodo_input("", "", "Correo");
-            nodo_cell.insertAdjacentElement("beforeEnd", nodo_input);
-        }
-    },
-    {
-        target: "nombre",
-        render: function (data, row, nodo_row, nodo_cell) {
-            nodo_row.classList.add("pendiente_guardar");
-            nodo_cell.innerHTML = "";
-            nodo_input = crear_nodo_input("", "", "Nombre");
-            nodo_cell.insertAdjacentElement("beforeEnd", nodo_input);
-        }
-    },
-    {
-        target: "apellido_paterno",
-        render: function (data, row, nodo_row, nodo_cell) {
-            nodo_row.classList.add("pendiente_guardar");
-            nodo_cell.innerHTML = "";
-            nodo_input = crear_nodo_input("", "", "Apellido Paterno");
-            nodo_cell.insertAdjacentElement("beforeEnd", nodo_input);
-        }
-    },
-    {
-        target: "apellido_materno",
-        render: function (data, row, nodo_row, nodo_cell) {
-            console.log(nodo_row);
-            nodo_row.classList.add("pendiente_guardar");
-            nodo_cell.innerHTML = "";
-            nodo_input = crear_nodo_input("", "", "Apellido Materno");
-            nodo_cell.insertAdjacentElement("beforeEnd", nodo_input);
-        }
-    },
-    {
-        target: "acciones",
-        render: function (data, row, nodo_row, nodo_cell) {
-            console.log(nodo_row);
-            nodo_row.classList.add("pendiente_guardar");
-            nodo_cell.innerHTML = "";
-            nodo_input = document.createElement("div");
-            nodo_input.innerHTML = `
-                <button type="button" class="btn btn-danger m-1" data-evento="eliminar_renglon_temp"><i class="fas fa-trash" data-evento-heredado="true"></i></button>
-            `;
-            nodo_cell.insertAdjacentElement("beforeEnd", nodo_input);
-        }
-    },]
-    objDataTable.agregar_renglon_tabla(data_renglon, render);
+    let renders = [
+        {
+            target: "tipo_consulta",
+            render: function (data, row, nodo_row, nodo_cell) {
+                nodo_row.classList.add("pendiente_guardar");
+                nodo_cell.innerHTML = "";
+                nodo_input = crear_nodo_input("", "", "Tipo Consulta");
+                nodo_cell.insertAdjacentElement("beforeEnd", nodo_input);
+            }
+        },
+        {
+            target: "acciones",
+            render: function (data, row, nodo_row, nodo_cell) {
+                nodo_row.classList.add("pendiente_guardar");
+                nodo_cell.innerHTML = `<button type="button" class="btn btn-danger m-1" data-evento="eliminar_renglon_temp"><i class="fas fa-trash"></i></button>`;
+            }
+        },
+    ];
+    let nuevo_renglon = objDataTable.agregar_renglon_tabla(data_renglon, new Array());
+    nuevo_renglon.setAttribute("data-renglon-temporal", "true");
+    nuevo_renglon.setAttribute("data-r-sin_guardar", "true");
 
+    // aplicar los render 
+
+    for (let render of renders) {
+        let target = render.target;
+        let nodo = nuevo_renglon.querySelector('td.' + target);
+
+        if (nodo) {
+            render.render(data_renglon, data_renglon, nuevo_renglon, nodo);
+        }
+
+    };
+
+    // agregar el regnlon de detalle
+
+    crear_renglon_hijo(nuevo_renglon, (nodo_hijo) => {
+        nodo_hijo.setAttribute("data-r-sin_guardar", "true");
+        nodo_hijo.innerHTML = `Aqui van los detalles del renglon nuevo`;
+    });
+
+
+    return nuevo_renglon;
 }
 export const buscar_renglon_dt = () => {
     let buscado = objDataTable.get_renglon(0);
     console.log(buscado);
 }
 
+const crear_renglon_hijo = (nuevo_renglon, callback_abrir, callback_cerrar) => {
+    // recibe el nodo padre del reglon padrem 
+    // 
+    let nodo_tr = null;
+    let nodo_hijo = null;
+    let index = null;
+    let data = null;
+    let tiene_hijo = null;
+
+    if (nuevo_renglon) {
+        nodo_tr = nuevo_renglon;
+        index = nodo_tr.getAttribute("data-dt-index");
+        tiene_hijo = nodo_tr.classList.contains("tr_tieneHijo");
+
+        if (!tiene_hijo) {
+            nodo_hijo = objDataTable.conmutador_tr_hijo(nodo_tr);// hara tootgle al renglon hijo
+
+            if (nodo_hijo) {
+                // mostrando el nodo hijo
+                data = objDataTable.get_renglon(index);
+                nodo_hijo = nodo_hijo.querySelector("td");
+                crear_nodo_detalle_renglon_hijo(nodo_hijo, data); // crear el contenido del renglon hijo
+
+                if (callback_abrir) {
+                    callback_abrir(nodo_hijo);
+                }
+
+            } else {
+                // el nodo hijo ya se ocultó o no se pudo mostrar
+            }
+
+        } else {
+            // ocultar hacer el toogle del nodo hijo
+            
+        }
+    }
+
+    return nodo_hijo;
+};
+
+const eliminar_renglon_tabla = (nodo_tr) => {
+    // en caso de que tenga renglon hijo, tambien eliminarlo;
+    if (nodo_tr) {
+        let tiene_hijo = nodo_tr.classList.contains("tr_tieneHijo");
+        let nodo_hijo = null;
+        if (tiene_hijo) {
+
+
+            nodo_hijo = objDataTable.conmutador_tr_hijo(nodo_tr);
+
+
+            nodo_tr.remove();
+        }
+    }
+};
+
+//----------------------------------------------------------------
+//----------------------------------------------------------------
+//----------------------------------------------------------------
 //----------------------------------------------------------------
 // fucniones para el modulo de ususarios en telepresencia
 const ME_tabla_usurios = (nodo_me) => {
@@ -235,12 +278,13 @@ const ME_tabla_usurios = (nodo_me) => {
             let nodo_hijo = null;
             let index = null;
             let data = null;
+            let tiene_hijo = null;
             if (evento) {
                 switch (evento) {
                     case "eliminar_renglon_temp":
                         // navegar hata su renglon
                         nodo_tr = nodo.closest("tr");
-                        nodo_tr.remove();
+                        eliminar_renglon_tabla(nodo_tr);
                         break;
                     case "editar_renglon":
                         // editar el renglon por ahora no se abirará el renglon hijo(por ahora)
@@ -248,26 +292,31 @@ const ME_tabla_usurios = (nodo_me) => {
                         // convertir el contenido de determinadas columnas en input agregagando su respectiva data
                         nodo_tr = nodo.closest("tr");
                         index = nodo_tr.getAttribute("data-dt-index");
+                        tiene_hijo = nodo_tr.classList.contains("tr_tieneHijo");
 
-                        convertir_renglon_editable(nodo_tr, index);
+                        convertir_renglon_editable(nodo_tr, index, () => {
+                            // para hacer el toogle al nodo hijo
+                            nodo_hijo = objDataTable.conmutador_tr_hijo(nodo_tr);
 
+                            if (nodo_hijo) {
+                                // mostrando el nodo hijo
+                                data = objDataTable.get_renglon(index);
+
+                                crear_nodo_detalle_renglon_hijo(nodo_hijo.querySelector("td"), data);
+                            } else {
+                                // el nodo hijo ya se ocultó o no se pudo mostrar
+                            }
+                        });
+
+                        break;
                     case "agregar_renglon_hijo":
                         // mostrar detalles de renglon
+                        // pero solo si no tiene renglon hijo
                         nodo_tr = nodo.closest("tr");
-                        index = nodo_tr.getAttribute("data-dt-index");
+                        crear_renglon_hijo(nodo_tr, (nodo_hijo) => {
 
-                        console.log("objDataTable ", nodo_tr);
+                        });
 
-                        nodo_hijo = objDataTable.conmutador_tr_hijo(nodo_tr);
-
-                        if (nodo_hijo) {
-                            // mostrando el nodo hijo
-                            data = objDataTable.get_renglon(index);
-
-                            crear_nodo_detalle_renglon_hijo(nodo_hijo.querySelector("td"), data);
-                        } else {
-                            // el nodo hijo ya se ocultó o no se pudo mostrar
-                        }
 
                         break;
                     default:
@@ -345,7 +394,7 @@ const crear_nodo_detalle_renglon_hijo = (nodo_contenedor, data) => {
     nodo.className = "detalles";
     if (nodo_contenedor && data) {
 
-        let nodo_documento = crear_nodo_input();
+        let nodo_documento = crear_nodo_input("", "", "edicion");
         nodo.insertAdjacentElement("beforeEnd", nodo_documento);
 
 
@@ -372,7 +421,7 @@ export const re_dibujar_tabla = () => {
     objDataTable.re_dibujar();
 }
 
-export const convertir_renglon_editable = (nodo, index) => {
+const convertir_renglon_editable = (nodo, index, callback_ok) => {
     //  los renglones editables tienen un nodo hijo con mas detalles
     if (nodo) {
         let data_editando = nodo.getAttribute("data-td-editando");
@@ -387,6 +436,8 @@ export const convertir_renglon_editable = (nodo, index) => {
                     nodo_row.classList.add("pendiente_guardar");
                     nodo_cell.innerHTML = "";
                     nodo_input = crear_nodo_input("", "", "Tipo Consulta");
+                    console.log(row.tipo_consulta);
+                    console.log(nodo_input.querySelector("input"));
                     nodo_input.querySelector("input").value = row.tipo_consulta;
                     nodo_cell.insertAdjacentElement("beforeEnd", nodo_input);
                 }
@@ -415,10 +466,17 @@ export const convertir_renglon_editable = (nodo, index) => {
 
                     if (td) {
                         item_render.render(data, data, nodo, td);
-
-                        // agregar bandera del estado de editando
-                        nodo.setAttribute("data-td-editando", true);
                     }
+
+
+                }
+
+                // agregar bandera del estado de editando
+                nodo.setAttribute("data-td-editando", true);
+
+                // ejecutar calback en caso de poder hacer el cambio a edicion
+                if (callback_ok) {
+                    callback_ok();
                 }
                 return;
             }
@@ -435,11 +493,14 @@ export const convertir_renglon_editable = (nodo, index) => {
 
                     if (td) {
                         item_render.render(data, data, nodo, td);
-
-                        // agregar bandera del estado de editando
-                        nodo.setAttribute("data-td-editando", false);
                     }
                 }
+
+                // ejecutar calback en caso de poder apagar el modo edicion
+                if (callback_ok) {
+                    callback_ok();
+                }
+
                 nodo.removeAttribute("data-td-editando");
 
             }

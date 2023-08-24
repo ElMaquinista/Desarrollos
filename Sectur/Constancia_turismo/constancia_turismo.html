@@ -35,7 +35,8 @@
                 <td></td>
                 <td>
                     <div>
-                        <img src="https://peru.claro360.com/dev_telepresencia/resources/Img/tester/mexico_colores.png" alt="">
+                        <img src="https://peru.claro360.com/dev_telepresencia/resources/Img/tester/mexico_colores.jpg"
+                            alt="">
                     </div>
                 </td>
                 </tr>
@@ -62,8 +63,8 @@
                     <td></td>
                     <td style="width: 20%;"></td>
                 </tr>
-                <tr>
-                    <td>
+                <tr class="columnaDatos">
+                    <td class="d-block">
                         <div>
                             <div class="texto_clave_numero">
                                 CLAVE DE CONTROL
@@ -82,17 +83,17 @@
                                 <p class="fw-bold">*!nombre*?</p>
                                 <p>*!calle*?</p>
                                 <p>*!colonia*? , C.P. <Span>*!cp*?</Span></p>
-                                <p>*!estado*? *!minuciopio*?</p>
+                                <p>*!estado*? *!municipio*?</p>
                             </div>
                             <div class="texto_etiquetas">
-                                COMO PRESENTADOR DE SERVICIOS TURÍSTICOS DE
+                                COMO PRESENTADOR DE SERVICIOS TURÍSTICOS DE:
                             </div>
-                            <div class="texto_datos_persona fw-bold">
-                                AGENCIA DE VIAJES
+                            <div class="texto_datos_persona servicioDe fw-bold">
+                                *!servicio_de*?
                             </div>
                         </div>
                     </td>
-                    <td>
+                    <td class="d-block">
                         <div>
                             <p class="texto_clave_numero">NÚMERO DE TRÁMITE</p>
                             <p class="texto_vertical"> *!no_tramite*?</p>
@@ -103,21 +104,45 @@
 
         </div>
 
-        <div class="firma">
-
-            <div style="border-bottom: 1px solid #000;">
-                Lic. Milario Péres León,
-            </div>
-            <div>
-                Director General de Certificación Turística
-            </div>
+        <div class="contendor_firmas">
+            <table class="plantilla_tabla tabla_firmas">
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="contendor_qr">
+                                <img src="*!base64_qr*?"
+                                    alt="Código QR" class="imagen_qr">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="firma">
+                                <div style="border-bottom: 1px solid #000;">
+                                    Lic. Milario Péres León,
+                                </div>
+                                <div>
+                                    Director General de Certificación Turística
+                                </div>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <div class="letras_pequeñas" style="width:900px; margin: 0 auto; font-size: 9px; padding: 15px 0 0 0;">
             <div style="text-align: center; width: 500px; margin: 0 auto;">
-                Con fundamento en lo dispuesto en los articulos 42 fracción IV de la ley Orgánica de la Administración Pública Federal, 
-                52 de la Ley General de Turismo y 26 fraccciones IIII y IV del Reglamento interior de la Secretariaa de Turismo, 
-                Schiller 136, 60 piso, Col Bosques de Chapultepec, Deletgación Miguel Hidalgo, Ciudad de México, C.P. 11590
+                Con fundamento en lo dispuesto en los articulos 42 fracción IV de la ley Orgánica de la Administración
+                Pública Federal,
+                52 de la Ley General de Turismo y 26 fraccciones IIII y IV del Reglamento interior de la Secretariaa de
+                Turismo,
+                Schiller 136, 60 piso, Col Bosques de Chapultepec, Deletgación Miguel Hidalgo, Ciudad de México, C.P.
+                11590
             </div>
             <div>
                 <table style="font-size: 20px;  width: 100%; overflow: hidden; height: 5px;">

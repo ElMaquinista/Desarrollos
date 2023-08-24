@@ -3,124 +3,188 @@
     background-repeat: no-repeat;
 } */
 .contendor_imagen_fondo {
-    opacity: 0.6;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -1;
+  /* test para usar una imagen de fondo */
+  opacity: 0.6;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
 
-    height: 500;
-    width: 100%;
+  height: 500px;
+  width: 100%;
 
-    background-image: url("http://127.0.0.1:5500/Sectur/Constancia_turismo/img/escudo_mexico.png");
-    background-repeat: no-repeat;
-    display: none;
+  background-image: url("http://127.0.0.1:5500/Sectur/Constancia_turismo/img/escudo_mexico.png");
+  background-repeat: no-repeat;
+  display: none;
 }
 
 /* -------------------------------------- */
 /* -------------------------------------- */
 /* formato de hoja  */
 .formato_hoja {
-    /* height: 700px; */
-    height: 100%;
-    width: 100%;
-    /* width: 1010px; */
-    /* border-style: dashed; */
-    font-size: 8px;
-    overflow: hidden;
-    font-family: 'Times New Roman', Times, serif;
+  /*ayuda para debugear */
+  height: 700px;
+  width: 1010px;
+  border-style: dashed;
+
+  /* para presentar*/
+  /* height: 100%; */
+  /* width: 100%; */
+  overflow: hidden;
+  font-size: 8px;
+  font-family: "Times New Roman", Times, serif;
 }
 
-
+/* ---------------------------------------------------------------- */
+/* ---------------------------------------------------------------- */
+/* -------------------------------------------------------------------logos */
 .barra_logos {
-    font-size: 20px;
-    width: 100%;
-    overflow: hidden;
-    height: 130px;
+  /* solo las imaganes de logos */
+  font-size: 20px;
+  width: 100%;
+  overflow: hidden;
+  height: 130px;
 }
 
 .tabla_logos {
-    width: 100%;
-    align-items: center;
-    align-content: center;
-    height: 100%;
+  /* organizar los espacios de los logos */
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  height: 100%;
 }
 
 .tabla_logos td img {
-    margin: 0 auto;
-    width: 300px;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    display: flex;
+  /* para ajustar la vista de las imagenes de los logos */
+  margin: 0 auto;
+  width: 300px;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  display: flex;
 }
 
+/* ---------------------------------------------------------------- */
+/* ---------------------------------------------------------------- */
+/* ----------------------------------------------------------------    platilla tabla*/
+.cuerpo_datos {
+  padding: 10px 0 10px 0;
+  /* max-height: 260px; */
+  height: 260px;
+  overflow: hidden;
+}
+
+/* usada para organizar info */
+.plantilla_tabla {
+  font-size: 20px;
+  /* width: 100%; */
+  /* height: 100%; */
+  /* overflow: hidden; */
+  /* height: 140px; */
+}
+
+/* ---------------------------------------------------------------- */
+/* ---------------------------------------------------------------- */
+/* ----------------------------------------------------------------    etiquetas del documento*/
+
 .texto_etiquetas {
-    font-size: 15px;
-    padding: 0 0 0 50px;
-    font-size: 20px;
-    color: #818181;
+  /* etiquetas que indican la naturaleza de la info */
+  font-size: 20px;
+  padding: 0 0 0 50px;
+  color: #818181;
+}
+
+.texto_razon_doc {
+  /* titulos del certificado */
+  width: 600px;
+  overflow: hidden;
+  margin: 0 auto;
+  font-size: 30px;
 }
 
 .texto_clave_numero {
-    color: #202f74;
-    font-weight: bold;
+  /*  */
+  color: #202f74;
+  font-weight: bold;
 }
 
 .texto_datos_persona {
-    font-family: Arial, Helvetica, sans-serif;
-    width: 400px;
-    margin: 0 auto;
+  /* datos de la persona para quien va el certificado, ( nombre, calle, colonia ) */
+  font-family: Arial, Helvetica, sans-serif;
+  width: 400px;
+  margin: 0 auto;
+}
+.texto_datos_persona p {
+  /* para para reducir los espacios entre los parrafos de los datos personales */
+  padding: 0;
+  margin: 5;
 }
 
 .no_fecha {
-    padding: 0 30px 0 0;
-    font-size: 13px;
-    text-align: right;
+  /* fecha de expedicion del certificado */
+  padding: 0 30px 0 0;
+  font-size: 13px;
+  text-align: right;
 }
 
-
-.plantilla_tabla {
-    font-size: 20px;
-    width: 100%;
-    overflow: hidden;
-    height: 130px;
+.servicioDe {
+  /* div que tiene el Nombre del servio prestado */
+  /* max-height: 80px;
+  overflow: hidden; */
 }
 
 .texto_vertical {
-    writing-mode: vertical-rl;
-}
-
-.cuerpo_datos {
-    padding: 10px 0 10px 0;
+  writing-mode: vertical-rl;
 }
 
 .firma {
-    font-size: 20px;
-    padding: 30px 0 0 0;
-    width: 400px;
-    margin: 0 auto;
-    text-align: center;
+  /* div con la firma del documento */
+  font-size: 20px;
+  padding: 30px 0 0 0;
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .letras_pequeñas {
-    padding: 30px 0 0 0;
-    font-size: 15px;
-    margin: 0 auto;
-    width: 200px;
-    text-align: center;
-    text-align: center;
+  /* letras que van como pie del documento */
+  padding: 30px 0 0 0;
+  font-size: 15px;
+  margin: 0 auto;
+  width: 200px;
+  text-align: center;
+  text-align: center;
 }
-.texto_razon_doc{
-    width: 600px;
-    overflow: hidden;
-    margin: 0 auto;
-    font-size: 30px;
+.contendor_firmas{
+  /* contiene la tabla de firmas */
+  width: 100%;
+}
+.tabla_firmas{
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------------------------- */
+/* ---------------------------------------------------------------- */
+/* ----------------------------------------------------------------    imagen qr*/
+.contendor_qr {
+  position: relative;
+}
+.contendor_qr .imagen_qr {
+  position: absolute;
+  left: -40px;
+  top: -50px;
+  width: 100px;
+  width: 100px;
 }
 
 /* -------------------------------------- */
 /* -------------------------------------- */
 /* Formatos desde bootstrap 5 */
+/* para dar estiloss, buscando crear una platilla para la digitalizacion de documentos */
 .fw-bold {
-    font-weight: 700;
+  font-weight: 700;
+}
+.d-block {
+  display: block;
 }

@@ -2,7 +2,7 @@
 
 <head>
 
-    <link rel="stylesheet" href="http://127.0.0.1:5500/Sectur/Constancia_turismo/constancia_turismo.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5807/Sectur/Constancia_turismo/constancia_turismo.css">
 
     <title>Constancia Registo Turismo</title>
 
@@ -27,16 +27,15 @@
                 </tr>
                 <td>
 
-                    <img src="https://peru.claro360.com/dev_telepresencia/resources/Img/tester/sectur_logo.jpg" alt="">
+                    <img src="*!url_logo_sectur*?" alt="Logo_sectur" data-json="url_logo_sectur">
                     <div>
 
                     </div>
                 </td>
                 <td></td>
                 <td>
-                    <div>
-                        <img src="https://peru.claro360.com/dev_telepresencia/resources/Img/tester/mexico_colores.jpg"
-                            alt="">
+                    <div class="d-none">
+                        <img src="img/tester/mexico_colores.jpg" alt="">
                     </div>
                 </td>
                 </tr>
@@ -49,10 +48,10 @@
             </div>
             <div class="no_fecha">
                 <div>
-                    <span>NO.</span> <span class="fw-bold"> *!no_constancia*?</span>
+                    <span class="texto_etiquetas">NO.</span> <span class="fw-bold" data-json="no_constancia"> *!no_constancia*?</span>
                 </div>
                 <div>
-                    Mexico D:F a <span>*!fecha*?</span>
+                    Cuidad de México, <span data-json="fecha">*!fecha*?</span>
                 </div>
             </div>
         </div>
@@ -63,40 +62,46 @@
                     <td></td>
                     <td style="width: 20%;"></td>
                 </tr>
-                <tr class="columnaDatos">
-                    <td class="d-block">
+                <tr class="w-100">
+                    <td class="d-none">
                         <div>
                             <div class="texto_clave_numero">
                                 CLAVE DE CONTROL
                             </div>
-                            <div class="texto_vertical" style="padding: 20px;">
+                            <div class="texto_vertical" style="padding: 20px;" data-json="clave_control">
                                 *!clave_control*?
                             </div>
                         </div>
                     </td>
-                    <td>
-                        <div>
+                    <td class="w-100">
+                        <div class="w-75 mx-auto">
                             <div class="texto_etiquetas">
                                 EMITIDA A FAVOR DE:
                             </div>
                             <div class="texto_datos_persona">
-                                <p class="fw-bold">*!nombre*?</p>
-                                <p>*!calle*?</p>
-                                <p>*!colonia*? , C.P. <Span>*!cp*?</Span></p>
-                                <p>*!estado*? *!municipio*?</p>
+                                <p class="fw-bold" data-json="nombre">*!nombre*?</p>
+                                <p data-json="calle">*!calle*?</p>
+                                <p>
+                                    <span data-json="colonia">*!colonia*?</span> ,
+                                    C.P. <Span data-json="cp">*!cp*?</Span>
+                                </p>
+                                <p>
+                                    <span data-json="estado">*!estado*?</span> 
+                                    <span data-json="municipio"> *!municipio*?</span>
+                                </p>
                             </div>
                             <div class="texto_etiquetas">
                                 COMO PRESENTADOR DE SERVICIOS TURÍSTICOS DE:
                             </div>
-                            <div class="texto_datos_persona servicioDe fw-bold">
+                            <div class="texto_datos_persona servicioDe fw-bold" data-json="servicio_de">
                                 *!servicio_de*?
                             </div>
                         </div>
                     </td>
-                    <td class="d-block">
+                    <td class="d-none">
                         <div>
                             <p class="texto_clave_numero">NÚMERO DE TRÁMITE</p>
-                            <p class="texto_vertical"> *!no_tramite*?</p>
+                            <p class="texto_vertical" data-json="no_tramite"> *!no_tramite*?</p>
                         </div>
                     </td>
                 </tr>
@@ -115,17 +120,16 @@
                     <tr>
                         <td>
                             <div class="contendor_qr">
-                                <img src="*!base64_qr*?"
-                                    alt="Código QR" class="imagen_qr">
+                                <img src="*!base64_qr*?" alt="Código QR" class="imagen_qr" data-json="base64_qr">
                             </div>
                         </td>
                         <td>
                             <div class="firma">
-                                <div style="border-bottom: 1px solid #000;">
-                                    Lic. Milario Péres León,
+                                <div style="border-bottom: 1px solid #000;" data-json="nombre_despachador">
+                                    *!nombre_despachador*?
                                 </div>
-                                <div>
-                                    Director General de Certificación Turística
+                                <div data-json="puesto_despachador">
+                                    *!puesto_despachador*?
                                 </div>
                             </div>
                         </td>
@@ -135,16 +139,11 @@
             </table>
         </div>
 
-        <div class="letras_pequeñas" style="width:900px; margin: 0 auto; font-size: 9px; padding: 15px 0 0 0;">
-            <div style="text-align: center; width: 500px; margin: 0 auto;">
-                Con fundamento en lo dispuesto en los articulos 42 fracción IV de la ley Orgánica de la Administración
-                Pública Federal,
-                52 de la Ley General de Turismo y 26 fraccciones IIII y IV del Reglamento interior de la Secretariaa de
-                Turismo,
-                Schiller 136, 60 piso, Col Bosques de Chapultepec, Deletgación Miguel Hidalgo, Ciudad de México, C.P.
-                11590
+        <div class="letras_pequeñas mx-auto" style="width:900px; font-size: 9px; padding: 15px 0 0 0;">
+            <div class="mx-auto" style="text-align: center; width: 600px;" data-json="letras_pequeñas">
+                *!letras_pequeñas*?
             </div>
-            <div>
+            <div class="d-none">
                 <table style="font-size: 20px;  width: 100%; overflow: hidden; height: 5px;">
                     <tr>
                         <td style="background-color: #1e7d38; background: linear-gradient(to left, #1e7d38 90%, #fff);">
@@ -156,8 +155,8 @@
                     </tr>
                 </table>
             </div>
-            <div style="text-align: center;">
-                rnt.sectur.gob.mx
+            <div class="sectur_url" style="text-align: center;" data-json="url_sectur">
+                *!url_sectur*?
             </div>
 
         </div>

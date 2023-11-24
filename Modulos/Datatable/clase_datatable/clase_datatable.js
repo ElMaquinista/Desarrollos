@@ -1,5 +1,6 @@
 //-------------------------------------
-//
+//Clase basada en datatable
+// 
 //-------------------------------------
 class datatable_generico {
     id_contenedor_datatable = "datatable_default"; // se puede reemplazar
@@ -278,9 +279,9 @@ class datatable_generico {
 
 }
 
-
+let data_test = null;
 function test_crear_tabla() {
-    let data_test = new datatable_generico();
+    data_test = new datatable_generico();
     data_test.id_contenedor_datatable = "hola";
     data_test.id_tabla = "tabla_creditos";
     data_test.className_tabla = "tabla_creditos";
@@ -457,7 +458,7 @@ function test_crear_tabla() {
         { data: 'tangente', title: 'tangente' },
         { data: 'radio', title: 'radio' },
         { data: null, title: 'Estado', class: "controles extra" },
-        { data: null, title: 'Estado', class: "controles extra" },
+        { data: 'hola', title: 'extra', class: "extra"},
     ];
     data_test.obj_constr_datatable_ext = {
         autoWidth: true,
@@ -603,12 +604,14 @@ function test_crear_tabla() {
         {
             targets: "_all",
             sortable: true,
-            width: "50"
+            // width: "50",
+            defaultContent: `-`
         },
         {
             targets: 'nombre',
             // width: "500",
             render: function (data, type, row) {
+                console.log("type", type);
                 let contenido = data;
                 if (row.apellido_paterno !== null && row.apellido_paterno !== "" && row.apellido_paterno !== undefined) {
                     contenido += " " + row.apellido_paterno;

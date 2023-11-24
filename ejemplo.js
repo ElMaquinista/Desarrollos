@@ -1,5 +1,5 @@
 function saludo() {
-    console.log("hola");
+    console.log("hola desde el import");
 }
 
 

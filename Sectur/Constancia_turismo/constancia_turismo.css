@@ -23,16 +23,17 @@
 /* formato de hoja  */
 .formato_hoja {
   /*ayuda para debugear */
-  /* height: 700px; */
-  /* width: 1010px; */
-  /* border-style: dashed; */
+  height: 700px;
+  width: 1010px;
+  border-style: dashed;
 
   /* para presentar*/
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
+  /* height: 100%; */
+  /* width: 100%; */
+  /* overflow: hidden; */
   font-size: 8px;
-  font-family: "Trebuchet MS", Times, serif;
+  /* font-family: "Trebuchet MS", Times, serif; */
+  font-family: "Arial", Times, serif;
   font-weight: bold;
 }
 

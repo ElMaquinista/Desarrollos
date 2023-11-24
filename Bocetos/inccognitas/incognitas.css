@@ -1,0 +1,64 @@
+.opcionesImg {
+}
+.catalogoImagenes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 300px;
+  border: 1px solid grey inherit;
+  gap: 10px;
+}
+.catalogoImagenes .item {
+  /* width: 50px; */
+  overflow: hidden;
+  border: 1px solid grey;
+}
+.catalogoImagenes .item img {
+  width: 90%;
+  /* margin: 10px; */
+  padding: 10px;
+  cursor: pointer;
+  margin: 10px;
+}
+.catalogoImagenes .item img:focus {
+  border-style: solid;
+  border-color: red;
+  border-width: 1px;
+  /* outline: 2px solid blue; */
+  /* height: calc(100% - 2px); */
+  border-radius: 10px;
+}
+
+/* -------------------------------------------------------accciones dentro de llamada */
+:root{
+    --acciones-colgar: rgba(218, 41, 28);
+}
+.panel_sala .acciones {
+  /* display: grid; */
+  display: flex;
+  grid-template-columns: repeat(max-content, 1fr);
+  /* direction: rtl; */
+  /* justify-content: space-around; */
+  /* justify-content: center; */
+  /* width: 600px; */
+  width:max-content;
+  height: 50px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid black;
+}
+.panel_sala .acciones .item-accion {
+  /* width: 50px; */
+  width: 40px;
+  height: 50px;
+  border: 1px solid black;
+  border-width: 0px 0px 0px 0px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.panel_sala .acciones .item-accion.colgar {
+    background-color: var(--acciones-colgar);
+    color: #fff;
+}

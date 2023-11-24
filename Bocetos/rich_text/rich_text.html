@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rich Text Editor</title>
+  <!-- bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="rich_text.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="options">
+      <!-- Text Format -->
+      <button id="bold" class="option-button format">
+        <i class="fa-solid fa-bold"></i>
+      </button>
+      <button id="italic" class="option-button format">
+        <i class="fa-solid fa-italic"></i>
+      </button>
+      <button id="underline" class="option-button format">
+        <i class="fa-solid fa-underline"></i>
+      </button>
+      <button id="strikethrough" class="option-button format">
+        <i class="fa-solid fa-strikethrough"></i>
+      </button>
+      <button id="superscript" class="option-button script">
+        <i class="fa-solid fa-superscript"></i>
+      </button>
+      <button id="subscript" class="option-button script">
+        <i class="fa-solid fa-subscript"></i>
+      </button>
+
+      <!-- List -->
+      <button id="insertOrderedList" class="option-button">
+        <div class="fa-solid fa-list-ol"></div>
+      </button>
+      <button id="insertUnorderedList" class="option-button">
+        <i class="fa-solid fa-list"></i>
+      </button>
+
+      <!-- Undo/Redo -->
+      <button id="undo" class="option-button">
+        <i class="fa-solid fa-rotate-left"></i>
+      </button>
+      <button id="redo" class="option-button">
+        <i class="fa-solid fa-rotate-right"></i>
+      </button>
+
+      <!-- Link -->
+      <button id="createLink" class="adv-option-button">
+        <i class="fa fa-link"></i>
+      </button>
+      <button id="unlink" class="option-button">
+        <i class="fa fa-unlink"></i>
+      </button>
+
+      <!-- Alignment -->
+      <button id="justifyLeft" class="option-button align">
+        <i class="fa-solid fa-align-left"></i>
+      </button>
+      <button id="justifyCenter" class="option-button align">
+        <i class="fa-solid fa-align-center"></i>
+      </button>
+      <button id="justifyRight" class="option-button align">
+        <i class="fa-solid fa-align-right"></i>
+      </button>
+      <button id="justifyFull" class="option-button align">
+        <i class="fa-solid fa-align-justify"></i>
+      </button>
+      <button id="indent" class="option-button spacing">
+        <i class="fa-solid fa-indent"></i>
+      </button>
+      <button id="outdent" class="option-button spacing">
+        <i class="fa-solid fa-outdent"></i>
+      </button>
+
+      <!-- Headings -->
+      <select id="formatBlock" class="adv-option-button">
+        <option value="H1">H1</option>
+        <option value="H2">H2</option>
+        <option value="H3">H3</option>
+        <option value="H4">H4</option>
+        <option value="H5">H5</option>
+        <option value="H6">H6</option>
+      </select>
+
+      <!-- Font -->
+      <select id="fontName" class="adv-option-button"></select>
+      <select id="fontSize" class="adv-option-button"></select>
+
+      <!-- Color -->
+      <div class="input-wrapper">
+        <input type="color" id="foreColor" class="adv-option-button" />
+        <label for="foreColor">Color de fuente</label>
+      </div>
+      <div class="input-wrapper">
+        <input type="color" id="backColor" class="adv-option-button" />
+        <label for="backColor">Color de fondo</label>
+      </div>
+    </div>
+    <div id="text-input" contenteditable="true">
+
+      <div class="barra_logos">
+        <table class="tabla_logos">
+          <tr>
+          <tr>
+            <td style="width: 45%;"></td>
+            <td></td>
+            <td style="width: 45%;"></td>
+          </tr>
+          <td>
+
+            <img src="https://rnt.mexico360app.com/demo-1.0/resources/certificado/secretaria_de_turismo.png"
+              alt="Logo_sectur" data-json="url_logo_sectur">
+            <div>
+
+            </div>
+          </td>
+          <td></td>
+          <td>
+            <div class="d-none">
+              <img src="img/tester/mexico_colores.jpg" alt="">
+            </div>
+          </td>
+          </tr>
+        </table>
+      </div>
+      <!-- ---------------------------------------- seccion de titulo -->
+      <div class="titulo">
+        <div class="texto_etiquetas texto_razon_doc">
+          REGISTRO NACIONAL DEL TURISMO CONSTANCIA DE INSCRIPCIÓN
+        </div>
+        <div class="no_fecha">
+          <div>
+            <span class="texto_etiquetas">NO.</span> <span class="fw-bold" data-json="no_constancia">
+              *!no_constancia*?</span>
+          </div>
+          <div>
+            Cuidad de México, <span data-json="fecha">*!fecha*?</span>
+          </div>
+        </div>
+      </div>
+      <div class="cuerpo_datos">
+        <table class="plantilla_tabla">
+          <tr>
+            <td style="width: 20%;"></td>
+            <td></td>
+            <td style="width: 20%;"></td>
+          </tr>
+          <tr class="w-100">
+            <td class="d-none">
+              <div>
+                <div class="texto_clave_numero">
+                  CLAVE DE CONTROL
+                </div>
+                <div class="texto_vertical" style="padding: 20px;" data-json="clave_control">
+                  *!clave_control*?
+                </div>
+              </div>
+            </td>
+            <td class="w-100">
+              <div class="w-75 mx-auto">
+                <div class="texto_etiquetas">
+                  EMITIDA A FAVOR DE:
+                </div>
+                <div class="texto_datos_persona">
+                  <p class="fw-bold" data-json="nombre">*!nombre*?</p>
+                  <p data-json="calle">*!calle*?</p>
+                  <p>
+                    <span data-json="colonia">*!colonia*?</span> ,
+                    C.P. <Span data-json="cp">*!cp*?</Span>
+                  </p>
+                  <p>
+                    <span data-json="estado">*!estado*?</span>
+                    <span data-json="municipio"> *!municipio*?</span>
+                  </p>
+                </div>
+                <div class="texto_etiquetas">
+                  COMO PRESENTADOR DE SERVICIOS TURÍSTICOS DE:
+                </div>
+                <div class="texto_datos_persona servicioDe fw-bold" data-json="servicio_de">
+                  *!servicio_de*?
+                </div>
+              </div>
+            </td>
+            <td class="d-none">
+              <div>
+                <p class="texto_clave_numero">NÚMERO DE TRÁMITE</p>
+                <p class="texto_vertical" data-json="no_tramite"> *!no_tramite*?</p>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+
+      <div class="contendor_firmas">
+        <table class="plantilla_tabla tabla_firmas">
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="contendor_qr">
+                  <img src="*!base64_qr*?" alt="Código QR" class="imagen_qr" data-json="base64_qr">
+                </div>
+              </td>
+              <td>
+                <div class="firma">
+                  <div style="border-bottom: 1px solid #000;" data-json="nombre_despachador">
+                    *!nombre_despachador*?
+                  </div>
+                  <div data-json="puesto_despachador">
+                    *!puesto_despachador*?
+                  </div>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="letras_pequeñas mx-auto" style="width:900px; font-size: 9px; padding: 15px 0 0 0;">
+        <div class="mx-auto" style="text-align: center; width: 600px;" data-json="letras_pequeñas">
+          *!letras_pequeñas*?
+        </div>
+        <div class="d-none">
+          <table style="font-size: 20px;  width: 100%; overflow: hidden; height: 5px;">
+            <tr>
+              <td style="background-color: #1e7d38; background: linear-gradient(to left, #1e7d38 90%, #fff);">
+              </td>
+              <td style="width: 80px;"></td>
+              <td style="background-color: #c50e32; background: linear-gradient(to right, #c50e32 90%, #fff);">
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="sectur_url" style="text-align: center;" data-json="url_sectur">
+          *!url_sectur*?
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div contenteditable="true">
+    asdas
+  </div>
+  <!--Script-->
+  <script src="rich_text.js"></script>
+</body>
+
+</html>

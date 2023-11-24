@@ -1,0 +1,297 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  body {
+    /* background-color: #338cf4; */
+  }
+  .container {
+    background-color: #ffffff;
+    /* width: 90vmin; */
+    padding: 50px 30px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 10px;
+    box-shadow: 0 25px 50px rgba(7, 20, 35, 0.2);
+  }
+  .options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+  }
+  button {
+    height: 28px;
+    width: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 3px;
+    border: none;
+    background-color: #ffffff;
+    outline: none;
+    color: #020929;
+  }
+  select {
+    padding: 7px;
+    border: 1px solid #020929;
+    border-radius: 3px;
+  }
+  .options label,
+  .options select {
+    font-family: "Poppins", sans-serif;
+  }
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  input[type="color"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 40px;
+    height: 28px;
+    border: none;
+    cursor: pointer;
+  }
+  input[type="color"]::-webkit-color-swatch {
+    border-radius: 15px;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px #020929;
+  }
+  input[type="color"]::-moz-color-swatch {
+    border-radius: 15px;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px #020929;
+  }
+  #text-input {
+    margin-top: 10px;
+    border: 1px solid #dddddd;
+    padding: 20px;
+    /* height: 50vh; */
+    /* height: 300%; */
+    /* width: 600px; */
+  }
+  .active {
+    background-color: #e0e9ff;
+  }
+
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+/* .formato_hoja {
+    background-image: url("http://127.0.0.1:5500/Sectur/Constancia_turismo/img/escudo_mexico.png");
+    background-repeat: no-repeat;
+} */
+.contendor_imagen_fondo {
+    /* test para usar una imagen de fondo */
+    opacity: 0.6;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  
+    height: 500px;
+    width: 100%;
+  
+    background-image: url("http://127.0.0.1:5500/Sectur/Constancia_turismo/img/escudo_mexico.png");
+    background-repeat: no-repeat;
+    display: none;
+  }
+  
+  /* -------------------------------------- */
+  /* -------------------------------------- */
+  /* formato de hoja  */
+  .formato_hoja {
+    /*ayuda para debugear */
+    /* height: 700px; */
+    /* width: 1010px; */
+    /* border-style: dashed; */
+  
+    /* para presentar*/
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-size: 8px;
+    font-family: "Trebuchet MS", Times, serif;
+    font-weight: bold;
+  }
+  
+  /* ---------------------------------------------------------------- */
+  /* ---------------------------------------------------------------- */
+  /* -------------------------------------------------------------------logos */
+  .barra_logos {
+    /* solo las imaganes de logos */
+    font-size: 20px;
+    width: 100%;
+    overflow: hidden;
+    height: 130px;
+  }
+  
+  .tabla_logos {
+    /* organizar los espacios de los logos */
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+  }
+  
+  .tabla_logos td img {
+    /* para ajustar la vista de las imagenes de los logos */
+    margin: 0 auto;
+    width: 300px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    display: flex;
+  }
+  
+  /* ---------------------------------------------------------------- */
+  /* ---------------------------------------------------------------- */
+  /* ----------------------------------------------------------------    platilla tabla*/
+  .cuerpo_datos {
+    padding: 10px 0 10px 0;
+    /* max-height: 260px; */
+    height: 260px;
+    overflow: hidden;
+  }
+  
+  /* usada para organizar info */
+  .plantilla_tabla {
+    font-size: 20px;
+    width: 100%;
+    /* height: 100%; */
+    /* overflow: hidden; */
+    /* height: 140px; */
+  }
+  
+  /* ---------------------------------------------------------------- */
+  /* ---------------------------------------------------------------- */
+  /* ----------------------------------------------------------------    etiquetas del documento*/
+  
+  .texto_etiquetas {
+    /* etiquetas que indican la naturaleza de la info */
+    font-size: 20px;
+    padding: 0 0 0 50px;
+    color: #953b38;
+    font-weight: bold;
+  }
+  
+  .texto_razon_doc {
+    /* titulos del certificado */
+    width: 600px;
+    overflow: hidden;
+    margin: 0 auto;
+    font-size: 30px;
+  }
+  
+  .texto_clave_numero {
+    /*  */
+    color: #202f74;
+    font-weight: bold;
+  }
+  
+  .texto_datos_persona {
+    /* datos de la persona para quien va el certificado, ( nombre, calle, colonia ) */
+    font-family: Arial, Helvetica, sans-serif;
+    width: 400px;
+    margin: 0 auto;
+  }
+  .texto_datos_persona p {
+    /* para para reducir los espacios entre los parrafos de los datos personales */
+    padding: 0;
+    margin: 5;
+  }
+  
+  .no_fecha {
+    /* fecha de expedicion del certificado */
+    padding: 0 30px 0 0;
+    font-size: 13px;
+    text-align: right;
+  }
+  
+  .servicioDe {
+    /* div que tiene el Nombre del servio prestado */
+    /* max-height: 80px;
+    overflow: hidden; */
+  }
+  
+  .texto_vertical {
+    writing-mode: vertical-rl;
+  }
+  
+  .firma {
+    /* div con la firma del documento */
+    font-size: 20px;
+    padding: 30px 0 0 0;
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .letras_pequeñas {
+    /* letras que van como pie del documento */
+    padding: 30px 0 0 0;
+    font-size: 15px;
+    margin: 0 auto;
+    width: 200px;
+    text-align: center;
+    text-align: center;
+    font-style: italic;
+  }
+  .contendor_firmas {
+    /* contiene la tabla de firmas */
+    width: 100%;
+  }
+  .tabla_firmas {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .sectur_url {
+    padding-top: 10px;
+    font-size: 15px;
+    color: #dabd96;
+  }
+  
+  /* ---------------------------------------------------------------- */
+  /* ---------------------------------------------------------------- */
+  /* ----------------------------------------------------------------    imagen qr*/
+  .contendor_qr {
+    position: relative;
+  }
+  .contendor_qr .imagen_qr {
+    position: absolute;
+    left: -40px;
+    top: -50px;
+    width: 100px;
+    width: 100px;
+  }
+  
+  /* -------------------------------------- */
+  /* -------------------------------------- */
+  /* Formatos desde bootstrap 5 */
+  /* para dar estiloss, buscando crear una platilla para la digitalizacion de documentos */
+  .fw-bold {
+    font-weight: 700;
+  }
+  .d-block {
+    display: block;
+  }
+  .d-none {
+    display: none;
+  }
+  .w-100 {
+    width: 100%;
+  }
+  .w-75 {
+    width: 75%;
+  }
+  .mx-auto {
+    margin: 0 auto;
+  }
+  

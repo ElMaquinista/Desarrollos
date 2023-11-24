@@ -13,8 +13,11 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
-        <!-- endemico  -->
-    <link rel="stylesheet" href="./modal_bt5.css">
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/d533bbc844.js" crossorigin="anonymous"></script>
+
+    <!-- endemico  -->
+    <!-- <link rel="stylesheet" href="./modal_bt5.css"> -->
     <title>Document</title>
 </head>
 
@@ -25,7 +28,53 @@
         <button class="btn btn-info" onclick="lanzar_modal()">lanzar modal </button>
     </div>
     <div>
-       
+        modal de progreso
+        <button class="btn btn-info" onclick="lanzar_modal_progreso()">lanzar modal </button>
+    </div>
+
+    <div class="tareas_proceso">
+        <div class="tarea tarea_subiendo_docs">
+            Por favor no cierre la ventana hasta el proceso concluya.
+            <span class="spinner-border cargado" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </span>
+            <span class="completado"><i class="far fa-check-circle"></i></span>
+            <span class="error"><i class="fas fa-exclamation"></i></span>
+        </div>
+        <div class="tarea tarea_registrando">
+            Por favor no cierre la ventana hasta el proceso concluya.
+            <span class="spinner-border cargado" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </span>
+            <span class="completado"><i class="far fa-check-circle"></i></span>
+            <span class="error"><i class="fas fa-exclamation"></i></span>
+        </div>
+    </div>
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Launch static backdrop modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="./modal_bt5.js"></script>

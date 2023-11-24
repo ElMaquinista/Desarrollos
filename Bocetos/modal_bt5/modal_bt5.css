@@ -1,0 +1,26 @@
+.cont_progreso {
+    /* background: red; */
+    /* border: 1px solid #000; */
+}
+.modal_progreso .tareas_proceso{
+
+}
+.modal_progreso .tareas_proceso .tarea{
+
+}
+.modal_progreso .tareas_proceso .tarea .estado{
+
+}
+.modal_progreso .tareas_proceso .tarea .esperando{
+
+}
+.modal_progreso .tareas_proceso .tarea .cargado{
+    height: 20px;
+    width: 20px;
+}   
+.modal_progreso .tareas_proceso .tarea .completado{
+    color:#2ea043;
+}   
+.modal_progreso .tareas_proceso .tarea .error{
+    color:#953b38;
+}

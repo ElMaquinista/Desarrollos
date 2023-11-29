@@ -1,0 +1,49 @@
+.pizarra_encuesta_percepcion {
+  width: 100vw;
+  /* text-align: center;s */
+  /* align-items: center; */
+  /* align-content: center; */
+  background-color: #f5f7fa;
+}
+.pizarra_encuesta_percepcion select:focus{
+  outline: none;
+  box-shadow: none;
+}
+.pizarra_encuesta_percepcion .selector_atencion {
+  margin: 0 auto;
+  display: flex;
+  width: min-content;
+}
+.pizarra_encuesta_percepcion .selector_atencion label[for^="radio_atencion"] {
+  width: 100px;
+}
+.pizarra_encuesta_percepcion .titulo {
+  font-style: normal;
+  font-size: 20px;
+}
+.pizarra_encuesta_percepcion .item_pregunta label {
+  font-size: 15px;
+}
+.pizarra_encuesta_percepcion .categoria .titulo {
+  text-align: left;
+  font-weight: bold;
+}
+.pizarra_encuesta_percepcion .categoria #map {
+  height: 200px;
+}
+.pizarra_encuesta_percepcion {
+}
+.pizarra_encuesta_percepcion {
+}
+.pizarra_encuesta_percepcion {
+}
+.pizarra_encuesta_percepcion {
+}
+.pizarra_encuesta_percepcion {
+}
+.pizarra_encuesta_percepcion {
+}
+.pizarra_encuesta_percepcion {
+}
+.pizarra_encuesta_percepcion {
+}

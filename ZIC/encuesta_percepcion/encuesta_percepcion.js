@@ -90,7 +90,7 @@ export const init = () => {
     let NS2_options = {
         searchable: true,
         placeholder: "Selecciona una opción",
-        selectedtext: "Seleccion"
+        selectedtext: "Seleccionados"
     };
     NS2_mejorCobertura = NiceSelect.bind(n_vagon.querySelector("#operador_utilizado"), NS2_options);
     console.log("NS2_mejorCobertura", NS2_mejorCobertura);
@@ -296,9 +296,10 @@ export const ME_encuesta_percepcion = (_nodo) => {
                         var opciones = NS2_mejorCobertura.selectedOptions.map(x => x.data.text)
                         console.log(opciones);
                         if (opciones) {
-                            NS2_mejorCobertura.selectedtext = opciones.toString();
-                            NS2_mejorCobertura.update();
+                            // NS2_mejorCobertura.selectedtext = opciones.toString();
+                            // NS2_mejorCobertura.update();
                         }
+
                         ritual_operador_multiple();
                         break;
                     case "red_fija":

@@ -2,13 +2,46 @@
 
 console.log("NiceSelect", NiceSelect);
 let NS2_mejorCobertura = null; // objero de nice-select2
-let i_vagon = ".pizarra_encuesta_percepcion"; // varaible para indicar el contendor general, evitando pegarle
+let i_vagon = ".pizarra_encuesta_percepcion"; // varaible para indicar el contendor general, evitando pegarle a no deseados
 let n_vagon = null;
 let cata_preguntas = [ // arreglo de preguntas que seran pinrtadas 
+    {
+        text: "Seleccione Operador 1",
+        tag: "select",
+        categoria: "¿Quién tiene la mejor cobertura?",
+        id_categoria: "1",
+        id: "mejor_cobertura_1",
+        tipo_red: ""
+    },
+    {
+        text: "Seleccione Operador 2",
+        tag: "select",
+        categoria: "¿Quién tiene la mejor cobertura?",
+        id_categoria: "1",
+        id: "mejor_cobertura_2",
+        tipo_red: ""
+    },
+    {
+        text: "Seleccione Operador 3",
+        tag: "select",
+        categoria: "¿Quién tiene la mejor cobertura?",
+        id_categoria: "1",
+        id: "mejor_cobertura_3",
+        tipo_red: ""
+    },
+    {
+        text: "Seleccione Operador 4",
+        tag: "select",
+        categoria: "¿Quién tiene la mejor cobertura?",
+        id_categoria: "1",
+        id: "mejor_cobertura_4",
+        tipo_red: ""
+    },
     {
         text: "¿Qué operador tiene la mejor promoción de pospago?",
         tag: "select",
         categoria: "Precio",
+        id_categoria: "2",
         id: "mejor_promocion_postpago",
         tipo_red: "1"
     },
@@ -16,6 +49,7 @@ let cata_preguntas = [ // arreglo de preguntas que seran pinrtadas
         text: "¿Qué operador tiene la mejor promoción de prepago?",
         tag: "select",
         categoria: "Precio",
+        id_categoria: "2",
         id: "mejor_promocion_prepago",
         tipo_red: "1"
     },
@@ -23,6 +57,7 @@ let cata_preguntas = [ // arreglo de preguntas que seran pinrtadas
         text: "¿Qué operador tiene la mejor promoción en fija?",
         tag: "select",
         categoria: "Precio",
+        id_categoria: "2",
         id: "mejor_promocion_prepago",
         tipo_red: "2"
     },
@@ -30,20 +65,23 @@ let cata_preguntas = [ // arreglo de preguntas que seran pinrtadas
         text: "¿Qué operador consideras como mejor?",
         tag: "select",
         categoria: "Publicidad",
+        id_categoria: "3",
         id: "mejor_operador",
         tipo_red: ""
     },
     {
-        text: "Qué operador hace mas publicidad?",
+        text: "¿Qué operador hace mas publicidad?",
         tag: "select",
         categoria: "Publicidad",
+        id_categoria: "3",
         id: "mas_publicidad",
         tipo_red: ""
     },
     {
-        text: "Qué operador elige como favorito?",
+        text: "¿Qué operador elige como favorito?",
         tag: "select",
         categoria: "Publicidad",
+        id_categoria: "3",
         id: "favorito",
         tipo_red: ""
     },
@@ -51,6 +89,7 @@ let cata_preguntas = [ // arreglo de preguntas que seran pinrtadas
         text: "",
         tag: "textarea",
         categoria: "Detalle",
+        id_categoria: "4",
         id: "detalle",
         tipo_red: ""
     },
@@ -58,6 +97,7 @@ let cata_preguntas = [ // arreglo de preguntas que seran pinrtadas
         text: "",
         tag: "map",
         categoria: "Ubucación",
+        id_categoria: "5",
         id: "ubicacion",
         tipo_red: ""
     },
@@ -159,7 +199,7 @@ export const pintar_preguntas = (_nodo) => {
 };
 export const crear_cont_pregunta = (_nodo, data) => {
     // crear contenedor de preguntas / categoria
-    let id = "categoria_" + data.categoria;
+    let id = "categoria_" + data.id_categoria;
     let cont = null;
     let item_pregunta = null;
     if (data) {
@@ -169,6 +209,7 @@ export const crear_cont_pregunta = (_nodo, data) => {
             cont = document.createElement("div");
             cont.className = "categoria p-2";
             cont.id = id;
+            cont.setAttribute("data-id", data.id);
             cont.innerHTML = `<div class="titulo">${data.categoria}</div>
             <div class="preguntas"></div>`;
             _nodo.insertAdjacentElement("beforeEnd", cont);
@@ -185,17 +226,20 @@ export const crear_item_pregunta = (data) => {
     let cont = null;
     if (data) {
         cont = document.createElement("div");
-        cont.className = "item_pregunta";
+        cont.className = "item_pregunta form-floating";
+        cont.setAttribute("data-id", data.id);
+        cont.setAttribute("data-id_categoria", data.id_categoria);
+        cont.setAttribute("data-tag", data.tag);
 
         switch (data.tag) {
             case "select":
                 cont.innerHTML = `
-                    <label for="${data.id}"> ${data.text}</label>
-                    <select class="form-select  form-select-sm mb-3 border border-danger" aria-label=".form-select-lg example"
+                    <select class="form-select form-select-sm mb-3 border border-danger" aria-label=".form-select-lg example"
                         id="${data.id}">
-                        <option selected>Selecciona una opción</option>
+                        <option value = "" selected>Selecciona una opción</option>
                         ${crear_opciones_operadores()}
                     </select>
+                    <label class="overflow-visible vw-100" for="${data.id}"> ${data.text}</label>
                 `;
                 break;
             case "textarea":
@@ -267,7 +311,7 @@ export const ritual_operador_multiple = () => {
     } else {
         for (let nodo of arr_select) {
             // nodo.innerHTML= s_opciones;
-            nodo.innerHTML = `<option selected="">Selecciona una opción</option>`;
+            nodo.innerHTML = `<option value="" selected="">Selecciona una opción</option>`;
         }
         n_vagon.querySelector(".panel_preguntas_precondicion").classList.add("d-none");
     }
@@ -275,21 +319,103 @@ export const ritual_operador_multiple = () => {
 };
 
 //-------------------------------------------------------------------------------------------------------------
+// recolestar respuestas para su alamacenamiento
+export const crear_peticion_cuerpo = () => {
+    // crear el request body
+    let json = crear_json_encuesta();
+    json.respuestas = recolestar_respuesta_preguntas();
+    json.lng = map.center.lng();
+    json.lat = map.center.lat();
+    return json;
+};
+export const crear_json_encuesta = () => {
+    // modo de plantilla y a modo de ejemplo
+    let json = {
+        "id360_encuestador": "1",
+        "id_region": "1",
+        "id_departamento": "1",
+        "id_provincia": "1",
+        "lat": "10",
+        "lng": "11",
+        "respuestas": [
+            {
+                "id_pregunta": "1",
+                "value": "1"
+            }
+        ]
+    };
+    json.respuestas = [];// reinicar
+    return json;
+};
+export const recolestar_respuesta_preguntas = () => {
+    // recolectar las respuestas de las preguntas
+    // recolectar las respuestas del div de precondicionales 
+    // recolectar del div de las preguntas
+    let n_precondicionales = n_vagon.querySelectorAll(".panel_preguntas_precondicion:not(.d-none) .item_pregunta"); // solo si estan visibles
+    let n_preguntas = n_vagon.querySelectorAll(".panel_preguntas:not(.d-none) .item_pregunta");
+    let respuestas = new Array();
+    if (n_preguntas && n_preguntas.length > 0) {
+        for (let preg of n_preguntas) {
+            let respuesta = extraer_respuesta_de_item_pregunta(preg);
+            if (respuesta) {
+                respuestas.push(respuesta);
+            }
+        }
+    }
+    return respuestas;
+};
+
+export const extraer_respuesta_de_item_pregunta = (_nodo, especial = null) => {
+    // extrer la informacion del div pregunta
+    let id = _nodo.getAttribute("data-id");
+    let id_categoria = _nodo.getAttribute("data-id_categoria");
+    let tag = _nodo.getAttribute("data-tag");
+    let respuesta = null;
+    if (!especial) {
+        switch (tag) {
+            case "select":
+                var select = _nodo.querySelector("select");
+                respuesta = {
+                    value: select.value,
+                    id_prepgunta: id
+                };
+                break;
+            default:
+                break;
+        }
+    } else {
+        switch (tag) {
+            case "map":
+                console.log(map)
+                break;
+            default:
+                break;
+        }
+    }
+    return respuesta;
+};
+
+
+//-------------------------------------------------------------------------------------------------------------
 // manejador de eventos
 
 export const ME_encuesta_percepcion = (_nodo) => {
+    // Manejador de eventos Generales
     if (_nodo) {
         _nodo.addEventListener("click", (e) => {
-            // console.log("click", e);s
-            preambulo_eventos(e, (evento, nodo) => {
+            // console.log("click", e);
+            preambulo_eventos(e, (nodo, evento) => {
                 switch (evento) {
+                    case "guardar":
+                        console.log(crear_peticion_cuerpo());
+                        break;
                     default:
                         break;
                 }
             })
         });
         _nodo.addEventListener("change", (e) => {
-            // console.log("change", e);s
+            // console.log("change", e);
             preambulo_eventos(e, (nodo, evento) => {
                 switch (evento) {
                     case "select_operador_utilizado":
@@ -304,9 +430,11 @@ export const ME_encuesta_percepcion = (_nodo) => {
                         break;
                     case "red_fija":
                         recargar_preguntas();
+                        ritual_operador_multiple();
                         break;
                     case "red_movil":
                         recargar_preguntas();
+                        ritual_operador_multiple();
                         break;
                     default:
                         break;

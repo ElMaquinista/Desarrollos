@@ -1,0 +1,50 @@
+[
+  {
+    "data": "organizacion",
+    "title": "Organizacion"
+  },
+  {
+    "data": "num_empleado",
+    "title": "Código de Asesor"
+  },
+  {
+    "data": "nombreCompleto",
+    "title": "Nombre y apellidos"
+  },
+  {
+    "data": "primera_conexion",
+    "title": "Hora de primera conexión del día"
+  },
+  {
+    "data": "ultima_conexion",
+    "title": "Hora de termino de conexión diaria"
+  },
+  {
+    "data": "sumaCat_1",
+    "title": "Tiempo Disponible"
+  },
+  {
+    "data": "sumaCat_2",
+    "title": "Tiempo en atención"
+  },
+  {
+    "data": "sumaCat_3",
+    "title": "Tiempo total de refrigerio"
+  },
+  {
+    "data": "sumaCat_4",
+    "title": "Tiempo de SSHH"
+  },
+  {
+    "data": "sumaCat_5",
+    "title": "Tiempo total de BackOffice"
+  },
+  {
+    "data": "sumaCat_6",
+    "title": "Tiempo total de Pausa activa"
+  },
+  {
+    "data": null,
+    "title": "Tiempo total de desconexión motivos otros"
+  }
+]
